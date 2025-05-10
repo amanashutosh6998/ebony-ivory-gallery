@@ -17,7 +17,7 @@ const Footer = () => {
               <Github className="w-5 h-5 mr-2" />
               GitHub
             </a>
-            <a href="https://linkedin.com/in/amanashutosh" className="hover:text-gray-400 transition-colors flex items-center" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/aman-ashutosh/" className="hover:text-gray-400 transition-colors flex items-center" target="_blank" rel="noopener noreferrer">
               <Linkedin className="w-5 h-5 mr-2" />
               LinkedIn
             </a>
