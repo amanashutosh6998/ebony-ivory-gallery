@@ -10,8 +10,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="about" className="py-24 relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 animate-pulse">About Me</h2>
           <p className="text-lg text-gray-400 animate-fade-in">
@@ -44,16 +50,16 @@ const AboutSection = () => {
             {skills.map((skill, index) => (
               <Card 
                 key={skill.name} 
-                className="p-6 border border-gray-800 bg-gray-800/50 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 animate-fade-in"
+                className="p-6 border border-gray-800 bg-gray-800/50 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2 animate-fade-in group"
                 style={{animationDelay: `${(index + 1) * 200}ms`}}
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2 bg-gradient-to-r from-gray-900 to-black rounded-md">
-                    <skill.icon className="h-5 w-5 text-white" />
+                  <div className="p-3 bg-gradient-to-r from-gray-900 to-black rounded-md group-hover:from-purple-900/50 group-hover:to-blue-900/50 transition-colors duration-300">
+                    <skill.icon className="h-5 w-5 text-white group-hover:text-purple-300 transition-colors duration-300" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-medium mb-1">{skill.name}</h4>
-                    <p className="text-gray-400">{skill.description}</p>
+                    <h4 className="text-xl font-medium mb-1 group-hover:text-purple-200 transition-colors duration-300">{skill.name}</h4>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{skill.description}</p>
                   </div>
                 </div>
               </Card>

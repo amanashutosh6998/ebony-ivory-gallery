@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -75,6 +74,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
   }
 
   html {
@@ -99,6 +99,23 @@
   .delay-300 {
     animation-delay: 0.3s;
   }
+  
+  /* Polygon clip paths */
+  .clip-path-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  
+  .clip-path-square {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  
+  .clip-path-pentagon {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+  
+  .clip-path-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
 
   @keyframes fadeIn {
     from {
@@ -113,54 +130,33 @@
   
   @keyframes float {
     0% {
-      transform: translateY(0px);
+      transform: translateY(0px) rotate(0deg);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-15px) rotate(5deg);
     }
     100% {
-      transform: translateY(0px);
+      transform: translateY(0px) rotate(0deg);
     }
   }
   
   .animate-float {
-    animation: float 5s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
   }
   
-  .hover-scale {
-    transition: transform 0.3s ease;
-  }
-  
-  .hover-scale:hover {
-    transform: scale(1.05);
-  }
-  
-  .gradient-border {
-    position: relative;
-  }
-  
-  .gradient-border::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, white, transparent);
-  }
-
-  /* New animations */
   @keyframes pulse {
     0%, 100% {
       opacity: 1;
+      transform: scale(1);
     }
     50% {
       opacity: 0.7;
+      transform: scale(1.05);
     }
   }
   
   .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
   @keyframes slide-in {
@@ -190,6 +186,24 @@
   .animate-bounce {
     animation: bounce 2s ease infinite;
   }
+  
+  /* Background blur for glass effect */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+  }
+  
+  /* Add glow effect */
+  .hover-glow:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
 }
 
 @layer components {
@@ -208,5 +222,10 @@
   
   .section-heading {
     @apply text-3xl md:text-5xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
+  }
+  
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur border border-white/20 rounded-lg shadow-lg;
   }
 }
