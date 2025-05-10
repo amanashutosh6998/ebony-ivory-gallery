@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 opacity-0 animate-fade-in">
-            <span className="block">Hello, I'm</span>
+            <span className="block">I'm</span>
             <span className="block mt-2 text-5xl md:text-7xl lg:text-8xl">Aman Ashutosh</span>
           </h1>
           
