@@ -12,7 +12,7 @@ const HeroSection = () => {
           </h1>
           
           <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto font-light text-gray-400 opacity-0 animate-fade-in" style={{animationDelay: "300ms"}}>
-            Growth Analyst $ Growth Engineer
+            Growth Analyst & Growth Engineer
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-16 opacity-0 animate-fade-in" style={{animationDelay: "600ms"}}>
