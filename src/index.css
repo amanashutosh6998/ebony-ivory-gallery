@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -203,6 +204,11 @@
   /* Add glow effect */
   .hover-glow:hover {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Add will-change for performance optimization */
+  .will-change-transform {
+    will-change: transform;
   }
 }
 

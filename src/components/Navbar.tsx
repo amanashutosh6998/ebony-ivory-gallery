@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,30 +25,32 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "AI Lab", href: "/ai-lab" },
+    { name: "Case Studies", href: "/case-studies" },
+    { name: "Contact", href: "/contact" }
   ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black text-white py-2' : 'py-6'}`}>
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center">
-          <a href="#home" className="text-2xl font-bold tracking-tighter">
+          <Link to="/" className="text-2xl font-bold tracking-tighter">
             PORTFOLIO
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="font-medium tracking-wide hover:text-gray-400 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -66,14 +69,14 @@ const Navbar = () => {
           <div className="md:hidden pt-4 pb-2">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <a 
+                <Link 
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="font-medium tracking-wide hover:text-gray-400 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
