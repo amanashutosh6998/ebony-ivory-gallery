@@ -51,25 +51,29 @@ const AILabSection = () => {
   ];
 
   return (
-    <section id="ai-lab" className="py-24 bg-gray-900">
+    <section id="ai-lab" className="py-24 bg-gradient-to-b from-black via-gray-900 to-gray-800">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight">AI Lab</h2>
-          <span className="inline-block px-3 py-1 text-sm font-medium bg-white text-black rounded-full mb-6">Coming Soon</span>
-          <p className="text-lg text-gray-400">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 animate-pulse">AI Lab</h2>
+          <span className="inline-block px-3 py-1 text-sm font-medium bg-black text-white border border-gray-700 rounded-full mb-6 animate-pulse">Coming Soon</span>
+          <p className="text-lg text-gray-400 animate-fade-in">
             Experimental projects at the intersection of growth, data, and artificial intelligence.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {labProjects.map((project, index) => (
-            <Card key={index} className="overflow-hidden border border-gray-700 bg-black/50 hover:-translate-y-1 transition-transform duration-300">
+            <Card 
+              key={index} 
+              className="overflow-hidden border border-gray-700 bg-black/50 hover:-translate-y-2 transition-transform duration-300 animate-fade-in"
+              style={{animationDelay: `${index * 100}ms`}}
+            >
               <CardContent className="p-6">
                 <div className="px-1">
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                  <h3 className="text-xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <div className="flex justify-end">
-                    <span className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Coming Soon</span>
+                    <span className="text-xs uppercase tracking-wider text-gray-500 font-semibold animate-pulse">Coming Soon</span>
                   </div>
                 </div>
               </CardContent>

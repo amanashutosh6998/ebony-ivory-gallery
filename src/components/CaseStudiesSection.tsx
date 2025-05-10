@@ -112,8 +112,8 @@ const CaseStudiesSection = () => {
                         
                         <Button 
                           onClick={() => toggleStudy(index)}
-                          variant="outline"
-                          className="border-white text-white hover:bg-white hover:text-black"
+                          variant="default"
+                          className="bg-black text-white hover:bg-gray-800"
                         >
                           Close
                         </Button>
@@ -123,7 +123,7 @@ const CaseStudiesSection = () => {
                         <p className="text-gray-400 mb-6 line-clamp-2">{study.problem}</p>
                         <Button 
                           onClick={() => toggleStudy(index)}
-                          className="bg-white text-black hover:bg-gray-200"
+                          className="bg-black text-white hover:bg-gray-800"
                         >
                           Read Case Study
                         </Button>

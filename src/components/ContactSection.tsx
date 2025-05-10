@@ -15,7 +15,7 @@ const ContactSection = () => {
 
         <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: "400ms"}}>
           <Button 
-            className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg transition-transform hover:scale-105"
+            className="bg-black text-white hover:bg-gray-800 px-8 py-6 text-lg transition-transform hover:scale-105"
             asChild
           >
             <a href="mailto:amanshutosh.analytics@gmail.com">
@@ -25,7 +25,7 @@ const ContactSection = () => {
           
           <Button 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-black flex items-center gap-2 px-8 py-6 text-lg transition-transform hover:scale-105" 
+            className="bg-black text-white hover:bg-gray-700 border-gray-700 flex items-center gap-2 px-8 py-6 text-lg transition-transform hover:scale-105" 
             asChild
           >
             <a href="/resume.pdf" download="Aman_Ashutosh_Resume.pdf">

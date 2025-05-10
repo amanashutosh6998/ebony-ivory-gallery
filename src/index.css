@@ -148,11 +148,65 @@
     height: 2px;
     background: linear-gradient(90deg, transparent, white, transparent);
   }
+
+  /* New animations */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 0.8s forwards;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce {
+    animation: bounce 2s ease infinite;
+  }
 }
 
 @layer components {
   .container {
     @apply max-w-[1200px] mx-auto;
   }
+  
+  /* Enhanced button styles */
+  .btn-primary {
+    @apply bg-black text-white hover:bg-gray-800 px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-700 bg-transparent text-white hover:bg-gray-800 px-6 py-3 rounded-md transition-all duration-300;
+  }
+  
+  .section-heading {
+    @apply text-3xl md:text-5xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
+  }
 }
-
