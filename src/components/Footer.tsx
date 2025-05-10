@@ -21,7 +21,7 @@ const Footer = () => {
               <Linkedin className="w-5 h-5 mr-2" />
               LinkedIn
             </a>
-            <a href="mailto:amanshutosh.analytics@gmail.com" className="hover:text-gray-400 transition-colors flex items-center">
+            <a href="mailto:amanashutosh.analytics@gmail.com" className="hover:text-gray-400 transition-colors flex items-center">
               <Mail className="w-5 h-5 mr-2" />
               Email
             </a>
