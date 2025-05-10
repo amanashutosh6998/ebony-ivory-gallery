@@ -51,7 +51,7 @@ const AILabSection = () => {
   ];
 
   return (
-    <section id="ai-lab" className="py-24 bg-gradient-to-b from-black via-gray-900 to-gray-800">
+    <section id="ai-lab" className="py-24 bg-black">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 animate-pulse">AI Lab</h2>
