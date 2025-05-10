@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Download, GitHub, Linkedin, Mail } from "lucide-react";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -39,8 +39,8 @@ const HeroSection = () => {
           <div className="flex items-center justify-center gap-6 mb-8 opacity-0 animate-fade-in" style={{animationDelay: "700ms"}}>
             <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
               <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer">
-                <GitHub className="w-5 h-5" />
-                <span className="sr-only">GitHub</span>
+                <Github className="w-5 h-5" />
+                <span className="sr-only">Github</span>
               </a>
             </Button>
             <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>

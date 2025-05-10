@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { GitHub } from "lucide-react";
+import { Github } from "lucide-react";
 
 interface Project {
   title: string;
@@ -50,7 +50,7 @@ const ProjectsSection = () => {
                   <div className="flex justify-between items-start mb-4">
                     <p className="text-sm text-gray-500 mb-2">{project.category}</p>
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
-                      <GitHub size={20} />
+                      <Github size={20} />
                     </a>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
