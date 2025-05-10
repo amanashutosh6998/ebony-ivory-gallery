@@ -65,13 +65,13 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden pt-4 pb-2">
+          <div className="md:hidden pt-4 pb-2 bg-black">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name}
                   to={link.href}
-                  className="font-medium tracking-wide hover:text-gray-400 transition-colors"
+                  className="font-medium tracking-wide hover:text-gray-400 transition-colors block py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}

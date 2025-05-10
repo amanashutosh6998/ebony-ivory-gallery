@@ -1,12 +1,17 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import AnimatedBackground from "./AnimatedBackground";
+import { lazy, Suspense } from 'react';
+
+// Lazy load the animated background
+const AnimatedBackground = lazy(() => import('./AnimatedBackground'));
 
 const HeroSection = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-      <AnimatedBackground />
+      <Suspense fallback={<div className="absolute inset-0 bg-black"></div>}>
+        <AnimatedBackground />
+      </Suspense>
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center text-center">
