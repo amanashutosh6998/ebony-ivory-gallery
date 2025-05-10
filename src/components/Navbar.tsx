@@ -1,0 +1,86 @@
+
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" }
+  ];
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black text-white py-2' : 'py-6'}`}>
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex justify-between items-center">
+          <a href="#home" className="text-2xl font-bold tracking-tighter">
+            PORTFOLIO
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-8">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name}
+                href={link.href}
+                className="font-medium tracking-wide hover:text-gray-400 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden focus:outline-none" 
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden pt-4 pb-2">
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.href}
+                  className="font-medium tracking-wide hover:text-gray-400 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
