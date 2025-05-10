@@ -61,11 +61,11 @@ const ContactSection = () => {
               <div className="space-y-4">
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-gray-400">hello@example.com</p>
+                  <p className="text-gray-400">amanshutosh.analytics.com</p>
                 </div>
                 <div>
                   <p className="font-medium">Location</p>
-                  <p className="text-gray-400">New York, NY</p>
+                  <p className="text-gray-400">Bengaluru, KA</p>
                 </div>
                 <div>
                   <p className="font-medium">Social</p>
