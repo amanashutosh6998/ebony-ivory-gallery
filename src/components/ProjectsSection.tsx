@@ -55,7 +55,7 @@ const ProjectsSection = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
-                  <Button variant="outline" className="border-white text-white hover:bg-gray-800 w-full" asChild>
+                  <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       View Project
                     </a>

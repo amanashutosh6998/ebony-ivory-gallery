@@ -37,24 +37,6 @@ const HeroSection = () => {
           </div>
           
           <div className="flex items-center justify-center gap-6 mb-8 opacity-0 animate-fade-in" style={{animationDelay: "700ms"}}>
-            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
-              <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer">
-                <Github className="w-5 h-5" />
-                <span className="sr-only">Github</span>
-              </a>
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
-              <a href="https://linkedin.com/in/amanashutosh" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-5 h-5" />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
-              <a href="mailto:amanshutosh.analytics@gmail.com">
-                <Mail className="w-5 h-5" />
-                <span className="sr-only">Email</span>
-              </a>
-            </Button>
             <Button variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-black flex items-center gap-2" asChild>
               <a href="/resume.pdf" download="Aman_Ashutosh_Resume.pdf">
                 <Download className="w-4 h-4" />
