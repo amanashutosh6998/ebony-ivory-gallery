@@ -9,7 +9,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-black text-white">
       <ParticleBackground />
       <Navbar />
       <HeroSection />

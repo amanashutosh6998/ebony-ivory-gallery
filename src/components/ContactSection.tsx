@@ -40,12 +40,12 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-50">
+    <section id="contact" className="py-24 bg-gray-900">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Get In Touch</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Interested in working together? Feel free to contact me for any project ideas or collaborations.
             </p>
           </div>
@@ -53,7 +53,7 @@ const ContactSection = () => {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-xl font-bold mb-4">Contact Information</h3>
-              <p className="mb-6 text-gray-600">
+              <p className="mb-6 text-gray-400">
                 I'm currently available for freelance work and full-time positions. 
                 Don't hesitate to reach out if you have a project in mind.
               </p>
@@ -61,18 +61,18 @@ const ContactSection = () => {
               <div className="space-y-4">
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-gray-600">hello@example.com</p>
+                  <p className="text-gray-400">hello@example.com</p>
                 </div>
                 <div>
                   <p className="font-medium">Location</p>
-                  <p className="text-gray-600">New York, NY</p>
+                  <p className="text-gray-400">New York, NY</p>
                 </div>
                 <div>
                   <p className="font-medium">Social</p>
                   <div className="flex space-x-4 mt-2">
-                    <a href="#" className="text-black hover:text-gray-600 transition-colors">Twitter</a>
-                    <a href="#" className="text-black hover:text-gray-600 transition-colors">LinkedIn</a>
-                    <a href="#" className="text-black hover:text-gray-600 transition-colors">GitHub</a>
+                    <a href="#" className="text-white hover:text-gray-400 transition-colors">Twitter</a>
+                    <a href="#" className="text-white hover:text-gray-400 transition-colors">LinkedIn</a>
+                    <a href="#" className="text-white hover:text-gray-400 transition-colors">GitHub</a>
                   </div>
                 </div>
               </div>
@@ -88,7 +88,7 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="border-gray-300 focus:border-black focus-visible:ring-0"
+                      className="border-gray-700 bg-gray-800/50 focus:border-white focus-visible:ring-0 text-white"
                     />
                   </div>
                   <div>
@@ -99,7 +99,7 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="border-gray-300 focus:border-black focus-visible:ring-0"
+                      className="border-gray-700 bg-gray-800/50 focus:border-white focus-visible:ring-0 text-white"
                     />
                   </div>
                   <div>
@@ -110,12 +110,12 @@ const ContactSection = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="border-gray-300 focus:border-black focus-visible:ring-0"
+                      className="border-gray-700 bg-gray-800/50 focus:border-white focus-visible:ring-0 text-white"
                     />
                   </div>
                   <Button 
                     type="submit"
-                    className="w-full bg-black text-white hover:bg-gray-800"
+                    className="w-full bg-white text-black hover:bg-gray-200"
                   >
                     Send Message
                   </Button>

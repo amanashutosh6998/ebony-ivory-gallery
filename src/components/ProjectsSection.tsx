@@ -32,11 +32,11 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-24 bg-black">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">My Projects</h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-400">
             Here's a selection of my recent work. Each project was approached with careful attention to design, functionality, and user experience.
           </p>
         </div>
@@ -55,8 +55,8 @@ const ProjectsSection = () => {
                 <div className="px-2">
                   <p className="text-sm text-gray-500 mb-2">{project.category}</p>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <Button variant="outline" className="border-black text-black hover:bg-gray-100">
+                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <Button variant="outline" className="border-white text-white hover:bg-gray-900">
                     View Project
                   </Button>
                 </div>
@@ -66,7 +66,7 @@ const ProjectsSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="bg-black text-white hover:bg-gray-800">
+          <Button className="bg-white text-black hover:bg-gray-200">
             View All Projects
           </Button>
         </div>

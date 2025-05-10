@@ -11,20 +11,20 @@ const HeroSection = () => {
             <span className="block mt-2 text-5xl md:text-7xl lg:text-8xl">JOHN DOE</span>
           </h1>
           
-          <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto font-light text-gray-600 dark:text-gray-300 animate-fade-in delay-100">
+          <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto font-light text-gray-400 animate-fade-in delay-100">
             Creative Developer & Designer
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-fade-in delay-200">
             <Button 
-              className="bg-black text-white hover:bg-gray-800 border border-black px-8 py-6 text-lg"
+              className="bg-white text-black hover:bg-gray-200 border border-white px-8 py-6 text-lg"
               asChild
             >
               <a href="#projects">View My Work</a>
             </Button>
             <Button 
               variant="outline" 
-              className="border-black text-black hover:bg-gray-100 px-8 py-6 text-lg"
+              className="border-white text-white hover:bg-gray-900 px-8 py-6 text-lg"
               asChild
             >
               <a href="#contact">Contact Me</a>
@@ -32,7 +32,7 @@ const HeroSection = () => {
           </div>
           
           <div className="w-full max-w-xl mx-auto animate-fade-in delay-300">
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
+            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
           </div>
         </div>
       </div>
