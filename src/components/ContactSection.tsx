@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Mail, MapPin, Globe } from "lucide-react";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -46,7 +47,7 @@ const ContactSection = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Get In Touch</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Interested in working together? Feel free to contact me for any project ideas or collaborations.
+              Interested in working together? Feel free to contact me for project ideas or collaborations.
             </p>
           </div>
 
@@ -54,25 +55,33 @@ const ContactSection = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Contact Information</h3>
               <p className="mb-6 text-gray-400">
-                I'm currently available for freelance work and full-time positions. 
-                Don't hesitate to reach out if you have a project in mind.
+                I'm currently available for freelance work, consulting, and full-time positions. 
+                Don't hesitate to reach out if you have a project or opportunity in mind.
               </p>
               
               <div className="space-y-4">
-                <div>
-                  <p className="font-medium">Email</p>
-                  <p className="text-gray-400">amanshutosh.analytics.com</p>
+                <div className="flex items-start space-x-3">
+                  <Mail className="w-5 h-5 mt-1 text-gray-400" />
+                  <div>
+                    <p className="font-medium">Email</p>
+                    <p className="text-gray-400">amanshutosh.analytics@gmail.com</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium">Location</p>
-                  <p className="text-gray-400">Bengaluru, KA</p>
+                <div className="flex items-start space-x-3">
+                  <MapPin className="w-5 h-5 mt-1 text-gray-400" />
+                  <div>
+                    <p className="font-medium">Location</p>
+                    <p className="text-gray-400">Bengaluru, KA</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium">Social</p>
-                  <div className="flex space-x-4 mt-2">
-                    <a href="#" className="text-white hover:text-gray-400 transition-colors">Twitter</a>
-                    <a href="#" className="text-white hover:text-gray-400 transition-colors">LinkedIn</a>
-                    <a href="#" className="text-white hover:text-gray-400 transition-colors">GitHub</a>
+                <div className="flex items-start space-x-3">
+                  <Globe className="w-5 h-5 mt-1 text-gray-400" />
+                  <div>
+                    <p className="font-medium">Social</p>
+                    <div className="flex space-x-4 mt-2">
+                      <a href="https://github.com/amanashutosh6998" className="text-white hover:text-gray-400 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      <a href="https://linkedin.com/in/amanashutosh" className="text-white hover:text-gray-400 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,33 +1,34 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { GitHub } from "lucide-react";
 
 interface Project {
   title: string;
   category: string;
   description: string;
-  image: string;
+  github: string;
 }
 
 const ProjectsSection = () => {
   const projects: Project[] = [
     {
-      title: "Agency Website",
-      category: "Web Design",
-      description: "A clean, modern website for a digital agency with animated interactions",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop"
+      title: "AWS CDP Pipeline",
+      category: "Data Engineering",
+      description: "End-to-end Customer Data Platform using S3, Lambda, Redshift & Step Functions.",
+      github: "https://github.com/amanashutosh6998/aws-cdp-pipeline"
     },
     {
-      title: "E-commerce Platform",
-      category: "Web Development",
-      description: "Full-featured online shop with custom product filtering and checkout",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop"
+      title: "HubSpot CRM Cleanup",
+      category: "Marketing Automation",
+      description: "Deduplication, batch associations, and lifecycle stage mapping automation.",
+      github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup"
     },
     {
-      title: "Mobile Banking App",
-      category: "UI/UX Design",
-      description: "User-friendly mobile banking experience with focus on accessibility",
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2000&auto=format&fit=crop"
+      title: "Intercom ETL Automation",
+      category: "Data Pipeline",
+      description: "Async pipeline to extract, clean, and enrich support conversations.",
+      github: "https://github.com/amanashutosh6998/intercom-etl"
     },
   ];
 
@@ -35,29 +36,29 @@ const ProjectsSection = () => {
     <section id="projects" className="py-24 bg-black">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">My Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Featured Projects</h2>
           <p className="text-lg text-gray-400">
-            Here's a selection of my recent work. Each project was approached with careful attention to design, functionality, and user experience.
+            A collection of my GitHub projects focused on growth engineering, data pipelines, and automation.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden border-0 bg-transparent hover:-translate-y-1 transition-transform duration-300">
-              <CardContent className="p-0">
-                <div className="relative aspect-[16/10] mb-4 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
+            <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
+              <CardContent className="p-6">
                 <div className="px-2">
-                  <p className="text-sm text-gray-500 mb-2">{project.category}</p>
+                  <div className="flex justify-between items-start mb-4">
+                    <p className="text-sm text-gray-500 mb-2">{project.category}</p>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+                      <GitHub size={20} />
+                    </a>
+                  </div>
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
-                  <Button variant="outline" className="border-white text-white hover:bg-gray-900">
-                    View Project
+                  <Button variant="outline" className="border-white text-white hover:bg-gray-800 w-full" asChild>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      View Project
+                    </a>
                   </Button>
                 </div>
               </CardContent>
@@ -66,8 +67,10 @@ const ProjectsSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="bg-white text-black hover:bg-gray-200">
-            View All Projects
+          <Button className="bg-white text-black hover:bg-gray-200" asChild>
+            <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer">
+              View All Projects
+            </a>
           </Button>
         </div>
       </div>

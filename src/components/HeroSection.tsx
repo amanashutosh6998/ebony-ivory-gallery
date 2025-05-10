@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Download, GitHub, Linkedin, Mail } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -11,11 +12,15 @@ const HeroSection = () => {
             <span className="block mt-2 text-5xl md:text-7xl lg:text-8xl">Aman Ashutosh</span>
           </h1>
           
-          <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto font-light text-gray-400 opacity-0 animate-fade-in" style={{animationDelay: "300ms"}}>
+          <p className="text-lg md:text-xl lg:text-2xl mb-4 max-w-3xl mx-auto font-light text-gray-400 opacity-0 animate-fade-in" style={{animationDelay: "300ms"}}>
             Growth Analyst & Growth Engineer
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 mb-16 opacity-0 animate-fade-in" style={{animationDelay: "600ms"}}>
+          <p className="text-md md:text-lg mb-8 max-w-3xl mx-auto text-gray-400 opacity-0 animate-fade-in" style={{animationDelay: "500ms"}}>
+            Building and growing businesses by improving Marketing, Sales, Customer Success, Product, Analytics, Engineering, and AI.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 mb-8 opacity-0 animate-fade-in" style={{animationDelay: "600ms"}}>
             <Button 
               className="bg-white text-black hover:bg-gray-200 border border-white px-8 py-6 text-lg"
               asChild
@@ -24,10 +29,37 @@ const HeroSection = () => {
             </Button>
             <Button 
               variant="outline" 
-              className="border-white text-white bg-transparent hover:bg-white hover:text-black px-8 py-6 text-lg"
+              className="border-white text-white hover:bg-white hover:text-black px-8 py-6 text-lg"
               asChild
             >
               <a href="#contact">Contact Me</a>
+            </Button>
+          </div>
+          
+          <div className="flex items-center justify-center gap-6 mb-8 opacity-0 animate-fade-in" style={{animationDelay: "700ms"}}>
+            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
+              <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer">
+                <GitHub className="w-5 h-5" />
+                <span className="sr-only">GitHub</span>
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
+              <a href="https://linkedin.com/in/amanashutosh" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-5 h-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" className="rounded-full border-white text-white hover:bg-white hover:text-black" asChild>
+              <a href="mailto:amanshutosh.analytics@gmail.com">
+                <Mail className="w-5 h-5" />
+                <span className="sr-only">Email</span>
+              </a>
+            </Button>
+            <Button variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-black flex items-center gap-2" asChild>
+              <a href="/resume.pdf" download="Aman_Ashutosh_Resume.pdf">
+                <Download className="w-4 h-4" />
+                <span>Resume</span>
+              </a>
             </Button>
           </div>
           
