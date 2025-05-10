@@ -58,7 +58,7 @@ const AboutSection = () => {
                     <skill.icon className="h-5 w-5 text-white group-hover:text-purple-300 transition-colors duration-300" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-medium mb-1 group-hover:text-purple-200 transition-colors duration-300">{skill.name}</h4>
+                    <h4 className="text-xl font-medium mb-1 text-white group-hover:text-purple-200 transition-colors duration-300">{skill.name}</h4>
                     <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{skill.description}</p>
                   </div>
                 </div>

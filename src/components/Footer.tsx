@@ -1,21 +1,30 @@
 
-import { Github } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="py-12 bg-black text-white">
+    <footer className="py-12 bg-gradient-to-t from-black to-transparent text-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <a href="#home" className="text-2xl font-bold tracking-tighter">Aman Ashutosh</a>
+            <p className="text-gray-400">Bengaluru, KA</p>
           </div>
           
           <div className="flex space-x-6 mb-6 md:mb-0">
-            <a href="https://github.com/amanashutosh6998" className="hover:text-gray-400 transition-colors" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/amanashutosh" className="hover:text-gray-400 transition-colors" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:amanshutosh.analytics@gmail.com" className="hover:text-gray-400 transition-colors">Email</a>
+            <a href="https://github.com/amanashutosh6998" className="hover:text-gray-400 transition-colors flex items-center" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5 mr-2" />
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/amanashutosh" className="hover:text-gray-400 transition-colors flex items-center" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="w-5 h-5 mr-2" />
+              LinkedIn
+            </a>
+            <a href="mailto:amanshutosh.analytics@gmail.com" className="hover:text-gray-400 transition-colors flex items-center">
+              <Mail className="w-5 h-5 mr-2" />
+              Email
+            </a>
           </div>
           
           <div>
