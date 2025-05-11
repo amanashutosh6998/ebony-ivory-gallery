@@ -113,6 +113,10 @@ const AnimatedBackground = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
+      // Black hole effect around cursor
+      const blackHoleRadius = 150; // Radius of effect
+      const blackHoleStrength = 3.0; // Strength of the pull
+      
       for (let i = 0; i < particlesRef.current.length; i++) {
         const particle = particlesRef.current[i];
         
@@ -126,16 +130,25 @@ const AnimatedBackground = () => {
         particle.x += particle.velocity.x;
         particle.y += particle.velocity.y;
         
-        // Mouse interaction
+        // Black hole (cursor) interaction
         const dx = mouseRef.current.x - particle.x;
         const dy = mouseRef.current.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance < 100) {
+        if (distance < blackHoleRadius) {
+          // Calculate gravitational force (stronger when closer)
           const angle = Math.atan2(dy, dx);
-          const force = 0.8 * (1 - distance / 100);
-          particle.velocity.x -= Math.cos(angle) * force;
-          particle.velocity.y -= Math.sin(angle) * force;
+          const force = blackHoleStrength * (1 - distance / blackHoleRadius);
+          
+          // Pull towards cursor (black hole effect)
+          particle.velocity.x += Math.cos(angle) * force * 0.1;
+          particle.velocity.y += Math.sin(angle) * force * 0.1;
+          
+          // Add slight orbital motion to prevent all particles from collapsing to center
+          const perpAngle = angle + Math.PI / 2;
+          const orbitalForce = force * 0.02;
+          particle.velocity.x += Math.cos(perpAngle) * orbitalForce;
+          particle.velocity.y += Math.sin(perpAngle) * orbitalForce;
         }
         
         // Boundary checking
