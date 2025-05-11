@@ -39,15 +39,9 @@ const Index = () => {
     sessionStorage.setItem('hasVisitedBefore', 'true');
     setInitialLoading(false);
     
-    // After loading screen is gone, fade in particles
-    setTimeout(() => {
-      setShowParticles(true);
-    }, 100);
-    
-    // Then fade in content
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 400);
+    // Show particles and content immediately without fading
+    setShowParticles(true);
+    setIsLoaded(true);
   };
 
   if (initialLoading) {
@@ -56,9 +50,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Background particles with smoother fade-in */}
+      {/* Background particles */}
       <div 
-        className={`fixed inset-0 transition-opacity duration-700 ${
+        className={`fixed inset-0 ${
           showParticles ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -68,8 +62,8 @@ const Index = () => {
       <Navbar />
       
       <div 
-        className={`relative z-10 transition-all duration-700 ${
-          isLoaded ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"
+        className={`relative z-10 ${
+          isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
         <HeroSection />
