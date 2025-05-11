@@ -3,6 +3,7 @@ import { lazy, Suspense, useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import LoadingScreen from "@/components/LoadingScreen";
 
 // Lazy load non-critical components
 const HeroSection = lazy(() => import('@/components/HeroSection'));
@@ -12,23 +13,48 @@ const ParticleBackground = lazy(() => import('@/components/ParticleBackground'))
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
-    // Show particles with a shorter delay for smoother UX
-    const particlesTimer = setTimeout(() => {
+    // Only show loading screen on first visit
+    const hasVisited = sessionStorage.getItem('hasVisitedBefore');
+    if (hasVisited) {
+      setInitialLoading(false);
+      // Show particles with a shorter delay for smoother UX
+      const particlesTimer = setTimeout(() => {
+        setShowParticles(true);
+      }, 100);
+      
+      // Add animation delay to allow particles to initialize first
+      const contentTimer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 400); // Reduced delay for better user experience
+      
+      return () => {
+        clearTimeout(contentTimer);
+        clearTimeout(particlesTimer);
+      };
+    }
+  }, []);
+
+  const handleLoadingComplete = () => {
+    sessionStorage.setItem('hasVisitedBefore', 'true');
+    setInitialLoading(false);
+    
+    // After loading screen is gone, fade in particles
+    setTimeout(() => {
       setShowParticles(true);
     }, 100);
     
-    // Add animation delay to allow particles to initialize first
-    const contentTimer = setTimeout(() => {
+    // Then fade in content
+    setTimeout(() => {
       setIsLoaded(true);
-    }, 400); // Reduced delay for better user experience
-    
-    return () => {
-      clearTimeout(contentTimer);
-      clearTimeout(particlesTimer);
-    };
-  }, []);
+    }, 400);
+  };
+
+  if (initialLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">

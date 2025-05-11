@@ -47,12 +47,18 @@ const ParticleBackground = () => {
         
         // Add different colored particles (mostly white with some blue/purple accents)
         const colorRand = Math.random();
-        if (colorRand > 0.85) {
+        if (colorRand > 0.9) {
           // Purple particles
-          this.color = `rgba(180, 160, 255, ${0.5 + Math.random() * 0.3})`;
-        } else if (colorRand > 0.7) {
+          this.color = `rgba(180, 160, 255, ${0.6 + Math.random() * 0.4})`;
+        } else if (colorRand > 0.8) {
           // Blue particles
-          this.color = `rgba(150, 180, 255, ${0.5 + Math.random() * 0.3})`;
+          this.color = `rgba(150, 180, 255, ${0.6 + Math.random() * 0.4})`;
+        } else if (colorRand > 0.7) {
+          // Pink particles
+          this.color = `rgba(255, 150, 220, ${0.6 + Math.random() * 0.4})`;
+        } else if (colorRand > 0.6) {
+          // Cyan particles
+          this.color = `rgba(130, 220, 255, ${0.6 + Math.random() * 0.4})`;
         } else {
           // White particles (majority)
           this.color = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.3})`;
