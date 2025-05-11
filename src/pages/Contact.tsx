@@ -6,13 +6,13 @@ import ColorParticles from "@/components/ColorParticles";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-gray-900 text-white">
-      <div className="absolute inset-0 overflow-hidden">
+    <div className="min-h-screen flex flex-col relative bg-gradient-to-b from-black to-gray-900 text-white">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <ColorParticles colorScheme="purple-pink" />
       </div>
-      <Navbar />
-      <ContactSection />
-      <div className="mt-auto">
+      <Navbar className="relative z-10" />
+      <ContactSection className="relative z-10" />
+      <div className="mt-auto relative z-10">
         <Footer />
       </div>
     </div>
