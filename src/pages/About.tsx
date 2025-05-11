@@ -6,13 +6,15 @@ import ColorParticles from "@/components/ColorParticles";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <div className="absolute inset-0 overflow-hidden">
         <ColorParticles colorScheme="blue-cyan" />
       </div>
       <Navbar />
       <AboutSection />
-      <Footer />
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 };
