@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -5,20 +6,34 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      const currentScrollY = window.scrollY;
+      
+      // Determine if scrolled past threshold
+      if (currentScrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -27,13 +42,15 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "/projects" },
-    { name: "AI Lab", href: "/ai-lab" },
+    { name: "My AI Lab", href: "/ai-lab" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Contact", href: "/contact" }
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md text-white py-2' : 'bg-black/30 backdrop-blur-sm text-white py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 
+      ${scrolled ? 'bg-black/80 backdrop-blur-md text-white py-2' : 'bg-black/30 backdrop-blur-sm text-white py-4'}
+      ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold tracking-tighter flex items-center">
