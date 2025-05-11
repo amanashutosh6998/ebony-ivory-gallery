@@ -6,10 +6,10 @@ const ParticleBackground = () => {
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
-    // Smooth entrance animation for the canvas
+    // Smooth entrance animation for the canvas with longer duration
     const visibilityTimer = setTimeout(() => {
       setIsVisible(true);
-    }, 200);
+    }, 400);
     
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -44,8 +44,8 @@ const ParticleBackground = () => {
         this.size = Math.random() * 1.5 + 0.5;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
-        // Use consistent white color for particles
-        this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.25})`;
+        // Always use consistent white color for particles - no randomness in opacity
+        this.color = `rgba(255, 255, 255, 0.6)`;
       }
       
       update() {
@@ -90,8 +90,9 @@ const ParticleBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 100) {
-            const opacity = 1 - distance / 100;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
+            // Consistent opacity for connections
+            const opacity = (1 - distance / 100) * 0.15;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -125,11 +126,13 @@ const ParticleBackground = () => {
     };
     
     // Initialize after a short delay to prioritize critical UI rendering
-    const timeoutId = setTimeout(initializeWhenIdle, 500);
+    const timeoutId = setTimeout(initializeWhenIdle, 600);
     
     return () => {
       clearTimeout(visibilityTimer);
-      cancelAnimationFrame(animationId);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
       clearTimeout(timeoutId);
       window.removeEventListener('resize', resizeCanvas);
     };
@@ -138,7 +141,7 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed top-0 left-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${
+      className={`fixed top-0 left-0 w-full h-full pointer-events-none z-0 transition-opacity duration-2000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     />

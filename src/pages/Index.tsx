@@ -14,15 +14,15 @@ const Index = () => {
   const [showParticles, setShowParticles] = useState(false);
 
   useEffect(() => {
-    // Show particles with a slight delay for a smooth entrance
+    // Show particles with a longer delay for a smoother entrance
     const particlesTimer = setTimeout(() => {
       setShowParticles(true);
-    }, 100);
+    }, 300);
     
-    // Add animation delay to allow particles to initialize first
+    // Add animation delay to allow particles to initialize fully first
     const contentTimer = setTimeout(() => {
       setIsLoaded(true);
-    }, 1000);
+    }, 1800); // Increased delay for better sequential loading
     
     return () => {
       clearTimeout(contentTimer);
@@ -32,7 +32,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      <div className={`transition-opacity duration-1000 ${showParticles ? "opacity-100" : "opacity-0"}`}>
+      {/* Background particles with smoother fade-in */}
+      <div 
+        className={`fixed inset-0 transition-opacity duration-1500 ${
+          showParticles ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
           <ParticleBackground />
         </Suspense>
@@ -41,7 +46,7 @@ const Index = () => {
       <Navbar />
       
       <div 
-        className={`transition-opacity duration-1000 ${
+        className={`relative z-10 transition-opacity duration-1500 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
