@@ -10,8 +10,8 @@ const About = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <ColorParticles colorScheme="blue-cyan" />
       </div>
-      <Navbar className="relative z-10" />
-      <AboutSection className="relative z-10" />
+      <Navbar />
+      <AboutSection />
       <div className="mt-auto relative z-10">
         <Footer />
       </div>

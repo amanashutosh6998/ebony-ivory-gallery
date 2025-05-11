@@ -10,8 +10,8 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <ColorParticles colorScheme="purple-pink" />
       </div>
-      <Navbar className="relative z-10" />
-      <ContactSection className="relative z-10" />
+      <Navbar />
+      <ContactSection />
       <div className="mt-auto relative z-10">
         <Footer />
       </div>
