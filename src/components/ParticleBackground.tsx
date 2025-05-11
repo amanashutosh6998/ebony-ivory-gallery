@@ -44,8 +44,19 @@ const ParticleBackground = () => {
         this.size = Math.random() * 1.5 + 0.5;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
-        // Always use consistent white color for particles - no randomness in opacity
-        this.color = `rgba(255, 255, 255, 0.6)`;
+        
+        // Add different colored particles (mostly white with some blue/purple accents)
+        const colorRand = Math.random();
+        if (colorRand > 0.85) {
+          // Purple particles
+          this.color = `rgba(180, 160, 255, ${0.5 + Math.random() * 0.3})`;
+        } else if (colorRand > 0.7) {
+          // Blue particles
+          this.color = `rgba(150, 180, 255, ${0.5 + Math.random() * 0.3})`;
+        } else {
+          // White particles (majority)
+          this.color = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.3})`;
+        }
       }
       
       update() {
@@ -67,12 +78,12 @@ const ParticleBackground = () => {
       }
     }
     
-    // Initialize particles - use fewer particles for better performance
+    // Initialize particles - use more particles for a denser effect
     const initParticles = () => {
-      // Use fewer particles based on screen size for better performance
+      // Use more particles based on screen size
       const particleCount = Math.min(
-        Math.floor(window.innerWidth * window.innerHeight / 10000),
-        100
+        Math.floor(window.innerWidth * window.innerHeight / 8000),
+        150
       );
       
       particles = [];
@@ -90,9 +101,25 @@ const ParticleBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 100) {
-            // Consistent opacity for connections
-            const opacity = (1 - distance / 100) * 0.15;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+            // Get colors for gradient based on particle colors
+            const colorA = particles[a].color;
+            const colorB = particles[b].color;
+            
+            // Create a gradient for the line
+            const gradient = ctx.createLinearGradient(
+              particles[a].x, particles[a].y,
+              particles[b].x, particles[b].y
+            );
+            
+            // Extract opacity from rgba
+            const opacityA = parseFloat(colorA.slice(colorA.lastIndexOf(',') + 1, -1));
+            const opacityB = parseFloat(colorB.slice(colorB.lastIndexOf(',') + 1, -1));
+            
+            const lineOpacity = (opacityA + opacityB) / 4 * (1 - distance / 100);
+            gradient.addColorStop(0, colorA.replace(/[\d\.]+\)$/, `${lineOpacity})`));
+            gradient.addColorStop(1, colorB.replace(/[\d\.]+\)$/, `${lineOpacity})`));
+            
+            ctx.strokeStyle = gradient;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);

@@ -14,12 +14,6 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center text-center">
-          <div className="inline-block mb-6 relative">
-            <span className="px-3 py-1 text-sm bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-gray-300 font-medium tracking-wider">
-              PORTFOLIO 2025
-            </span>
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur opacity-50"></div>
-          </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 animate-fade-in">
             <span className="block">I'm</span>
@@ -45,7 +39,7 @@ const HeroSection = () => {
             </Button>
             <Button 
               variant="outline" 
-              className="backdrop-blur-sm bg-white/5 text-white hover:bg-white/10 border-white/20 px-8 py-6 text-lg transition-all duration-300 transform hover:scale-105"
+              className="backdrop-blur-sm bg-white/5 text-white hover:bg-white/10 hover:text-white border-white/20 px-8 py-6 text-lg transition-all duration-300 transform hover:scale-105"
               asChild
             >
               <Link to="/contact">Contact Me</Link>
