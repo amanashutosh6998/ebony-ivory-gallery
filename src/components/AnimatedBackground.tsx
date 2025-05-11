@@ -113,9 +113,9 @@ const AnimatedBackground = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Black hole effect around cursor
-      const blackHoleRadius = 150; // Radius of effect
-      const blackHoleStrength = 3.0; // Strength of the pull
+      // Black hole effect around cursor - ENHANCED
+      const blackHoleRadius = 200; // Increased radius of effect
+      const blackHoleStrength = 5.0; // Increased strength of the pull
       
       for (let i = 0; i < particlesRef.current.length; i++) {
         const particle = particlesRef.current[i];
@@ -140,13 +140,13 @@ const AnimatedBackground = () => {
           const angle = Math.atan2(dy, dx);
           const force = blackHoleStrength * (1 - distance / blackHoleRadius);
           
-          // Pull towards cursor (black hole effect)
-          particle.velocity.x += Math.cos(angle) * force * 0.1;
-          particle.velocity.y += Math.sin(angle) * force * 0.1;
+          // Pull towards cursor (black hole effect) - Increased strength
+          particle.velocity.x += Math.cos(angle) * force * 0.2;
+          particle.velocity.y += Math.sin(angle) * force * 0.2;
           
           // Add slight orbital motion to prevent all particles from collapsing to center
           const perpAngle = angle + Math.PI / 2;
-          const orbitalForce = force * 0.02;
+          const orbitalForce = force * 0.05;
           particle.velocity.x += Math.cos(perpAngle) * orbitalForce;
           particle.velocity.y += Math.sin(perpAngle) * orbitalForce;
         }

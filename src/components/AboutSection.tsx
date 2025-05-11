@@ -1,7 +1,6 @@
 
 import { Card } from "@/components/ui/card";
 import { Code, User, Star } from "lucide-react";
-import GradientParticles from "./GradientParticles";
 
 const AboutSection = () => {
   const skills = [
@@ -16,11 +15,6 @@ const AboutSection = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
-      </div>
-
-      {/* Add the gradient particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <GradientParticles />
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
