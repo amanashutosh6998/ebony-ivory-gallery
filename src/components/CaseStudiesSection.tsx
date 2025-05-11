@@ -76,11 +76,11 @@ const CaseStudiesSection = () => {
                         className="w-full h-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent md:bg-gradient-to-t"></div>
-                      <h3 className="absolute bottom-4 left-4 text-2xl font-bold md:hidden">{study.title}</h3>
+                      <h3 className="absolute bottom-4 left-4 text-2xl font-bold md:hidden text-white">{study.title}</h3>
                     </div>
                   )}
                   <div className={`p-6 md:col-span-${study.image ? '3' : '5'}`}>
-                    <h3 className="text-2xl font-bold mb-4 hidden md:block">{study.title}</h3>
+                    <h3 className="text-2xl font-bold mb-4 hidden md:block text-white">{study.title}</h3>
                     
                     {activeStudy === index ? (
                       <div className="animate-fade-in">

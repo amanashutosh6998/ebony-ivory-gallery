@@ -53,7 +53,7 @@ const ProjectsSection = () => {
                       <Github size={20} />
                     </a>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
