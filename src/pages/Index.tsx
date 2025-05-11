@@ -11,21 +11,32 @@ const ParticleBackground = lazy(() => import('@/components/ParticleBackground'))
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showParticles, setShowParticles] = useState(false);
 
   useEffect(() => {
-    // Add animation delay to allow particles to initialize first
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 800);
+    // Show particles with a slight delay for a smooth entrance
+    const particlesTimer = setTimeout(() => {
+      setShowParticles(true);
+    }, 100);
     
-    return () => clearTimeout(timer);
+    // Add animation delay to allow particles to initialize first
+    const contentTimer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+    
+    return () => {
+      clearTimeout(contentTimer);
+      clearTimeout(particlesTimer);
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
-        <ParticleBackground />
-      </Suspense>
+      <div className={`transition-opacity duration-1000 ${showParticles ? "opacity-100" : "opacity-0"}`}>
+        <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
+          <ParticleBackground />
+        </Suspense>
+      </div>
       
       <Navbar />
       

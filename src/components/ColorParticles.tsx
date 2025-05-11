@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 interface ColorParticlesProps {
@@ -102,9 +101,13 @@ const ColorParticles = ({ colorScheme = 'purple-blue' }: ColorParticlesProps) =>
           this.speedY += Math.sin(angle) * force * 0.1;
         }
         
-        // Damping
-        this.speedX *= 0.99;
-        this.speedY *= 0.99;
+        // Damping but keep some momentum
+        this.speedX *= 0.995;
+        this.speedY *= 0.995;
+        
+        // Add slight randomness to keep particles moving
+        this.speedX += (Math.random() - 0.5) * 0.01;
+        this.speedY += (Math.random() - 0.5) * 0.01;
       }
       
       draw() {

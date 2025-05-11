@@ -57,22 +57,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Login/Sign up buttons - similar to the screenshot */}
-          <div className="hidden md:flex items-center space-x-2">
-            <Link 
-              to="/contact"
-              className="px-4 py-2 hover:text-gray-300 transition-colors"
-            >
-              Contact me
-            </Link>
-            <Link 
-              to="/projects" 
-              className="bg-white text-black hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors"
-            >
-              View Projects
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden focus:outline-none" 
@@ -99,15 +83,6 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-2 border-t border-gray-800">
-                <Link 
-                  to="/projects"
-                  className="block w-full text-center bg-white text-black hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors mt-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  View Projects
-                </Link>
-              </div>
             </div>
           </div>
         )}

@@ -1,10 +1,16 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
+    // Smooth entrance animation for the canvas
+    const visibilityTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 200);
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
@@ -38,6 +44,7 @@ const ParticleBackground = () => {
         this.size = Math.random() * 1.5 + 0.5;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
+        // Use consistent white color for particles
         this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.25})`;
       }
       
@@ -121,6 +128,7 @@ const ParticleBackground = () => {
     const timeoutId = setTimeout(initializeWhenIdle, 500);
     
     return () => {
+      clearTimeout(visibilityTimer);
       cancelAnimationFrame(animationId);
       clearTimeout(timeoutId);
       window.removeEventListener('resize', resizeCanvas);
@@ -130,7 +138,9 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      className={`fixed top-0 left-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
     />
   );
 };
