@@ -1,14 +1,12 @@
 
-import { lazy, Suspense, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import LoadingScreen from "@/components/LoadingScreen";
-
-// Lazy load non-critical components
-const HeroSection = lazy(() => import('@/components/HeroSection'));
-const AboutSection = lazy(() => import('@/components/AboutSection'));
-const ParticleBackground = lazy(() => import('@/components/ParticleBackground'));
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,9 +62,7 @@ const Index = () => {
           showParticles ? "opacity-100" : "opacity-0"
         }`}
       >
-        <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
-          <ParticleBackground />
-        </Suspense>
+        <ParticleBackground />
       </div>
       
       <Navbar />
@@ -76,17 +72,8 @@ const Index = () => {
           isLoaded ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"
         }`}
       >
-        <Suspense fallback={
-          <div className="h-screen flex items-center justify-center">
-            <div className="text-2xl text-gray-500">Loading...</div>
-          </div>
-        }>
-          <HeroSection />
-        </Suspense>
-        
-        <Suspense fallback={<div className="h-96 bg-gradient-to-b from-black to-[#050516]"></div>}>
-          <AboutSection />
-        </Suspense>
+        <HeroSection />
+        <AboutSection />
       </div>
       
       <Footer />
