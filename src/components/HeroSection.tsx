@@ -6,10 +6,9 @@ import { ArrowRight } from "lucide-react";
 const HeroSection = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-      {/* Decorative elements */}
+      {/* Decorative elements - removed the purple dot */}
       <div className="absolute -bottom-32 -left-40 w-80 h-80 border border-white/10 rounded-full blur-sm"></div>
       <div className="absolute -top-72 -right-72 w-[500px] h-[500px] border border-white/10 rounded-full blur-sm"></div>
-      <div className="absolute top-1/4 left-1/3 w-4 h-4 bg-purple-500/50 rounded-full blur-sm animate-pulse"></div>
       <div className="absolute bottom-1/3 right-1/4 w-2 h-2 bg-blue-500/50 rounded-full blur-sm animate-pulse"></div>
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">

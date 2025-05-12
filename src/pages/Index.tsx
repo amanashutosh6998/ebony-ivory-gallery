@@ -18,20 +18,9 @@ const Index = () => {
     const hasVisited = sessionStorage.getItem('hasVisitedBefore');
     if (hasVisited) {
       setInitialLoading(false);
-      // Show particles with a shorter delay for smoother UX
-      const particlesTimer = setTimeout(() => {
-        setShowParticles(true);
-      }, 100);
-      
-      // Add animation delay to allow particles to initialize first
-      const contentTimer = setTimeout(() => {
-        setIsLoaded(true);
-      }, 400); // Reduced delay for better user experience
-      
-      return () => {
-        clearTimeout(contentTimer);
-        clearTimeout(particlesTimer);
-      };
+      // Show particles immediately for smoother UX on return visits
+      setShowParticles(true);
+      setIsLoaded(true);
     }
   }, []);
 
