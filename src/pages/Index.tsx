@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
 import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
@@ -56,7 +55,6 @@ const Index = () => {
         }`}
       >
         <HeroSection />
-        <AboutSection />
       </div>
       
       <Footer />
