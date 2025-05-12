@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 
 interface ExplosionParticle {
@@ -140,7 +141,7 @@ const ParticleBackground = () => {
       const y = event.clientY - rect.top;
       
       // Create small explosion occasionally when mouse moves
-      if (Math.random() < 0.03) {
+      if (Math.random() < 0.05) {
         explosionsRef.current.push(new Explosion(x, y));
       }
       
@@ -168,8 +169,8 @@ const ParticleBackground = () => {
       speedX: number;
       speedY: number;
       color: string;
-      originalColor: string;
       interactionColor: string;
+      originalColor: string;
       maxSpeed: number;
       
       constructor() {
@@ -186,29 +187,29 @@ const ParticleBackground = () => {
         if (colorRand > 0.9) {
           // Purple particles
           this.color = `rgba(180, 160, 255, ${0.6 + Math.random() * 0.4})`;
-          this.interactionColor = `rgba(220, 200, 255, ${0.8 + Math.random() * 0.2})`;
+          this.interactionColor = `rgba(220, 180, 255, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.8) {
           // Blue particles
           this.color = `rgba(150, 180, 255, ${0.6 + Math.random() * 0.4})`;
-          this.interactionColor = `rgba(190, 220, 255, ${0.8 + Math.random() * 0.2})`;
+          this.interactionColor = `rgba(170, 200, 255, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.7) {
           // Pink particles
           this.color = `rgba(255, 150, 220, ${0.6 + Math.random() * 0.4})`;
-          this.interactionColor = `rgba(255, 190, 240, ${0.8 + Math.random() * 0.2})`;
+          this.interactionColor = `rgba(255, 180, 230, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.6) {
           // Cyan particles
           this.color = `rgba(130, 220, 255, ${0.6 + Math.random() * 0.4})`;
-          this.interactionColor = `rgba(170, 240, 255, ${0.8 + Math.random() * 0.2})`;
+          this.interactionColor = `rgba(160, 230, 255, ${0.8 + Math.random() * 0.2})`;
         } else {
           // White particles (majority)
           this.color = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.3})`;
-          this.interactionColor = `rgba(255, 255, 255, ${0.8 + Math.random() * 0.2})`;
+          this.interactionColor = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.2})`;
         }
         this.originalColor = this.color;
       }
       
       update() {
-        // Apply cursor interaction
+        // Apply cursor interaction - maintain particle size
         if (mouseRef.current.isActive) {
           const dx = mouseRef.current.x - this.x;
           const dy = mouseRef.current.y - this.y;
@@ -258,6 +259,10 @@ const ParticleBackground = () => {
         this.x += this.speedX;
         this.y += this.speedY;
         
+        // Add random motion for more natural movement
+        this.speedX += (Math.random() - 0.5) * 0.03;
+        this.speedY += (Math.random() - 0.5) * 0.03;
+        
         // Wrap around edges
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
@@ -278,8 +283,8 @@ const ParticleBackground = () => {
     const initParticles = () => {
       // Use more particles based on screen size
       const particleCount = Math.min(
-        Math.floor(window.innerWidth * window.innerHeight / 8000),
-        150
+        Math.floor(window.innerWidth * window.innerHeight / 7000),
+        180
       );
       
       particles = [];
@@ -357,6 +362,15 @@ const ParticleBackground = () => {
       }
     };
     
+    // Randomly generate spontaneous tiny explosions for visual interest
+    const generateRandomExplosions = () => {
+      if (Math.random() < 0.01 && explosionsRef.current.length < 5) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        explosionsRef.current.push(new Explosion(x, y));
+      }
+    };
+    
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -366,6 +380,9 @@ const ParticleBackground = () => {
         particle.update();
         particle.draw();
       });
+      
+      // Generate random explosions
+      generateRandomExplosions();
       
       // Update and draw explosions
       explosionsRef.current = explosionsRef.current.filter(explosion => {

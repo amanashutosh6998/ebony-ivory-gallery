@@ -33,7 +33,7 @@ const About = () => {
       <div className={`absolute inset-0 overflow-hidden z-0 transition-opacity duration-1000 ${
         showParticles ? "opacity-100" : "opacity-0"
       }`}>
-        <ColorParticles colorScheme="blue-cyan" />
+        <ColorParticles colorScheme="blue-cyan" density="medium" />
       </div>
       
       <Navbar />
