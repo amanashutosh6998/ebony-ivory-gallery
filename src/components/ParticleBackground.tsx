@@ -1,10 +1,10 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
+  const explosionsRef = useRef<Explosion[]>([]);
   
   useEffect(() => {
     // Smooth entrance animation for the canvas with longer duration
@@ -27,12 +27,102 @@ const ParticleBackground = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
+
+    // Explosion effect class
+    class Explosion {
+      x: number;
+      y: number;
+      particles: ExplosionParticle[];
+      lifetime: number;
+      maxLifetime: number;
+      
+      constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.particles = [];
+        this.lifetime = 0;
+        this.maxLifetime = 40;
+        
+        // Create explosion particles
+        const particleCount = Math.floor(Math.random() * 5) + 3; // Small amount of particles
+        for (let i = 0; i < particleCount; i++) {
+          this.particles.push(new ExplosionParticle(x, y));
+        }
+      }
+      
+      update() {
+        this.lifetime++;
+        this.particles.forEach(p => p.update());
+        return this.lifetime < this.maxLifetime;
+      }
+      
+      draw(ctx: CanvasRenderingContext2D) {
+        this.particles.forEach(p => p.draw(ctx));
+      }
+    }
+    
+    // Individual explosion particle
+    class ExplosionParticle {
+      x: number;
+      y: number;
+      initialX: number;
+      initialY: number;
+      size: number;
+      speed: number;
+      angle: number;
+      color: string;
+      alpha: number;
+      
+      constructor(x: number, y: number) {
+        this.initialX = x;
+        this.initialY = y;
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 2 + 0.5;
+        this.speed = Math.random() * 2 + 1;
+        this.angle = Math.random() * Math.PI * 2;
+        
+        // Bright colors for explosion particles
+        const hue = Math.random() * 60 + 180; // Blue to purple range
+        this.color = `hsla(${hue}, 100%, 70%, 1)`;
+        this.alpha = 1;
+      }
+      
+      update() {
+        // Move outward from center
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        
+        // Fade out
+        this.alpha -= 0.03;
+        if (this.alpha < 0) this.alpha = 0;
+        
+        // Slow down
+        this.speed *= 0.95;
+      }
+      
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = this.color.replace('1)', `${this.alpha})`);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
     
     // Track mouse movement
     const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      
+      // Create small explosion occasionally when mouse moves
+      if (Math.random() < 0.03) {
+        explosionsRef.current.push(new Explosion(x, y));
+      }
+      
       mouseRef.current = { 
-        x: event.clientX,
-        y: event.clientY,
+        x,
+        y,
         isActive: true 
       };
       
@@ -55,6 +145,7 @@ const ParticleBackground = () => {
       speedY: number;
       color: string;
       originalColor: string;
+      interactionColor: string;
       maxSpeed: number;
       
       constructor() {
@@ -71,18 +162,23 @@ const ParticleBackground = () => {
         if (colorRand > 0.9) {
           // Purple particles
           this.color = `rgba(180, 160, 255, ${0.6 + Math.random() * 0.4})`;
+          this.interactionColor = `rgba(220, 200, 255, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.8) {
           // Blue particles
           this.color = `rgba(150, 180, 255, ${0.6 + Math.random() * 0.4})`;
+          this.interactionColor = `rgba(190, 220, 255, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.7) {
           // Pink particles
           this.color = `rgba(255, 150, 220, ${0.6 + Math.random() * 0.4})`;
+          this.interactionColor = `rgba(255, 190, 240, ${0.8 + Math.random() * 0.2})`;
         } else if (colorRand > 0.6) {
           // Cyan particles
           this.color = `rgba(130, 220, 255, ${0.6 + Math.random() * 0.4})`;
+          this.interactionColor = `rgba(170, 240, 255, ${0.8 + Math.random() * 0.2})`;
         } else {
           // White particles (majority)
           this.color = `rgba(255, 255, 255, ${0.5 + Math.random() * 0.3})`;
+          this.interactionColor = `rgba(255, 255, 255, ${0.8 + Math.random() * 0.2})`;
         }
         this.originalColor = this.color;
       }
@@ -106,21 +202,22 @@ const ParticleBackground = () => {
             this.speedX -= Math.cos(angle) * force;
             this.speedY -= Math.sin(angle) * force;
             
-            // Increase size temporarily based on proximity
-            this.size = this.baseSize + (maxDistance - distance) / 10;
+            // Keep size constant, but change color
+            this.color = this.interactionColor;
             
-            // Brighten color when affected by cursor
-            const brightenFactor = Math.min(1, (1 - distance / maxDistance) * 2);
-            this.color = this.getHighlightColor(this.originalColor, brightenFactor);
+            // Create small explosion occasionally when interacting
+            if (Math.random() < 0.01) {
+              const explosionX = this.x + Math.random() * 20 - 10;
+              const explosionY = this.y + Math.random() * 20 - 10;
+              explosionsRef.current.push(new Explosion(explosionX, explosionY));
+            }
           } else {
-            // Reset color and size when out of range
+            // Reset color when out of range
             this.color = this.originalColor;
-            this.size = this.baseSize;
           }
         } else {
-          // Reset color and size when mouse is not active
+          // Reset color when mouse is not active
           this.color = this.originalColor;
-          this.size = this.baseSize;
         }
         
         // Limit maximum speed
@@ -142,26 +239,6 @@ const ParticleBackground = () => {
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
         if (this.y > canvas.height) this.y = 0;
-      }
-      
-      getHighlightColor(color: string, factor: number) {
-        // Extract RGBA values from string
-        const colorMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-        if (colorMatch) {
-          const r = parseInt(colorMatch[1]);
-          const g = parseInt(colorMatch[2]);
-          const b = parseInt(colorMatch[3]);
-          const a = colorMatch[4] ? parseFloat(colorMatch[4]) : 1;
-          
-          // Brighten values
-          const brightenR = Math.min(255, r + 50 * factor);
-          const brightenG = Math.min(255, g + 50 * factor);
-          const brightenB = Math.min(255, b + 50 * factor);
-          
-          return `rgba(${brightenR}, ${brightenG}, ${brightenB}, ${a})`;
-        }
-        
-        return color; // Return original if parsing fails
       }
       
       draw() {
@@ -260,9 +337,17 @@ const ParticleBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Update and draw particles
       particles.forEach(particle => {
         particle.update();
         particle.draw();
+      });
+      
+      // Update and draw explosions
+      explosionsRef.current = explosionsRef.current.filter(explosion => {
+        const isAlive = explosion.update();
+        explosion.draw(ctx);
+        return isAlive;
       });
       
       connectParticles();

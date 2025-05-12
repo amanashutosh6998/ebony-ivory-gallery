@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Progress } from '@/components/ui/progress';
+import ColorParticles from './ColorParticles';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -8,171 +9,31 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [showText, setShowText] = useState(false);
+  const textRef = useRef<HTMLDivElement>(null);
   
-  // Set up the canvas animation for the loading screen
+  // Staggered text animation
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const timer = setTimeout(() => {
+      setShowText(true);
+    }, 300);
     
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    return () => clearTimeout(timer);
+  }, []);
+  
+  // Set up the text animation
+  useEffect(() => {
+    if (!textRef.current || !showText) return;
     
-    // Set canvas dimensions
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const letters = textRef.current.querySelectorAll('.letter');
     
-    // Particle class for the loading animation
-    class LoadingParticle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      color: string;
-      
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        
-        // Create a gradient palette of blues and purples
-        const hue = Math.random() * 60 + 230; // Range from blue to purple
-        this.color = `hsla(${hue}, 80%, 70%, ${0.7 + Math.random() * 0.3})`;
-      }
-      
-      update(progress: number) {
-        // Particles gravitate toward the center as progress increases
-        const centerPull = progress / 100 * 0.4;
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        
-        // Calculate direction to center
-        const dx = centerX - this.x;
-        const dy = centerY - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        // Add slight pull toward center based on progress
-        if (dist > 5) {
-          this.speedX += (dx / dist) * centerPull;
-          this.speedY += (dy / dist) * centerPull;
-        }
-        
-        // Update position
-        this.x += this.speedX;
-        this.y += this.speedY;
-        
-        // Apply slight damping
-        this.speedX *= 0.99;
-        this.speedY *= 0.99;
-        
-        // Wrap around edges
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-      
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    
-    // Create particles
-    const particles: LoadingParticle[] = [];
-    const particleCount = Math.min(
-      Math.floor(window.innerWidth * window.innerHeight / 15000),
-      80
-    );
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new LoadingParticle());
-    }
-    
-    // Connect particles with lines
-    const connectParticles = (progress: number) => {
-      const maxDistance = 100 + progress; // Connection distance increases with progress
-      const opacity = 0.5 + (progress / 100 * 0.5); // Lines get more opaque with progress
-      
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < maxDistance) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * (1 - distance / maxDistance)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
-    
-    let animationId: number;
-    let lastProgress = 0;
-    
-    // Animation loop
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Create a radial gradient background effect that shifts with progress
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height) / 2
-      );
-      
-      gradient.addColorStop(0, `rgba(20, 20, 30, 1)`);
-      gradient.addColorStop(0.5, `rgba(10, 10, 25, 0.9)`);
-      gradient.addColorStop(1, `rgba(0, 0, 15, 0.8)`);
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.update(loadingProgress);
-        particle.draw();
-      });
-      
-      // Connect particles
-      connectParticles(loadingProgress);
-      
-      // Only reanimate if progress has changed or not complete
-      if (loadingProgress < 100 || lastProgress !== loadingProgress) {
-        lastProgress = loadingProgress;
-        animationId = requestAnimationFrame(animate);
-      }
-    };
-    
-    // Handle window resize
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    
-    window.addEventListener('resize', handleResize);
-    animate();
-    
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [loadingProgress]);
+    letters.forEach((letter, index) => {
+      setTimeout(() => {
+        (letter as HTMLElement).style.opacity = '1';
+        (letter as HTMLElement).style.transform = 'translateY(0)';
+      }, 70 * index);
+    });
+  }, [showText]);
 
   useEffect(() => {
     // Simulate loading progress - more controlled acceleration
@@ -193,34 +54,122 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         // When we reach 100%, complete the loading
         if (newValue >= 100) {
           clearInterval(interval);
-          onComplete(); // Complete immediately without fade
+          // Small delay for visual polish before completing
+          setTimeout(onComplete, 300);
         }
         return newValue;
       });
-    }, 60); // Slight adjustment to timing for smoother progress
+    }, 60);
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
+  // Split text into individual letters for animation
+  const welcomeText = "Welcome";
+  const letters = welcomeText.split('').map((letter, index) => (
+    <span 
+      key={index} 
+      className="letter inline-block opacity-0 transform translate-y-4 transition-all duration-300"
+      style={{ transitionDelay: `${index * 50}ms` }}
+    >
+      {letter}
+    </span>
+  ));
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
-      {/* Canvas for the loading animation */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-      />
+      {/* Background particle animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        <ColorParticles colorScheme="purple-blue" />
+      </div>
       
-      <div className="relative z-10 text-center">
-        <h2 className="text-3xl font-bold mb-8 text-white">
-          Welcome
-        </h2>
+      {/* Center glowing orb */}
+      <div className="relative z-10 mb-12">
+        <div 
+          className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"
+          style={{
+            boxShadow: '0 0 40px rgba(139, 92, 246, 0.7), 0 0 80px rgba(59, 130, 246, 0.3)',
+            animation: 'pulse 2s infinite ease-in-out'
+          }}
+        />
         
-        <div className="w-64 mb-4">
-          <Progress value={loadingProgress} className="h-2 bg-gray-700">
-            <div className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" />
-          </Progress>
+        {/* Orbiting small circles */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div 
+            className="w-4 h-4 absolute rounded-full bg-blue-300"
+            style={{ 
+              top: '10%', 
+              left: '50%',
+              animation: 'orbit 6s linear infinite',
+              boxShadow: '0 0 10px rgba(96, 165, 250, 0.7)'
+            }} 
+          />
+          <div 
+            className="w-3 h-3 absolute rounded-full bg-purple-300"
+            style={{ 
+              top: '50%', 
+              left: '90%',
+              animation: 'orbit 8s linear infinite 1s',
+              boxShadow: '0 0 8px rgba(167, 139, 250, 0.7)'
+            }} 
+          />
+          <div 
+            className="w-2 h-2 absolute rounded-full bg-pink-300"
+            style={{ 
+              top: '80%', 
+              left: '20%',
+              animation: 'orbit 7s linear infinite 2s',
+              boxShadow: '0 0 6px rgba(236, 72, 153, 0.7)'
+            }} 
+          />
         </div>
       </div>
+      
+      <div className="relative z-10 text-center">
+        <div ref={textRef} className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+          {letters}
+        </div>
+        
+        <div className="w-64 mb-4 relative overflow-hidden rounded-full">
+          <Progress 
+            value={loadingProgress} 
+            className="h-2 bg-gray-800"
+          >
+            <div 
+              className="h-full bg-gradient-to-r from-purple-500 via-blue-400 to-purple-500 rounded-full relative"
+              style={{
+                backgroundSize: '200% 100%',
+                animation: 'gradientShift 2s ease infinite'
+              }}
+            />
+          </Progress>
+          
+          {/* Add loading percentage below */}
+          <div className="text-xs text-gray-400 mt-2">
+            {loadingProgress}%
+          </div>
+        </div>
+      </div>
+      
+      {/* Add global keyframe animations */}
+      <style jsx global>{`
+        @keyframes orbit {
+          0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        }
+        
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.05); opacity: 0.8; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 };
