@@ -6,11 +6,12 @@
 
     <!-- GitHub OAuth Client ID -->
     <meta name="cms-github-client-id" content="Ov23liIBUQFMTAlCJnpL" />
-
-    <!-- Load Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </head>
   <body>
+    <!-- CMS mount point -->
     <div id="nc-root"></div>
+
+    <!-- Load Netlify CMS AFTER the root div -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </body>
 </html>
