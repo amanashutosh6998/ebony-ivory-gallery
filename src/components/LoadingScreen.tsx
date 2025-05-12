@@ -188,14 +188,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         <Progress 
           value={loadingProgress} 
           className="h-2 bg-gray-800"
-        >
-          <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-full" 
-               style={{
-                 backgroundSize: '200% 100%',
-                 animation: 'gradientShift 2s ease infinite'
-               }}
-          />
-        </Progress>
+        />
         
         {/* Loading percentage */}
         <div className="text-xs text-gray-400 mt-2 text-center">
@@ -203,13 +196,20 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         </div>
       </div>
       
-      <style jsx>{`
-        @keyframes gradientShift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
+      <style>
+        {`
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          
+          .progress-bar {
+            background-size: 200% 100%;
+            animation: gradientShift 2s ease infinite;
+          }
+        `}
+      </style>
     </div>
   );
 };
