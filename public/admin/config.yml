@@ -1,7 +1,8 @@
-
 backend:
-  name: git-gateway
+  name: github
+  repo: amanashutosh6998/ebony-ivory-gallery
   branch: main
+  auth_scope: repo
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
