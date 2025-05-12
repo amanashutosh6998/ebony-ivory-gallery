@@ -1,10 +1,34 @@
 import { useEffect, useRef, useState } from 'react';
 
+interface ExplosionParticle {
+  x: number;
+  y: number;
+  initialX: number;
+  initialY: number;
+  size: number;
+  speed: number;
+  angle: number;
+  color: string;
+  alpha: number;
+  update: () => void;
+  draw: (ctx: CanvasRenderingContext2D) => void;
+}
+
+interface ExplosionType {
+  x: number;
+  y: number;
+  particles: ExplosionParticle[];
+  lifetime: number;
+  maxLifetime: number;
+  update: () => boolean;
+  draw: (ctx: CanvasRenderingContext2D) => void;
+}
+
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
-  const explosionsRef = useRef<Explosion[]>([]);
+  const explosionsRef = useRef<ExplosionType[]>([]);
   
   useEffect(() => {
     // Smooth entrance animation for the canvas with longer duration
@@ -29,7 +53,7 @@ const ParticleBackground = () => {
     };
 
     // Explosion effect class
-    class Explosion {
+    class Explosion implements ExplosionType {
       x: number;
       y: number;
       particles: ExplosionParticle[];
@@ -62,7 +86,7 @@ const ParticleBackground = () => {
     }
     
     // Individual explosion particle
-    class ExplosionParticle {
+    class ExplosionParticle implements ExplosionParticle {
       x: number;
       y: number;
       initialX: number;

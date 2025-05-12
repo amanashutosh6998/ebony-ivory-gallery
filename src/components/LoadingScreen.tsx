@@ -151,8 +151,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         </div>
       </div>
       
-      {/* Add global keyframe animations */}
-      <style jsx global>{`
+      {/* Add global keyframe animations - fixed by removing jsx and global props */}
+      <style>{`
         @keyframes orbit {
           0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
           100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
