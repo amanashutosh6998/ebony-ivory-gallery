@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 interface ExplosionParticle {
@@ -231,13 +230,6 @@ const ParticleBackground = () => {
             
             // Keep size constant, but change color
             this.color = this.interactionColor;
-            
-            // Create small explosion occasionally when interacting
-            if (Math.random() < 0.01) {
-              const explosionX = this.x + Math.random() * 20 - 10;
-              const explosionY = this.y + Math.random() * 20 - 10;
-              explosionsRef.current.push(new Explosion(explosionX, explosionY, 1));
-            }
           } else {
             // Reset color when out of range
             this.color = this.originalColor;
@@ -293,9 +285,8 @@ const ParticleBackground = () => {
       });
     }
     
-    // Initialize particles - use more particles for a denser effect
+    // Initialize particles - use more particles based on screen size
     const initParticles = () => {
-      // Use more particles based on screen size
       const particleCount = Math.min(
         Math.floor(window.innerWidth * window.innerHeight / 7000),
         180
@@ -349,12 +340,6 @@ const ParticleBackground = () => {
             // Increase connection distance if near cursor
             if (mouseDist < 150) {
               maxDistance += 80 * (1 - mouseDist / 150);
-              
-              // Create burst effect when mouse is over a cluster connection
-              if (mouseDist < 30 && particles[a].clusterId === particles[b].clusterId && 
-                  particles[a].clusterId !== -1 && Math.random() < 0.02) {
-                explosionsRef.current.push(new Explosion(midX, midY, 3));
-              }
             }
           }
           
@@ -415,15 +400,6 @@ const ParticleBackground = () => {
       }
     };
     
-    // Randomly generate spontaneous tiny explosions for visual interest
-    const generateRandomExplosions = () => {
-      if (Math.random() < 0.01 && explosionsRef.current.length < 5) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        explosionsRef.current.push(new Explosion(x, y, 0.5));
-      }
-    };
-    
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -433,9 +409,6 @@ const ParticleBackground = () => {
         particle.update();
         particle.draw();
       });
-      
-      // Generate random explosions
-      generateRandomExplosions();
       
       // Update and draw explosions
       explosionsRef.current = explosionsRef.current.filter(explosion => {

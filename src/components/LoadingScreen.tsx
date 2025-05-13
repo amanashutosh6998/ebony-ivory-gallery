@@ -38,8 +38,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
     return () => clearInterval(interval);
   }, [onComplete]);
-
-  // Particle animation
+  
+  // Colorful particles animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -58,11 +58,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     
     // Create particles
     const particleCount = Math.min(
-      Math.floor((canvas.width * canvas.height) / 10000),
-      150
+      Math.floor((canvas.width * canvas.height) / 15000),
+      100
     );
-    
-    const particles = [];
     
     class Particle {
       x: number;
@@ -70,19 +68,33 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       size: number;
       speedX: number;
       speedY: number;
-      hue: number;
+      color: string;
       
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.hue = 240; // Start with blue
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+        
+        // Generate various colors for particles
+        const colorSchemes = [
+          // Blue range
+          `rgba(90, 120, 255, ${0.7 + Math.random() * 0.3})`,
+          // Cyan range
+          `rgba(80, 210, 255, ${0.7 + Math.random() * 0.3})`,
+          // Purple range
+          `rgba(180, 120, 255, ${0.7 + Math.random() * 0.3})`,
+          // Pink range
+          `rgba(255, 120, 220, ${0.7 + Math.random() * 0.3})`,
+          // Teal range
+          `rgba(80, 220, 200, ${0.7 + Math.random() * 0.3})`,
+        ];
+        
+        this.color = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
       }
       
-      update(progress: number) {
-        // Update position
+      update() {
         this.x += this.speedX;
         this.y += this.speedY;
         
@@ -91,79 +103,37 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
         if (this.y > canvas.height) this.y = 0;
-        
-        // Gradually shift color based on loading progress
-        // From blue (240) to purple (280) as loading progresses
-        this.hue = 240 + (progress / 100) * 80;
       }
       
       draw() {
-        ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, 0.7)`;
+        if (!ctx) return;
+        
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
     }
     
+    const particles: Particle[] = [];
+    
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
     
-    // Connect particles with lines
-    const connectParticles = () => {
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
-          const dx = (particles[a] as Particle).x - (particles[b] as Particle).x;
-          const dy = (particles[a] as Particle).y - (particles[b] as Particle).y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 100) {
-            const opacity = 1 - distance / 100;
-            
-            // Create a gradient based on the two particles
-            const gradient = ctx.createLinearGradient(
-              (particles[a] as Particle).x, (particles[a] as Particle).y,
-              (particles[b] as Particle).x, (particles[b] as Particle).y
-            );
-            
-            gradient.addColorStop(0, `hsla(${(particles[a] as Particle).hue}, 70%, 60%, ${opacity * 0.3})`);
-            gradient.addColorStop(1, `hsla(${(particles[b] as Particle).hue}, 70%, 60%, ${opacity * 0.3})`);
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 0.6;
-            ctx.beginPath();
-            ctx.moveTo((particles[a] as Particle).x, (particles[a] as Particle).y);
-            ctx.lineTo((particles[b] as Particle).x, (particles[b] as Particle).y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
-    
     // Animation loop
     let animationId: number;
     
     const animate = () => {
-      // Change background gradient based on loading progress
-      const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      bgGradient.addColorStop(0, `rgba(0, 0, 0, 1)`);
-      
-      // Gradually add more color to the background
-      const alpha = loadingProgress / 100;
-      bgGradient.addColorStop(1, `rgba(25, 5, 50, ${alpha})`);
-      
-      // Fill with semi-transparent background for trail effect
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Update and draw particles
       particles.forEach(particle => {
-        (particle as Particle).update(loadingProgress);
-        (particle as Particle).draw();
+        particle.update();
+        particle.draw();
       });
       
-      connectParticles();
       animationId = requestAnimationFrame(animate);
     };
     
@@ -173,7 +143,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', setCanvasDimensions);
     };
-  }, [loadingProgress]);
+  }, []);
+
+  const rocketSize = 24; // Size of the rocket icon
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black overflow-hidden">
@@ -183,15 +155,55 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         className="absolute inset-0 w-full h-full"
       />
       
-      {/* Loading Progress */}
-      <div className="relative z-10 w-64 mb-4">
-        <Progress 
-          value={loadingProgress} 
-          className="h-2 bg-gray-800"
-        />
+      {/* Larger Loading Progress Bar with Rocket */}
+      <div className="relative z-10 w-[70%] max-w-[500px] mb-4">
+        <div className="relative">
+          <Progress 
+            value={loadingProgress} 
+            className="h-6 bg-gray-800 rounded-full overflow-hidden"
+          />
+          
+          {/* Rocket Icon */}
+          <div 
+            className="absolute top-1/2 transform -translate-y-1/2"
+            style={{ 
+              left: `calc(${loadingProgress}% - ${rocketSize/2}px)`,
+              transition: 'left 0.3s ease-out'
+            }}
+          >
+            <div className="flex justify-center items-center">
+              {/* SVG Rocket - positioned at the loading progress point */}
+              <svg 
+                width={rocketSize} 
+                height={rocketSize} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-white"
+              >
+                <path 
+                  d="M12 2C9 2 4 3 4 10C4 15.5 7 19 9.5 20.5C10 21 11 21 11.5 20.5C11.5 20.5 12 20 12 19.5C12 19 11.5 18.5 11 18C10.5 17.5 10 16.5 10 15C10 13.5 11 12 12.5 12C14 12 15 13 15 14.5C15 16 14 17 13 17.75C12.5 18.25 12 19 12 19.75C12 20.5 13 21 13 21C13 21 14 21 14.5 20.5C17 19 20 15.5 20 10C20 3 15 2 12 2Z" 
+                  fill="white"
+                />
+                <path 
+                  d="M13 15.5C13 16.33 12.33 17 11.5 17C10.67 17 10 16.33 10 15.5C10 14.67 10.67 14 11.5 14C12.33 14 13 14.67 13 15.5Z" 
+                  fill="#5F9EF9"
+                />
+                <path 
+                  d="M9 10.5C9 11.33 8.33 12 7.5 12C6.67 12 6 11.33 6 10.5C6 9.67 6.67 9 7.5 9C8.33 9 9 9.67 9 10.5Z" 
+                  fill="#5F9EF9"
+                />
+                <path 
+                  d="M18 10.5C18 11.33 17.33 12 16.5 12C15.67 12 15 11.33 15 10.5C15 9.67 15.67 9 16.5 9C17.33 9 18 9.67 18 10.5Z" 
+                  fill="#5F9EF9"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
         
         {/* Loading percentage */}
-        <div className="text-xs text-gray-400 mt-2 text-center">
+        <div className="text-sm text-gray-300 mt-2 text-center">
           {loadingProgress.toFixed(0)}%
         </div>
       </div>
@@ -202,11 +214,6 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-          }
-          
-          .progress-bar {
-            background-size: 200% 100%;
-            animation: gradientShift 2s ease infinite;
           }
         `}
       </style>
