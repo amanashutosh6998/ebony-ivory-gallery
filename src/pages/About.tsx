@@ -7,18 +7,7 @@ import ColorParticles from "@/components/ColorParticles";
 import ScrollIndicator from "@/components/ScrollIndicator";
 
 const About = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Add animation delay to allow particles to initialize first
-    const contentTimer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 300);
-    
-    return () => {
-      clearTimeout(contentTimer);
-    };
-  }, []);
+  const [isLoaded, setIsLoaded] = useState(true); // Start with true to remove loading animation
 
   return (
     <div className="min-h-screen flex flex-col relative bg-black text-white overflow-hidden">
@@ -29,12 +18,8 @@ const About = () => {
       
       <Navbar />
 
-      {/* Content with fade-in animation */}
-      <div 
-        className={`flex-grow flex flex-col transition-opacity duration-1000 relative z-10 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
+      {/* Content without fade-in animation */}
+      <div className="flex-grow flex flex-col relative z-10 opacity-100">
         <div className="flex-grow">
           <AboutSection />
         </div>

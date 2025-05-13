@@ -61,15 +61,15 @@ const ParticleBackground = () => {
       lifetime: number;
       maxLifetime: number;
       
-      constructor(x: number, y: number) {
+      constructor(x: number, y: number, intensity: number = 1) {
         this.x = x;
         this.y = y;
         this.particles = [];
         this.lifetime = 0;
         this.maxLifetime = 40;
         
-        // Create explosion particles
-        const particleCount = Math.floor(Math.random() * 5) + 3; // Small amount of particles
+        // Create explosion particles - use intensity to determine count
+        const particleCount = Math.floor(Math.random() * 5 * intensity + 3 * intensity);
         for (let i = 0; i < particleCount; i++) {
           this.particles.push(new ExplosionParticle(x, y));
         }
@@ -142,7 +142,7 @@ const ParticleBackground = () => {
       
       // Create small explosion occasionally when mouse moves
       if (Math.random() < 0.05) {
-        explosionsRef.current.push(new Explosion(x, y));
+        explosionsRef.current.push(new Explosion(x, y, 0.5));
       }
       
       mouseRef.current = { 
@@ -172,8 +172,9 @@ const ParticleBackground = () => {
       interactionColor: string;
       originalColor: string;
       maxSpeed: number;
+      clusterId: number;
       
-      constructor() {
+      constructor(clusterId = -1) {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.baseSize = Math.random() * 1.5 + 0.5;
@@ -181,6 +182,7 @@ const ParticleBackground = () => {
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
         this.maxSpeed = 2;
+        this.clusterId = clusterId;
         
         // Add different colored particles (mostly white with some blue/purple accents)
         const colorRand = Math.random();
@@ -234,7 +236,7 @@ const ParticleBackground = () => {
             if (Math.random() < 0.01) {
               const explosionX = this.x + Math.random() * 20 - 10;
               const explosionY = this.y + Math.random() * 20 - 10;
-              explosionsRef.current.push(new Explosion(explosionX, explosionY));
+              explosionsRef.current.push(new Explosion(explosionX, explosionY, 1));
             }
           } else {
             // Reset color when out of range
@@ -279,6 +281,18 @@ const ParticleBackground = () => {
       }
     }
     
+    // Generate clusters of particles
+    const clusters: {centerX: number, centerY: number, radius: number}[] = [];
+    const numClusters = Math.floor(Math.random() * 3) + 2; // 2-4 clusters
+    
+    for (let i = 0; i < numClusters; i++) {
+      clusters.push({
+        centerX: Math.random() * canvas.width,
+        centerY: Math.random() * canvas.height,
+        radius: Math.random() * 100 + 50
+      });
+    }
+    
     // Initialize particles - use more particles for a denser effect
     const initParticles = () => {
       // Use more particles based on screen size
@@ -288,7 +302,27 @@ const ParticleBackground = () => {
       );
       
       particles = [];
-      for (let i = 0; i < particleCount; i++) {
+      
+      // Create 70% of particles in clusters, 30% random
+      const clusteredParticles = Math.floor(particleCount * 0.7);
+      const randomParticles = particleCount - clusteredParticles;
+      
+      // Add clustered particles
+      let particlesPerCluster = Math.floor(clusteredParticles / clusters.length);
+      for (let c = 0; c < clusters.length; c++) {
+        for (let i = 0; i < particlesPerCluster; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const distance = Math.random() * clusters[c].radius;
+          
+          const particle = new Particle(c);
+          particle.x = clusters[c].centerX + Math.cos(angle) * distance;
+          particle.y = clusters[c].centerY + Math.sin(angle) * distance;
+          particles.push(particle);
+        }
+      }
+      
+      // Add random particles
+      for (let i = 0; i < randomParticles; i++) {
         particles.push(new Particle());
       }
     };
@@ -315,6 +349,12 @@ const ParticleBackground = () => {
             // Increase connection distance if near cursor
             if (mouseDist < 150) {
               maxDistance += 80 * (1 - mouseDist / 150);
+              
+              // Create burst effect when mouse is over a cluster connection
+              if (mouseDist < 30 && particles[a].clusterId === particles[b].clusterId && 
+                  particles[a].clusterId !== -1 && Math.random() < 0.02) {
+                explosionsRef.current.push(new Explosion(midX, midY, 3));
+              }
             }
           }
           
@@ -348,8 +388,21 @@ const ParticleBackground = () => {
             }
             
             const lineOpacity = (opacityA + opacityB) / 4 * (1 - distance / maxDistance) * lineOpacityMultiplier;
-            gradient.addColorStop(0, colorA.replace(/[\d\.]+\)$/, `${lineOpacity})`));
-            gradient.addColorStop(1, colorB.replace(/[\d\.]+\)$/, `${lineOpacity})`));
+            
+            // Use different colors for lines in clusters
+            if (particles[a].clusterId === particles[b].clusterId && particles[a].clusterId !== -1) {
+              // Enhanced colors for cluster connections
+              let clusterHue = 220; // Blue base
+              if (particles[a].clusterId % 3 === 0) clusterHue = 280; // Purple
+              if (particles[a].clusterId % 3 === 1) clusterHue = 180; // Cyan
+              if (particles[a].clusterId % 3 === 2) clusterHue = 330; // Pink
+              
+              gradient.addColorStop(0, `hsla(${clusterHue}, 70%, 60%, ${lineOpacity * 1.2})`);
+              gradient.addColorStop(1, `hsla(${clusterHue}, 70%, 60%, ${lineOpacity * 1.2})`);
+            } else {
+              gradient.addColorStop(0, colorA.replace(/[\d\.]+\)$/, `${lineOpacity})`));
+              gradient.addColorStop(1, colorB.replace(/[\d\.]+\)$/, `${lineOpacity})`));
+            }
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = mouseRef.current.isActive ? 0.8 : 0.5;
@@ -367,7 +420,7 @@ const ParticleBackground = () => {
       if (Math.random() < 0.01 && explosionsRef.current.length < 5) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        explosionsRef.current.push(new Explosion(x, y));
+        explosionsRef.current.push(new Explosion(x, y, 0.5));
       }
     };
     

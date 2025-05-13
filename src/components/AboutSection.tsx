@@ -11,7 +11,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-gray-900">
-      {/* Animated background elements */}
+      {/* Decorative elements - removed the purple dot */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
@@ -19,8 +19,8 @@ const AboutSection = () => {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 animate-pulse">About Me</h2>
-          <p className="text-lg text-gray-400 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">About Me</h2>
+          <p className="text-lg text-gray-400">
             I'm a passionate designer and developer with a focus on creating clean, 
             user-friendly experiences. With a background in both design and programming, 
             I bring a unique perspective to every project.
@@ -28,7 +28,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in" style={{animationDelay: "200ms"}}>
+          <div>
             <h3 className="text-2xl font-bold mb-4">My Journey</h3>
             <p className="mb-4 text-gray-400">
               I started my career as a graphic designer but quickly became fascinated 
@@ -47,19 +47,18 @@ const AboutSection = () => {
           </div>
 
           <div className="grid gap-4">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <Card 
                 key={skill.name} 
-                className="p-6 border border-gray-800 bg-gray-800/50 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2 animate-fade-in group"
-                style={{animationDelay: `${(index + 1) * 200}ms`}}
+                className="p-6 border border-gray-800 bg-gray-800/50 backdrop-blur-sm"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gradient-to-r from-gray-900 to-black rounded-md group-hover:from-purple-900/50 group-hover:to-blue-900/50 transition-colors duration-300">
-                    <skill.icon className="h-5 w-5 text-white group-hover:text-purple-300 transition-colors duration-300" />
+                  <div className="p-3 bg-gradient-to-r from-gray-900 to-black rounded-md">
+                    <skill.icon className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-medium mb-1 text-white group-hover:text-purple-200 transition-colors duration-300">{skill.name}</h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{skill.description}</p>
+                    <h4 className="text-xl font-medium mb-1 text-white">{skill.name}</h4>
+                    <p className="text-gray-400">{skill.description}</p>
                   </div>
                 </div>
               </Card>
