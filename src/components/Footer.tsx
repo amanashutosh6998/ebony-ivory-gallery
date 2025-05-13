@@ -8,11 +8,7 @@ const Footer = () => {
     <footer className="py-12 bg-gradient-to-t from-black to-transparent text-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <p className="text-gray-400">Bengaluru, KA</p>
-          </div>
-          
-          <div className="flex space-x-6 mb-6 md:mb-0">
+          <div className="mb-6 md:mb-0 flex space-x-6">
             <a href="https://github.com/amanashutosh6998" className="hover:text-gray-400 transition-colors flex items-center" target="_blank" rel="noopener noreferrer">
               <Github className="w-5 h-5 mr-2" />
               GitHub

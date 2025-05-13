@@ -28,7 +28,6 @@ const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
-  const explosionsRef = useRef<ExplosionType[]>([]);
   
   useEffect(() => {
     // Smooth entrance animation for the canvas with longer duration
@@ -51,98 +50,12 @@ const ParticleBackground = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-
-    // Explosion effect class
-    class Explosion implements ExplosionType {
-      x: number;
-      y: number;
-      particles: ExplosionParticle[];
-      lifetime: number;
-      maxLifetime: number;
-      
-      constructor(x: number, y: number, intensity: number = 1) {
-        this.x = x;
-        this.y = y;
-        this.particles = [];
-        this.lifetime = 0;
-        this.maxLifetime = 40;
-        
-        // Create explosion particles - use intensity to determine count
-        const particleCount = Math.floor(Math.random() * 5 * intensity + 3 * intensity);
-        for (let i = 0; i < particleCount; i++) {
-          this.particles.push(new ExplosionParticle(x, y));
-        }
-      }
-      
-      update() {
-        this.lifetime++;
-        this.particles.forEach(p => p.update());
-        return this.lifetime < this.maxLifetime;
-      }
-      
-      draw(ctx: CanvasRenderingContext2D) {
-        this.particles.forEach(p => p.draw(ctx));
-      }
-    }
     
-    // Individual explosion particle
-    class ExplosionParticle implements ExplosionParticle {
-      x: number;
-      y: number;
-      initialX: number;
-      initialY: number;
-      size: number;
-      speed: number;
-      angle: number;
-      color: string;
-      alpha: number;
-      
-      constructor(x: number, y: number) {
-        this.initialX = x;
-        this.initialY = y;
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 2 + 0.5;
-        this.speed = Math.random() * 2 + 1;
-        this.angle = Math.random() * Math.PI * 2;
-        
-        // Bright colors for explosion particles
-        const hue = Math.random() * 60 + 180; // Blue to purple range
-        this.color = `hsla(${hue}, 100%, 70%, 1)`;
-        this.alpha = 1;
-      }
-      
-      update() {
-        // Move outward from center
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
-        
-        // Fade out
-        this.alpha -= 0.03;
-        if (this.alpha < 0) this.alpha = 0;
-        
-        // Slow down
-        this.speed *= 0.95;
-      }
-      
-      draw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = this.color.replace('1)', `${this.alpha})`);
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    
-    // Track mouse movement
+    // Track mouse movement - but no explosions
     const handleMouseMove = (event: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      
-      // Create small explosion occasionally when mouse moves
-      if (Math.random() < 0.05) {
-        explosionsRef.current.push(new Explosion(x, y, 0.5));
-      }
       
       mouseRef.current = { 
         x,
@@ -411,11 +324,6 @@ const ParticleBackground = () => {
       });
       
       // Update and draw explosions
-      explosionsRef.current = explosionsRef.current.filter(explosion => {
-        const isAlive = explosion.update();
-        explosion.draw(ctx);
-        return isAlive;
-      });
       
       connectParticles();
       animationId = requestAnimationFrame(animate);
