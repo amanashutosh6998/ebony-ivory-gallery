@@ -39,7 +39,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Background particles - always visible */}
-      <div className="fixed inset-0 opacity-100">
+      <div className="fixed inset-0 opacity-100 z-0">
         <ParticleBackground />
       </div>
       
@@ -49,6 +49,7 @@ const Index = () => {
         className={`relative z-10 ${
           isLoaded ? "opacity-100 animate-fade-in" : "opacity-0"
         } transition-all duration-500`}
+        style={{animationDelay: "200ms"}}
       >
         <div className="flow-content">
           <HeroSection />
