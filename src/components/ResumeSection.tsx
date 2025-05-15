@@ -37,6 +37,43 @@ const ResumeSection = () => {
         </div>
 
         <div className="grid gap-10 animate-fade-in" style={{animationDelay: "300ms"}}>
+          {/* Skills Section (Moved to the top) */}
+          <Card className="p-6 bg-black/40 backdrop-blur-lg border border-gray-800 animate-fade-in" style={{animationDelay: "400ms"}}>
+            <h3 className="text-2xl font-bold mb-6 text-white/90 flex items-center">
+              <FileText className="mr-3 h-6 w-6" />
+              Skills
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">SQL</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Python</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Prompt Engineering</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Google Sheets</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS RedShift</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS S3</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS Lambda</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS Step Function</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS Athena</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">AWS Bedrock</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Power BI/Looker Studio</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">HubSpot</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">PostHog</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Mix Panel</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">ETL</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Google Analytics 4</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Funnel Analysis</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Web Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">CRM Ops</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Revenue Ops</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Lifecycle Cohort Analysis</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">CRM Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Data Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Product Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Problem Solving</div>
+              <div className="bg-gray-900/50 p-3 rounded-md text-white">Data Reporting</div>
+            </div>
+          </Card>
+          
           {/* Experience Section */}
           <Card className="p-6 bg-black/40 backdrop-blur-lg border border-gray-800">
             <h3 className="text-2xl font-bold mb-6 text-white/90 flex items-center">
@@ -45,7 +82,7 @@ const ResumeSection = () => {
             </h3>
             
             <div className="space-y-8">
-              <div className="animate-fade-in" style={{animationDelay: "400ms"}}>
+              <div className="animate-fade-in" style={{animationDelay: "500ms"}}>
                 <div className="flex flex-wrap justify-between items-start mb-2">
                   <h4 className="text-xl font-semibold text-white">Growth Analyst (Founder's Office)</h4>
                   <span className="text-gray-400 text-sm flex items-center">
@@ -87,7 +124,7 @@ const ResumeSection = () => {
                 </ul>
               </div>
               
-              <div className="animate-fade-in" style={{animationDelay: "500ms"}}>
+              <div className="animate-fade-in" style={{animationDelay: "600ms"}}>
                 <div className="flex flex-wrap justify-between items-start mb-2">
                   <h4 className="text-xl font-semibold text-white">Marketing Analyst Intern</h4>
                   <span className="text-gray-400 text-sm flex items-center">
@@ -117,7 +154,7 @@ const ResumeSection = () => {
           </Card>
           
           {/* Education Section */}
-          <Card className="p-6 bg-black/40 backdrop-blur-lg border border-gray-800 animate-fade-in" style={{animationDelay: "600ms"}}>
+          <Card className="p-6 bg-black/40 backdrop-blur-lg border border-gray-800 animate-fade-in" style={{animationDelay: "700ms"}}>
             <h3 className="text-2xl font-bold mb-6 text-white/90 flex items-center">
               <FileText className="mr-3 h-6 w-6" />
               Education
@@ -147,43 +184,6 @@ const ResumeSection = () => {
                 </div>
                 <h5 className="text-blue-400">Patna University, Patna</h5>
               </div>
-            </div>
-          </Card>
-          
-          {/* Skills Section */}
-          <Card className="p-6 bg-black/40 backdrop-blur-lg border border-gray-800 animate-fade-in" style={{animationDelay: "700ms"}}>
-            <h3 className="text-2xl font-bold mb-6 text-white/90 flex items-center">
-              <FileText className="mr-3 h-6 w-6" />
-              Skills
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              <div className="bg-gray-900/50 p-3 rounded-md">SQL</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Python</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Prompt Engineering</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Google Sheets</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS RedShift</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS S3</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS Lambda</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS Step Function</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS Athena</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS Bedrock</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Power BI/Looker Studio</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">HubSpot</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">PostHog</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Mix Panel</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">ETL</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Google Analytics 4</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Funnel Analysis</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Web Analytics</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">CRM Ops</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Revenue Ops</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Lifecycle Cohort Analysis</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">CRM Analytics</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Data Analytics</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Product Analytics</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Problem Solving</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Data Reporting</div>
             </div>
           </Card>
         </div>
