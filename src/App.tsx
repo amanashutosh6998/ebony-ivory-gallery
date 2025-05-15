@@ -8,7 +8,7 @@ import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import AILab from "./pages/AILab";
 import CaseStudies from "./pages/CaseStudies";
-import Contact from "./pages/Contact";
+import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,9 +24,10 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/ai-lab" element={<AILab />} />
           <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* Redirect from the old /about route to the homepage */}
+          <Route path="/resume" element={<Resume />} />
+          {/* Redirects */}
           <Route path="/about" element={<Navigate to="/#about" replace />} />
+          <Route path="/contact" element={<Navigate to="/resume" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
