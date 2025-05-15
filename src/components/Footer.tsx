@@ -25,7 +25,7 @@ const Footer = () => {
           
           <div>
             <p className="text-sm text-gray-400 flex items-center">
-              Powered by <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="mx-1 inline-flex items-center hover:text-white"><Github className="w-4 h-4 mr-1" />GitHub</a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white">Lovable</a>
+              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="mx-1 inline-flex items-center hover:text-white"><Github className="w-4 h-4 mr-1" />GitHub</a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white">Lovable</a>
             </p>
           </div>
         </div>
