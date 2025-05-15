@@ -56,7 +56,7 @@ const ResumeSection = () => {
                 <h5 className="text-blue-400 mb-2 flex items-center">
                   <a href="https://www.gokenko.com/" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center">
                     Kenko AI
-                    <span className="ml-2 text-sm text-gray-400">(US B2B SaaS Booking/Fitness Software)</span>
+                    <span className="ml-2 text-sm text-gray-400">(US B2B SaaS Booking/Fitness Software), Bengaluru</span>
                   </a>
                 </h5>
                 <ul className="text-gray-300 list-disc pl-5 space-y-2">
@@ -98,7 +98,7 @@ const ResumeSection = () => {
                 <h5 className="text-blue-400 mb-2 flex items-center">
                   <a href="https://www.newtonschool.co/" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center">
                     Newton School
-                    <span className="ml-2 text-sm text-gray-400">(EdTech company offering online and bachelor's programs)</span>
+                    <span className="ml-2 text-sm text-gray-400">(EdTech company offering online and bachelor's programs), Bengaluru</span>
                   </a>
                 </h5>
                 <ul className="text-gray-300 list-disc pl-5 space-y-2">
@@ -126,18 +126,26 @@ const ResumeSection = () => {
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-semibold text-white">Master of Computer Science</h4>
-                  <span className="text-gray-400 text-sm">2016 - 2018</span>
+                  <h4 className="text-xl font-semibold text-white">PGP - Data Science and Analytics</h4>
+                  <span className="text-gray-400 text-sm">12/2022 - 08/2023</span>
                 </div>
-                <h5 className="text-blue-400">Tech University</h5>
+                <h5 className="text-blue-400">Imarticus Learning, Bengaluru</h5>
               </div>
               
               <div>
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-semibold text-white">Bachelor of Design</h4>
-                  <span className="text-gray-400 text-sm">2012 - 2016</span>
+                  <h4 className="text-xl font-semibold text-white">PGDM - Marketing Management</h4>
+                  <span className="text-gray-400 text-sm">01/2022 - 12/2022</span>
                 </div>
-                <h5 className="text-blue-400">Design Institute</h5>
+                <h5 className="text-blue-400">Himalayan University, Itanagar</h5>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="text-xl font-semibold text-white">B.Com (Honours)</h4>
+                  <span className="text-gray-400 text-sm">06/2018 - 11/2021</span>
+                </div>
+                <h5 className="text-blue-400">Patna University, Patna</h5>
               </div>
             </div>
           </Card>
@@ -149,16 +157,33 @@ const ResumeSection = () => {
               Skills
             </h3>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="bg-gray-900/50 p-3 rounded-md">Data Analytics</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Python</div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <div className="bg-gray-900/50 p-3 rounded-md">SQL</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">ETL Pipelines</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">AWS</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Power BI</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Python</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Prompt Engineering</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Google Sheets</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS RedShift</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS S3</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS Lambda</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS Step Function</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS Athena</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">AWS Bedrock</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Power BI/Looker Studio</div>
               <div className="bg-gray-900/50 p-3 rounded-md">HubSpot</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">Growth Marketing</div>
-              <div className="bg-gray-900/50 p-3 rounded-md">A/B Testing</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">PostHog</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Mix Panel</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">ETL</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Google Analytics 4</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Funnel Analysis</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Web Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">CRM Ops</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Revenue Ops</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Lifecycle Cohort Analysis</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">CRM Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Data Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Product Analytics</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Problem Solving</div>
+              <div className="bg-gray-900/50 p-3 rounded-md">Data Reporting</div>
             </div>
           </Card>
         </div>
