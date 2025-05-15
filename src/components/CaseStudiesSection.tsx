@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -14,100 +14,38 @@ interface CaseStudy {
 
 const CaseStudiesSection = () => {
   const [activeStudy, setActiveStudy] = useState<number | null>(null);
-  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   
-  useEffect(() => {
-    // This function will attempt to fetch case studies from either:
-    // 1. Our CMS JSON files when in production
-    // 2. Our fallback hardcoded data when in development or if fetch fails
-    const fetchCaseStudies = async () => {
-      try {
-        // In a real implementation, this would scan the case-studies directory
-        // For now, we'll fetch our single example file to demonstrate the pattern
-        const response = await fetch('/src/content/case-studies/ecommerce-conversion-optimization.json');
-        if (!response.ok) throw new Error('Failed to fetch case studies');
-        
-        const study = await response.json();
-        
-        // For demo purposes, we'll add some hardcoded studies to fill out the section
-        const studies = [
-          study,
-          {
-            title: "SaaS User Retention Strategy",
-            problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
-            solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
-            tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
-            impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
-          },
-          {
-            title: "Marketing Attribution Framework",
-            problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
-            solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
-            tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
-            impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
-          }
-        ];
-        
-        setCaseStudies(studies);
-      } catch (err) {
-        console.error('Error fetching case studies:', err);
-        setError('Failed to load case studies. Using fallback data.');
-        
-        // Fallback to hardcoded data
-        setCaseStudies([
-          {
-            title: "E-commerce Conversion Optimization",
-            problem: "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
-            solution: "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
-            tools: ["Google Analytics", "Optimizely", "HotJar", "Python"],
-            impact: "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop"
-          },
-          {
-            title: "SaaS User Retention Strategy",
-            problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
-            solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
-            tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
-            impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
-          },
-          {
-            title: "Marketing Attribution Framework",
-            problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
-            solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
-            tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
-            impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
-          }
-        ]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCaseStudies();
-  }, []);
+  // Hardcoded case studies data
+  const caseStudies: CaseStudy[] = [
+    {
+      title: "E-commerce Conversion Optimization",
+      problem: "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
+      solution: "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
+      tools: ["Google Analytics", "Optimizely", "HotJar", "Python"],
+      impact: "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
+      image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+      title: "SaaS User Retention Strategy",
+      problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
+      solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
+      tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
+      impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
+    },
+    {
+      title: "Marketing Attribution Framework",
+      problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
+      solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
+      tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
+      impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
+    }
+  ];
 
   const toggleStudy = (index: number) => {
     setActiveStudy(activeStudy === index ? null : index);
   };
-
-  if (loading) {
-    return (
-      <section id="case-studies" className="py-24 bg-black">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Case Studies</h2>
-            <p className="text-lg text-gray-400">Loading case studies...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="case-studies" className="py-24 bg-black">
@@ -117,7 +55,6 @@ const CaseStudiesSection = () => {
           <p className="text-lg text-gray-400">
             Real-world problems solved with a data-driven approach to growth and optimization.
           </p>
-          {error && <p className="text-red-400 mt-2">{error}</p>}
         </div>
 
         <div className="space-y-12">
@@ -191,17 +128,6 @@ const CaseStudiesSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Button 
-            className="bg-gray-800 text-white hover:bg-gray-700"
-            asChild
-          >
-            <a href="/admin/#/collections/case-studies" target="_blank" rel="noopener noreferrer">
-              Edit Case Studies
-            </a>
-          </Button>
         </div>
       </div>
     </section>
