@@ -18,6 +18,11 @@ const Index = () => {
     if (hasVisited) {
       setInitialLoading(false);
       setIsLoaded(true);
+    } else {
+      // Force animation to play by delaying the loading complete
+      setTimeout(() => {
+        handleLoadingComplete();
+      }, 800);
     }
   }, []);
 
@@ -42,8 +47,8 @@ const Index = () => {
       
       <div 
         className={`relative z-10 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+          isLoaded ? "opacity-100 animate-fade-in" : "opacity-0"
+        } transition-all duration-500`}
       >
         <div className="flow-content">
           <HeroSection />

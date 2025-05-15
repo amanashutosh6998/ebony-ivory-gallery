@@ -17,6 +17,11 @@ const Resume = () => {
     if (hasVisitedResume) {
       setInitialLoading(false);
       setIsLoaded(true);
+    } else {
+      // Force animation to play by delaying the loading complete
+      setTimeout(() => {
+        handleLoadingComplete();
+      }, 800);
     }
   }, []);
 
@@ -32,9 +37,9 @@ const Resume = () => {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="blue-cyan" density="low" />
+      {/* Background particles with increased density for visibility */}
+      <div className="fixed inset-0 z-0">
+        <ColorParticles colorScheme="blue-cyan" density="medium" />
       </div>
       
       <Navbar />

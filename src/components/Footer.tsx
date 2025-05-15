@@ -17,7 +17,7 @@ const Footer = () => {
               aria-label="GitHub Profile"
             >
               <Github className="w-5 h-5 mr-2" />
-              GitHub
+              <span>GitHub</span>
             </a>
             <a 
               href="https://www.linkedin.com/in/aman-ashutosh/" 
@@ -27,7 +27,7 @@ const Footer = () => {
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-5 h-5 mr-2" />
-              LinkedIn
+              <span>LinkedIn</span>
             </a>
             <a 
               href="mailto:amanashutosh.analytics@gmail.com" 
@@ -35,13 +35,13 @@ const Footer = () => {
               aria-label="Email Contact"
             >
               <Mail className="w-5 h-5 mr-2" />
-              Email
+              <span>Email</span>
             </a>
           </div>
           
           <div>
             <p className="text-sm text-gray-400 flex items-center">
-              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="mx-1 inline-flex items-center hover:text-white cursor-pointer"><Github className="w-4 h-4 mr-1" />GitHub</a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white cursor-pointer">Lovable</a>
+              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="mx-1 inline-flex items-center hover:text-white cursor-pointer"><Github className="w-4 h-4 mr-1" /><span>GitHub</span></a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white cursor-pointer"><span>Lovable</span></a>
             </p>
           </div>
         </div>
