@@ -1,6 +1,6 @@
-
 import { Card } from "@/components/ui/card";
 import { Code, User, Star } from "lucide-react";
+import ColorParticles from "./ColorParticles"; // ✅ Animation Import
 
 const AboutSection = () => {
   const skills = [
@@ -11,14 +11,18 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="py-12 relative overflow-hidden bg-gradient-to-b from-black to-gray-900">
-      {/* Decorative elements - removed the purple dot */}
+      {/* ✅ Add animated particles as a background layer */}
+      <ColorParticles colorScheme="purple-blue" density="medium" />
+
+      {/* Decorative elements (already present) */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
       </div>
 
+      {/* Main content */}
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{animationDelay: "300ms"}}>
+        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{ animationDelay: "300ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">About Me</h2>
           <p className="text-lg text-gray-400">
             I'm a passionate designer and developer with a focus on creating clean, 
@@ -28,7 +32,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in" style={{animationDelay: "400ms"}}>
+          <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
             <h3 className="text-2xl font-bold mb-4">My Journey</h3>
             <p className="mb-4 text-gray-400">
               I started my career as a graphic designer but quickly became fascinated 
@@ -48,10 +52,10 @@ const AboutSection = () => {
 
           <div className="grid gap-4">
             {skills.map((skill, index) => (
-              <Card 
-                key={skill.name} 
+              <Card
+                key={skill.name}
                 className="p-6 border border-gray-800 bg-gray-800/50 backdrop-blur-sm animate-fade-in"
-                style={{animationDelay: `${500 + index * 100}ms`}}
+                style={{ animationDelay: `${500 + index * 100}ms` }}
               >
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-gradient-to-r from-gray-900 to-black rounded-md">
