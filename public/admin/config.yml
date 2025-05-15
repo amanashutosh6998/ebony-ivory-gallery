@@ -1,3 +1,4 @@
+
 backend:
   name: github
   repo: amanashutosh6998/ebony-ivory-gallery
@@ -17,3 +18,16 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string" }
+
+  - name: "case-studies"
+    label: "Case Studies"
+    folder: "src/content/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Problem", name: "problem", widget: "text" }
+      - { label: "Solution", name: "solution", widget: "text" }
+      - { label: "Tools Used", name: "tools", widget: "list" }
+      - { label: "Business Impact", name: "impact", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }

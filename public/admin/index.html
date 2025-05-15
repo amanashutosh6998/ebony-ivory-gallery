@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,8 +8,24 @@
     <!-- GitHub OAuth Client ID -->
     <meta name="cms-github-client-id" content="Ov23liIBUQFMTAlCJnpL" />
 
+    <!-- Netlify Identity Widget for easier authentication -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <!-- Load Netlify CMS with defer to ensure DOM is loaded first -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js" defer></script>
+    
+    <style>
+      /* Simple loading indicator */
+      body:before {
+        content: "Loading Content Manager...";
+        display: block;
+        text-align: center;
+        padding-top: 3rem;
+        font-family: sans-serif;
+        color: #333;
+        font-size: 1.2rem;
+      }
+    </style>
   </head>
   <body>
     <div id="nc-root"></div>

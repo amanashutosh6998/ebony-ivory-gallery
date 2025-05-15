@@ -1,0 +1,9 @@
+
+{
+  "title": "E-commerce Conversion Optimization",
+  "problem": "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
+  "solution": "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
+  "tools": ["Google Analytics", "Optimizely", "HotJar", "Python"],
+  "impact": "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
+  "image": "/uploads/ecommerce-case-study.jpg"
+}

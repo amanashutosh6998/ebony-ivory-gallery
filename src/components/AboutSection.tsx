@@ -1,12 +1,13 @@
+
 import { Card } from "@/components/ui/card";
-import { Code, User, Star } from "lucide-react";
-import ColorParticles from "./ColorParticles"; // ✅ Animation Import
+import { BarChart3, Database, Users } from "lucide-react";
+import ColorParticles from "./ColorParticles";
 
 const AboutSection = () => {
   const skills = [
-    { name: "Design", icon: Star, description: "UI/UX, Branding, Typography" },
-    { name: "Development", icon: Code, description: "React, TypeScript, Node.js" },
-    { name: "Experience", icon: User, description: "5+ years in the industry" },
+    { name: "Data Analytics", icon: BarChart3, description: "SQL, Python, ETL, Reporting" },
+    { name: "Growth Engineering", icon: Database, description: "CRM, Attribution, Automation" },
+    { name: "Customer Insights", icon: Users, description: "Lifecycle Analysis, Retention" },
   ];
 
   return (
@@ -25,9 +26,9 @@ const AboutSection = () => {
         <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{ animationDelay: "300ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">About Me</h2>
           <p className="text-lg text-gray-400">
-            I'm a passionate designer and developer with a focus on creating clean, 
-            user-friendly experiences. With a background in both design and programming, 
-            I bring a unique perspective to every project.
+            I'm a Growth Analyst specializing in data-driven strategies with expertise in ETL pipelines,
+            CRM management, and customer analytics. I blend technical skills with business acumen to drive
+            measurable results across marketing, sales, and product initiatives.
           </p>
         </div>
 
@@ -35,18 +36,21 @@ const AboutSection = () => {
           <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
             <h3 className="text-2xl font-bold mb-4">My Journey</h3>
             <p className="mb-4 text-gray-400">
-              I started my career as a graphic designer but quickly became fascinated 
-              with the web and interactive experiences. This led me to learn front-end 
-              development, and I've been building digital products ever since.
+              With a background in data science, analytics, and marketing management,
+              I've built expertise in transforming raw data into actionable insights. My focus
+              lies in creating end-to-end data pipelines and automation systems that drive
+              business growth.
             </p>
             <p className="mb-4 text-gray-400">
-              My approach combines aesthetic sensibility with technical knowledge to 
-              create solutions that are both beautiful and functional. I believe in 
-              minimalism and purpose-driven design.
+              At Kenko AI, I've implemented sophisticated ETL processes, built custom attribution
+              models, and developed AI-powered outbound engines that increased demo bookings by 25%.
+              I focus on creating systems that align marketing, sales, and product data for holistic
+              business intelligence.
             </p>
             <p className="text-gray-400">
-              When I'm not designing or coding, you can find me exploring photography, 
-              reading about new technologies, or hiking in nature.
+              My approach combines analytical rigor with practical applications. I'm passionate about
+              using data to solve real business problems, optimize marketing spend, improve customer
+              retention, and enhance product adoption through data-driven decision making.
             </p>
           </div>
 

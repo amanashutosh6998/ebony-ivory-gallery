@@ -17,6 +17,11 @@ const CaseStudies = () => {
     if (hasVisitedCaseStudies) {
       setInitialLoading(false);
       setIsLoaded(true);
+    } else {
+      // Force animation to play by delaying the loading complete
+      setTimeout(() => {
+        handleLoadingComplete();
+      }, 800);
     }
   }, []);
 
