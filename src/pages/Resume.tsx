@@ -19,7 +19,7 @@ const Resume = () => {
   const [error, setError] = useState("");
   
   // The password - in a real application, this would be stored securely on a server
-  const correctPassword = "aman2024";
+  const correctPassword = "Aman6998*";
 
   useEffect(() => {
     // Check if user is already authenticated
@@ -94,7 +94,7 @@ const Resume = () => {
                     placeholder="Enter password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="bg-black/30 border-gray-700"
+                    className="bg-black/30 border-gray-700 text-white"
                   />
                 </div>
                 <Button 
