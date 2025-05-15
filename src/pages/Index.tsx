@@ -45,8 +45,10 @@ const Index = () => {
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        <HeroSection />
-        <AboutSection />
+        <div className="flow-content">
+          <HeroSection />
+          <AboutSection />
+        </div>
       </div>
       
       <Footer />
