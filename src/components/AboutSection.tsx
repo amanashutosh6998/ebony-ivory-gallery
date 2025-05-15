@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Code, User, Star } from "lucide-react";
-import AnimatedBackground from "./AnimatedBackground"; // ✅ Import the Home page effect
+import ColorParticles from "./ColorParticles"; // ✅ Animation Import
 
 const AboutSection = () => {
   const skills = [
@@ -11,15 +11,16 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="py-12 relative overflow-hidden bg-gradient-to-b from-black to-gray-900">
-      {/* ✅ Exact same animated background from Home page */}
-      <AnimatedBackground />
+      {/* ✅ Add animated particles as a background layer */}
+      <ColorParticles colorScheme="purple-blue" density="medium" />
 
-      {/* Decorative blobs */}
+      {/* Decorative elements (already present) */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
       </div>
 
+      {/* Main content */}
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{ animationDelay: "300ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">About Me</h2>
