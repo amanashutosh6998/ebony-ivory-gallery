@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
@@ -17,7 +18,8 @@ const ProjectsSection = () => {
       title: "AWS CDP Pipeline",
       category: "Data Engineering",
       description: "End-to-end Customer Data Platform using S3, Lambda, Redshift & Step Functions.",
-      github: "https://github.com/amanashutosh6998/aws-cdp-pipeline"
+      github: "https://github.com/amanashutosh6998/aws-cdp-pipeline",
+      path: "/aws-cdp-pipeline"
     },
     {
       title: "HubSpot Expert",
