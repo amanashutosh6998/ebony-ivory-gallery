@@ -10,6 +10,7 @@ import AILab from "./pages/AILab";
 import CaseStudies from "./pages/CaseStudies";
 import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
+import HubSpotExpert from "./pages/HubSpotExpert";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/ai-lab" element={<AILab />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/hubspot-expert" element={<HubSpotExpert />} />
           {/* Redirects */}
           <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="/contact" element={<Navigate to="/resume" replace />} />

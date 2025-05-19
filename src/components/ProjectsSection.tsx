@@ -2,12 +2,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Project {
   title: string;
   category: string;
   description: string;
   github: string;
+  path?: string;
 }
 
 const ProjectsSection = () => {
@@ -19,10 +21,11 @@ const ProjectsSection = () => {
       github: "https://github.com/amanashutosh6998/aws-cdp-pipeline"
     },
     {
-      title: "HubSpot CRM Cleanup",
+      title: "HubSpot Expert",
       category: "Marketing Automation",
       description: "Deduplication, batch associations, and lifecycle stage mapping automation.",
-      github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup"
+      github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
+      path: "/hubspot-expert"
     },
     {
       title: "Intercom ETL Automation",
@@ -56,9 +59,15 @@ const ProjectsSection = () => {
                   <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
                   <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      View Project
-                    </a>
+                    {project.path ? (
+                      <Link to={project.path}>
+                        View Project
+                      </Link>
+                    ) : (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        View Project
+                      </a>
+                    )}
                   </Button>
                 </div>
               </CardContent>
