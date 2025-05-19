@@ -5,8 +5,8 @@
       "description": "Customer records and interactions",
       "icon": "Database",
       "color": "bg-blue-900/50",
-      "x": "5%",
-      "y": "10%",
+      "x": "10%",
+      "y": "5%",
       "delay": 0
     },
     {
@@ -14,8 +14,8 @@
       "description": "User behavior and events",
       "icon": "ChartBar",
       "color": "bg-green-900/50",
-      "x": "5%",
-      "y": "40%",
+      "x": "40%",
+      "y": "5%",
       "delay": 1
     },
     {
@@ -23,26 +23,17 @@
       "description": "Campaign and engagement metrics",
       "icon": "File",
       "color": "bg-purple-900/50",
-      "x": "5%",
-      "y": "70%",
+      "x": "70%",
+      "y": "5%",
       "delay": 2
-    },
-    {
-      "title": "Subscriptions (Chargebee)",
-      "description": "Subscription, Transactions, Addons, and Discount",
-      "icon": "File",
-      "color": "bg-purple-900/50",
-      "x": "5%",
-      "y": "100%",
-      "delay": 3
     },
     {
       "title": "S3 Bucket",
       "description": "Raw data storage",
       "icon": "Cloud",
       "color": "bg-cyan-900/50",
-      "x": "30%",
-      "y": "25%",
+      "x": "25%",
+      "y": "30%",
       "width": "220px",
       "delay": 4
     },
@@ -51,8 +42,8 @@
       "description": "ETL processing and transformations",
       "icon": "Server",
       "color": "bg-yellow-900/50",
-      "x": "55%",
-      "y": "15%",
+      "x": "15%",
+      "y": "55%",
       "delay": 5
     },
     {
@@ -60,8 +51,8 @@
       "description": "Workflow orchestration",
       "icon": "Settings",
       "color": "bg-yellow-900/50",
-      "x": "55%",
-      "y": "40%",
+      "x": "40%",
+      "y": "55%",
       "delay": 6
     },
     {
@@ -69,8 +60,8 @@
       "description": "Data warehousing",
       "icon": "Database",
       "color": "bg-red-900/50",
-      "x": "80%",
-      "y": "25%",
+      "x": "25%",
+      "y": "80%",
       "delay": 8
     },
     {
@@ -78,14 +69,32 @@
       "description": "Unified customer profiles",
       "icon": "Link",
       "color": "bg-red-900/50",
-      "x": "80%",
-      "y": "55%",
+      "x": "55%",
+      "y": "80%",
       "delay": 9
     }
   ],
   "connections": [
-    { "start": "10%", "end": "30%", "label": "Ingest", "color": "#ccc", "animated": true },
-    { "start": "30%", "end": "55%", "label": "Transform", "color": "#ccc", "animated": true },
-    { "start": "55%", "end": "80%", "label": "Load", "color": "#ccc", "animated": true }
+    {
+      "start": "10%",
+      "end": "30%",
+      "label": "Ingest",
+      "color": "#ccc",
+      "animated": true
+    },
+    {
+      "start": "30%",
+      "end": "55%",
+      "label": "Transform",
+      "color": "#ccc",
+      "animated": true
+    },
+    {
+      "start": "55%",
+      "end": "80%",
+      "label": "Load",
+      "color": "#ccc",
+      "animated": true
+    }
   ]
 }
