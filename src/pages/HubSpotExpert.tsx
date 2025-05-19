@@ -34,7 +34,7 @@ const HubSpotExpert = () => {
   const services: HubSpotService[] = [
     {
       category: "CRM Management",
-      color: "bg-emerald-100 text-emerald-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Contacts, Companies, Deals, Tickets",
         "Lifecycle Stages",
@@ -44,7 +44,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Automation",
-      color: "bg-amber-100 text-amber-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Workflows (Sales, Marketing, CS)",
         "Lead Rotation & Scoring",
@@ -54,7 +54,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Sales Hub",
-      color: "bg-amber-100 text-amber-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Pipeline Setup & Structure",
         "Deal Forecasting",
@@ -64,7 +64,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Marketing Hub",
-      color: "bg-cyan-100 text-cyan-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Email Campaigns & A/B Tests",
         "List Segmentation",
@@ -75,7 +75,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Reporting & Dashboards",
-      color: "bg-red-100 text-red-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Custom Reports",
         "Sales & Marketing Attribution",
@@ -85,7 +85,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Integration & API",
-      color: "bg-purple-100 text-purple-900",
+      color: "bg-slate-800 text-white",
       items: [
         "App Marketplace Tools",
         "Webhooks & Custom Code Actions",
@@ -95,7 +95,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Data Governance",
-      color: "bg-pink-100 text-pink-900",
+      color: "bg-slate-800 text-white",
       items: [
         "GDPR/Consent Management",
         "Field Audit Trails",
@@ -105,7 +105,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Training & Documentation",
-      color: "bg-red-100 text-red-900",
+      color: "bg-slate-800 text-white",
       items: [
         "Internal SOPs for Marketing",
         "Onboarding for new users",
@@ -114,7 +114,7 @@ const HubSpotExpert = () => {
     },
     {
       category: "Strategy & Optimization",
-      color: "bg-lime-100 text-lime-900",
+      color: "bg-slate-800 text-white",
       items: [
         "RevOps Alignment",
         "Funnel & Process Optimization"
@@ -141,7 +141,7 @@ const HubSpotExpert = () => {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16 gap-8">
               <div className="md:w-1/2">
                 <motion.h1 
-                  className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-bold mb-6 text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
@@ -159,74 +159,41 @@ const HubSpotExpert = () => {
               </div>
             </div>
             
-            {/* Mind Map Animation */}
+            {/* Services List - Replaced the mind map with simple cards */}
             <motion.div 
               className="w-full py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              <div className="relative">
-                {/* Center Hub */}
-                <motion.div 
-                  className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full p-6 shadow-lg flex items-center justify-center w-40 h-40"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                  <h2 className="text-xl font-bold text-center text-white">HubSpot Expert</h2>
-                </motion.div>
-                
-                {/* Service Categories */}
-                <div className="min-h-[800px] relative">
-                  {services.map((service, index) => {
-                    const angle = (index * (360 / services.length)) * (Math.PI / 180);
-                    const radius = 260; // Distance from center
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-                    
-                    return (
-                      <motion.div
-                        key={service.category}
-                        className={`absolute left-1/2 top-1/2 ${service.color} rounded-lg shadow-lg p-4 w-64`}
-                        style={{
-                          translateX: `calc(${x}px - 50%)`,
-                          translateY: `calc(${y}px - 50%)`,
-                        }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                      >
-                        <h3 className="text-lg font-bold mb-2">{service.category}</h3>
-                        <ul className="text-sm">
-                          {service.items.map((item, i) => (
-                            <motion.li 
-                              key={i}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.3, delay: 1.2 + i * 0.1 + index * 0.05 }}
-                              className="mb-1"
-                            >
-                              • {item}
-                            </motion.li>
-                          ))}
-                        </ul>
-                        
-                        {/* Line connecting to center */}
-                        <motion.div 
-                          className="absolute left-1/2 top-1/2 h-0.5 bg-gray-400 origin-left z-0"
-                          style={{
-                            width: Math.sqrt(x * x + y * y) - 70, // Length of line
-                            transform: `rotate(${Math.atan2(y, x) * (180 / Math.PI)}deg)`, // Rotation based on angle
-                          }}
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                        />
-                      </motion.div>
-                    );
-                  })}
-                </div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">HubSpot Expert Service Areas</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.map((service, index) => (
+                  <motion.div
+                    key={service.category}
+                    className={`${service.color} rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  >
+                    <h3 className="text-xl font-bold mb-4">{service.category}</h3>
+                    <ul className="space-y-2">
+                      {service.items.map((item, i) => (
+                        <motion.li 
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.4 + i * 0.1 }}
+                          className="flex items-start"
+                        >
+                          <span className="mr-2">•</span>
+                          <span>{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
             
@@ -234,9 +201,9 @@ const HubSpotExpert = () => {
               className="mt-12 max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 2.5 }}
+              transition={{ duration: 0.5, delay: 1 }}
             >
-              <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-transparent">Why Work With a HubSpot Expert?</h2>
+              <h2 className="text-3xl font-bold mb-6 text-white">Why Work With a HubSpot Expert?</h2>
               <p className="text-gray-300 mb-8">
                 HubSpot's powerful platform requires expert knowledge to fully leverage its capabilities. 
                 Working with a certified HubSpot expert ensures your CRM is properly configured to match your
@@ -244,15 +211,15 @@ const HubSpotExpert = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-8">
                 <div className="flex items-center space-x-2">
-                  <span className="text-emerald-400 text-4xl font-bold">95%</span>
+                  <span className="text-white text-4xl font-bold">95%</span>
                   <span className="text-gray-400">Increase in lead capture efficiency</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-emerald-400 text-4xl font-bold">75%</span>
+                  <span className="text-white text-4xl font-bold">75%</span>
                   <span className="text-gray-400">Reduction in manual data entry</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-emerald-400 text-4xl font-bold">60%</span>
+                  <span className="text-white text-4xl font-bold">60%</span>
                   <span className="text-gray-400">Faster sales cycle</span>
                 </div>
               </div>
