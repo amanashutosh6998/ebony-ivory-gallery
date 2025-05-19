@@ -5,7 +5,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   ComposedChart, Scatter 
 } from 'recharts';
-import { ChartContainer, ChartTooltipContent, ChartLegend } from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui/chart';
 
 // Sample data for visualization - this can be customized
 const sampleData = [
@@ -42,6 +42,41 @@ const AwsDataFlowChart: React.FC<AwsDataFlowChartProps> = ({
     storage: { color: '#ff8042', label: 'Data Storage' }
   };
   
+  // Custom tooltip component
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-gray-800 p-3 border border-gray-700 rounded shadow-lg">
+          <p className="text-gray-300 text-sm">{`${label}`}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={`item-${index}`} style={{ color: entry.color }} className="text-sm">
+              {`${entry.name}: ${entry.value.toLocaleString()}`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Custom legend component
+  const CustomLegend = (props: any) => {
+    const { payload } = props;
+    return (
+      <div className="flex flex-wrap justify-center gap-4 mt-2">
+        {payload.map((entry: any, index: number) => (
+          <div key={`legend-${index}`} className="flex items-center">
+            <div
+              className="w-3 h-3 mr-1 rounded-sm"
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-xs text-gray-400">{entry.value}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+  
   const renderChart = () => {
     switch(chartType) {
       case 'area':
@@ -50,8 +85,8 @@ const AwsDataFlowChart: React.FC<AwsDataFlowChartProps> = ({
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
             <XAxis dataKey="day" stroke="#888" />
             <YAxis stroke="#888" />
-            <Tooltip content={(props) => <ChartTooltipContent {...props} />} />
-            <Legend content={(props) => <ChartLegend {...props} />} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
             {showIngest && <Area type="monotone" dataKey="ingest" stroke={config.ingest.color} fill={`${config.ingest.color}33`} />}
             {showProcess && <Area type="monotone" dataKey="process" stroke={config.process.color} fill={`${config.process.color}33`} />}
             {showEnrich && <Area type="monotone" dataKey="enrich" stroke={config.enrich.color} fill={`${config.enrich.color}33`} />}
@@ -65,8 +100,8 @@ const AwsDataFlowChart: React.FC<AwsDataFlowChartProps> = ({
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
             <XAxis dataKey="day" stroke="#888" />
             <YAxis stroke="#888" />
-            <Tooltip content={(props) => <ChartTooltipContent {...props} />} />
-            <Legend content={(props) => <ChartLegend {...props} />} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
             {showIngest && <Bar dataKey="ingest" fill={config.ingest.color} />}
             {showProcess && <Bar dataKey="process" fill={config.process.color} />}
             {showEnrich && <Bar dataKey="enrich" fill={config.enrich.color} />}
@@ -80,8 +115,8 @@ const AwsDataFlowChart: React.FC<AwsDataFlowChartProps> = ({
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
             <XAxis dataKey="day" stroke="#888" />
             <YAxis stroke="#888" />
-            <Tooltip content={(props) => <ChartTooltipContent {...props} />} />
-            <Legend content={(props) => <ChartLegend {...props} />} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
             {showIngest && <Area type="monotone" dataKey="ingest" fill={`${config.ingest.color}33`} stroke={config.ingest.color} />}
             {showProcess && <Line type="monotone" dataKey="process" stroke={config.process.color} />}
             {showEnrich && <Bar dataKey="enrich" fill={config.enrich.color} />}
@@ -95,8 +130,8 @@ const AwsDataFlowChart: React.FC<AwsDataFlowChartProps> = ({
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
             <XAxis dataKey="day" stroke="#888" />
             <YAxis stroke="#888" />
-            <Tooltip content={(props) => <ChartTooltipContent {...props} />} />
-            <Legend content={(props) => <ChartLegend {...props} />} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
             {showIngest && <Line type="monotone" dataKey="ingest" stroke={config.ingest.color} activeDot={{ r: 8 }} />}
             {showProcess && <Line type="monotone" dataKey="process" stroke={config.process.color} />}
             {showEnrich && <Line type="monotone" dataKey="enrich" stroke={config.enrich.color} />}
