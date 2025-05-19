@@ -5,7 +5,7 @@
       "description": "Customer records and interactions",
       "icon": "Database",
       "color": "bg-blue-900/50",
-      "x": "5%",
+      "x": "0%",
       "y": "5%",
       "delay": 0
     },
@@ -14,7 +14,7 @@
       "description": "User behavior and events",
       "icon": "ChartBar",
       "color": "bg-green-900/50",
-      "x": "25%",
+      "x": "20%",
       "y": "5%",
       "delay": 1
     },
@@ -23,7 +23,7 @@
       "description": "Campaign and engagement metrics",
       "icon": "File",
       "color": "bg-purple-900/50",
-      "x": "45%",
+      "x": "40%",
       "y": "5%",
       "delay": 2
     },
@@ -32,7 +32,7 @@
       "description": "Campaign and engagement metrics",
       "icon": "File",
       "color": "bg-purple-900/50",
-      "x": "65%",
+      "x": "60%",
       "y": "5%",
       "delay": 3
     },
@@ -41,7 +41,7 @@
       "description": "Campaign and engagement metrics",
       "icon": "File",
       "color": "bg-purple-900/50",
-      "x": "85%",
+      "x": "80%",
       "y": "5%",
       "delay": 4
     },
@@ -50,7 +50,7 @@
       "description": "Raw data storage",
       "icon": "Cloud",
       "color": "bg-cyan-900/50",
-      "x": "50%",
+      "x": "40%",
       "y": "30%",
       "width": "220px",
       "delay": 5
