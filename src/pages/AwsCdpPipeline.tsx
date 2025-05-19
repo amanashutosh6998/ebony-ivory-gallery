@@ -5,14 +5,16 @@ import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Database, Server, Cloud, ArrowRight } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AwsCdpFlowDiagram from "@/components/AwsCdpFlowDiagram";
+import AwsDataFlowChart from "@/components/AwsDataFlowChart";
 
 const AwsCdpPipeline = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [chartType, setChartType] = useState<'line' | 'area' | 'bar' | 'composed'>('line');
 
   useEffect(() => {
     const hasVisitedAwsCdp = sessionStorage.getItem('hasVisitedAwsCdp');
@@ -27,15 +29,6 @@ const AwsCdpPipeline = () => {
     setInitialLoading(false);
     setIsLoaded(true);
   };
-
-  // Sample data for ETL flow visualization
-  const etlStages = [
-    { id: "source", name: "Data Sources", icon: <Database size={24} />, description: "Customer data from multiple systems" },
-    { id: "ingest", name: "S3 Ingestion", icon: <Cloud size={24} />, description: "Raw data storage in S3 buckets" },
-    { id: "transform", name: "Lambda Processing", icon: <Server size={24} />, description: "Data cleaning and transformation" },
-    { id: "warehouse", name: "Redshift", icon: <Database size={24} />, description: "Data warehousing and analytics" },
-    { id: "orchestration", name: "Step Functions", icon: <Server size={24} />, description: "Workflow orchestration" }
-  ];
 
   if (initialLoading) {
     return <LoadingScreen onComplete={handleLoadingComplete} />;
@@ -74,7 +67,7 @@ const AwsCdpPipeline = () => {
               </div>
             </div>
             
-            {/* ETL Flow Animation Section */}
+            {/* Complex ETL Flow Diagram Section */}
             <motion.div 
               className="w-full py-12"
               initial={{ opacity: 0 }}
@@ -83,64 +76,37 @@ const AwsCdpPipeline = () => {
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">ETL Data Flow Architecture</h2>
               
-              {/* ETL Flow Diagram */}
-              <div className="bg-gray-900/50 p-8 rounded-lg border border-gray-800 shadow-lg mb-12">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
-                  {etlStages.map((stage, index) => (
-                    <React.Fragment key={stage.id}>
-                      <motion.div
-                        className="flex flex-col items-center text-center p-4 bg-gray-800/70 rounded-lg w-full md:w-40"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                      >
-                        <div className="p-3 bg-gray-700 rounded-full mb-3">
-                          {stage.icon}
-                        </div>
-                        <h3 className="font-bold mb-2">{stage.name}</h3>
-                        <p className="text-xs text-gray-400">{stage.description}</p>
-                      </motion.div>
-                      
-                      {index < etlStages.length - 1 && (
-                        <motion.div 
-                          className="hidden md:flex"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                        >
-                          <ArrowRight className="text-gray-500" />
-                        </motion.div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
+              {/* Complex ETL Flow Diagram */}
+              <div className="mb-12">
+                <AwsCdpFlowDiagram />
+              </div>
+              
+              {/* Sample Data Flow Chart with Tabs */}
+              <div className="mt-12">
+                <h3 className="text-xl font-bold mb-6 text-center text-white">CDP Data Processing Metrics</h3>
                 
-                {/* Sample Data Flow Chart */}
-                <div className="mt-12 h-64 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      data={[
-                        { name: 'Day 1', ingestion: 4000, processing: 2400, storage: 1800 },
-                        { name: 'Day 2', ingestion: 3000, processing: 1800, storage: 1300 },
-                        { name: 'Day 3', ingestion: 5000, processing: 3800, storage: 2800 },
-                        { name: 'Day 4', ingestion: 2780, processing: 1908, storage: 1680 },
-                        { name: 'Day 5', ingestion: 6890, processing: 4800, storage: 3800 },
-                        { name: 'Day 6', ingestion: 3390, processing: 2300, storage: 1500 },
-                        { name: 'Day 7', ingestion: 4490, processing: 3200, storage: 2100 },
-                      ]}
-                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                      <XAxis dataKey="name" stroke="#888" />
-                      <YAxis stroke="#888" />
-                      <Tooltip contentStyle={{ backgroundColor: '#222', border: '1px solid #444' }} />
-                      <Legend />
-                      <Line type="monotone" dataKey="ingestion" stroke="#8884d8" activeDot={{ r: 8 }} />
-                      <Line type="monotone" dataKey="processing" stroke="#82ca9d" />
-                      <Line type="monotone" dataKey="storage" stroke="#ffc658" />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
+                <Tabs defaultValue="line" className="w-full" onValueChange={(value) => setChartType(value as any)}>
+                  <div className="flex justify-center mb-6">
+                    <TabsList className="bg-gray-800/70">
+                      <TabsTrigger value="line">Line Chart</TabsTrigger>
+                      <TabsTrigger value="area">Area Chart</TabsTrigger>
+                      <TabsTrigger value="bar">Bar Chart</TabsTrigger>
+                      <TabsTrigger value="composed">Combined</TabsTrigger>
+                    </TabsList>
+                  </div>
+                  <TabsContent value="line">
+                    <AwsDataFlowChart chartType="line" height={350} />
+                  </TabsContent>
+                  <TabsContent value="area">
+                    <AwsDataFlowChart chartType="area" height={350} />
+                  </TabsContent>
+                  <TabsContent value="bar">
+                    <AwsDataFlowChart chartType="bar" height={350} />
+                  </TabsContent>
+                  <TabsContent value="composed">
+                    <AwsDataFlowChart chartType="composed" height={350} />
+                  </TabsContent>
+                </Tabs>
               </div>
             </motion.div>
             
