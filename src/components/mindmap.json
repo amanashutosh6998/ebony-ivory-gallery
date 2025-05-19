@@ -5,7 +5,7 @@
       "description": "Customer records and interactions",
       "icon": "Database",
       "color": "bg-blue-900/50",
-      "x": "10%",
+      "x": "5%",
       "y": "5%",
       "delay": 0
     },
@@ -14,18 +14,36 @@
       "description": "User behavior and events",
       "icon": "ChartBar",
       "color": "bg-green-900/50",
-      "x": "40%",
+      "x": "20%",
       "y": "5%",
       "delay": 1
     },
     {
-      "title": "Marketing (Google Ads/Facebook Ads)",
+      "title": "Ads (Google Ads/Facebook Ads)",
       "description": "Campaign and engagement metrics",
       "icon": "File",
       "color": "bg-purple-900/50",
-      "x": "70%",
+      "x": "35%",
       "y": "5%",
       "delay": 2
+    },
+    {
+      "title": "Subscriptions (Chargebee)",
+      "description": "Campaign and engagement metrics",
+      "icon": "File",
+      "color": "bg-purple-900/50",
+      "x": "50%",
+      "y": "5%",
+      "delay": 3
+    },
+    {
+      "title": "Support (Intercom)",
+      "description": "Campaign and engagement metrics",
+      "icon": "File",
+      "color": "bg-purple-900/50",
+      "x": "65%",
+      "y": "5%",
+      "delay": 4
     },
     {
       "title": "S3 Bucket",
@@ -35,7 +53,7 @@
       "x": "25%",
       "y": "30%",
       "width": "220px",
-      "delay": 4
+      "delay": 5
     },
     {
       "title": "Lambda Functions",
@@ -44,7 +62,7 @@
       "color": "bg-yellow-900/50",
       "x": "15%",
       "y": "55%",
-      "delay": 5
+      "delay": 6
     },
     {
       "title": "Step Functions",
@@ -53,7 +71,7 @@
       "color": "bg-yellow-900/50",
       "x": "40%",
       "y": "55%",
-      "delay": 6
+      "delay": 7
     },
     {
       "title": "Redshift",
