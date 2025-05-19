@@ -7,14 +7,11 @@ import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AwsCdpFlowDiagram from "@/components/AwsCdpFlowDiagram";
-import AwsDataFlowChart from "@/components/AwsDataFlowChart";
 
 const AwsCdpPipeline = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
-  const [chartType, setChartType] = useState<'line' | 'area' | 'bar' | 'composed'>('line');
 
   useEffect(() => {
     const hasVisitedAwsCdp = sessionStorage.getItem('hasVisitedAwsCdp');
@@ -79,34 +76,6 @@ const AwsCdpPipeline = () => {
               {/* Complex ETL Flow Diagram */}
               <div className="mb-12">
                 <AwsCdpFlowDiagram />
-              </div>
-              
-              {/* Sample Data Flow Chart with Tabs */}
-              <div className="mt-12">
-                <h3 className="text-xl font-bold mb-6 text-center text-white">CDP Data Processing Metrics</h3>
-                
-                <Tabs defaultValue="line" className="w-full" onValueChange={(value) => setChartType(value as any)}>
-                  <div className="flex justify-center mb-6">
-                    <TabsList className="bg-gray-800/70">
-                      <TabsTrigger value="line">Line Chart</TabsTrigger>
-                      <TabsTrigger value="area">Area Chart</TabsTrigger>
-                      <TabsTrigger value="bar">Bar Chart</TabsTrigger>
-                      <TabsTrigger value="composed">Combined</TabsTrigger>
-                    </TabsList>
-                  </div>
-                  <TabsContent value="line">
-                    <AwsDataFlowChart chartType="line" height={350} />
-                  </TabsContent>
-                  <TabsContent value="area">
-                    <AwsDataFlowChart chartType="area" height={350} />
-                  </TabsContent>
-                  <TabsContent value="bar">
-                    <AwsDataFlowChart chartType="bar" height={350} />
-                  </TabsContent>
-                  <TabsContent value="composed">
-                    <AwsDataFlowChart chartType="composed" height={350} />
-                  </TabsContent>
-                </Tabs>
               </div>
             </motion.div>
             
