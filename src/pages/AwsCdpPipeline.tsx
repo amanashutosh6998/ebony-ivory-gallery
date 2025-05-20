@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import AwsCdpFlowDiagram from "@/components/AwsCdpFlowDiagram";
+import MiroEmbed from "@/components/MiroEmbed";
 
 const AwsCdpPipeline = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,12 +65,27 @@ const AwsCdpPipeline = () => {
               </div>
             </div>
             
-            {/* Complex ETL Flow Diagram Section */}
+            {/* Miro Embed Section */}
             <motion.div 
               className="w-full py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Architecture Overview</h2>
+              
+              {/* Miro Embed */}
+              <div className="mb-12">
+                <MiroEmbed />
+              </div>
+            </motion.div>
+            
+            {/* Complex ETL Flow Diagram Section */}
+            <motion.div 
+              className="w-full py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">ETL Data Flow Architecture</h2>
               
