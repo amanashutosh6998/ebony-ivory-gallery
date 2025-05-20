@@ -10,6 +10,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useToast } from "@/components/ui/use-toast";
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface Solution {
   unified: {
@@ -54,7 +60,7 @@ const CaseStudyDetail = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [caseStudy, setCaseStudy] = useState<CaseStudy | null>(null);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSections, setActiveSections] = useState<string[]>([]);
   
   useEffect(() => {
     // For now, we're hardcoding the one case study we have
@@ -148,10 +154,10 @@ const CaseStudyDetail = () => {
   }, [slug, navigate, toast]);
 
   const toggleSection = (section: string) => {
-    if (activeSection === section) {
-      setActiveSection(null);
+    if (activeSections.includes(section)) {
+      setActiveSections(activeSections.filter(s => s !== section));
     } else {
-      setActiveSection(section);
+      setActiveSections([...activeSections, section]);
     }
   };
 
@@ -186,7 +192,7 @@ const CaseStudyDetail = () => {
           <div className="container mx-auto px-4 md:px-8">
             <Button 
               variant="outline" 
-              className="mb-8" 
+              className="mb-8 text-white border-white hover:bg-white/10" 
               onClick={() => navigate("/case-studies")}
             >
               ← Back to Case Studies
@@ -251,99 +257,117 @@ const CaseStudyDetail = () => {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-6 text-white">✅ Solution</h2>
                 
-                {/* Unified Source of Truth */}
-                <div 
-                  className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                  onClick={() => toggleSection('unified')}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-white text-lg">🔗 {caseStudy.solution.unified.title}</h3>
-                    <span className="text-white">{activeSection === 'unified' ? '−' : '+'}</span>
+                {/* Solution sections using Accordion for independent opening/closing */}
+                <div className="space-y-4">
+                  {/* 1. Unified Source of Truth */}
+                  <div 
+                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                    onClick={() => toggleSection('unified')}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium text-white text-lg">
+                        <span className="mr-2">1.</span>
+                        🔗 {caseStudy.solution.unified.title}
+                      </h3>
+                      <span className="text-white">{activeSections.includes('unified') ? '−' : '+'}</span>
+                    </div>
+                    
+                    {activeSections.includes('unified') && (
+                      <ul className="list-disc pl-5 mt-3 text-white">
+                        {caseStudy.solution.unified.points.map((point, idx) => (
+                          <li key={idx} className="mt-1">{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                   
-                  {activeSection === 'unified' && (
-                    <ul className="list-disc pl-5 mt-3 text-white">
-                      {caseStudy.solution.unified.points.map((point, idx) => (
-                        <li key={idx} className="mt-1">{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                
-                {/* Funnel Stage Tracking */}
-                <div 
-                  className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                  onClick={() => toggleSection('funnel')}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-white text-lg">📊 {caseStudy.solution.funnel.title}</h3>
-                    <span className="text-white">{activeSection === 'funnel' ? '−' : '+'}</span>
+                  {/* 2. Funnel Stage Tracking */}
+                  <div 
+                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                    onClick={() => toggleSection('funnel')}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium text-white text-lg">
+                        <span className="mr-2">2.</span>
+                        📊 {caseStudy.solution.funnel.title}
+                      </h3>
+                      <span className="text-white">{activeSections.includes('funnel') ? '−' : '+'}</span>
+                    </div>
+                    
+                    {activeSections.includes('funnel') && (
+                      <ul className="list-disc pl-5 mt-3 text-white">
+                        {caseStudy.solution.funnel.points.map((point, idx) => (
+                          <li key={idx} className="mt-1">{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                   
-                  {activeSection === 'funnel' && (
-                    <ul className="list-disc pl-5 mt-3 text-white">
-                      {caseStudy.solution.funnel.points.map((point, idx) => (
-                        <li key={idx} className="mt-1">{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                
-                {/* Lead Scoring Engine */}
-                <div 
-                  className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                  onClick={() => toggleSection('leadScoring')}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-white text-lg">🧮 {caseStudy.solution.leadScoring.title}</h3>
-                    <span className="text-white">{activeSection === 'leadScoring' ? '−' : '+'}</span>
+                  {/* 3. Lead Scoring Engine */}
+                  <div 
+                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                    onClick={() => toggleSection('leadScoring')}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium text-white text-lg">
+                        <span className="mr-2">3.</span>
+                        🧮 {caseStudy.solution.leadScoring.title}
+                      </h3>
+                      <span className="text-white">{activeSections.includes('leadScoring') ? '−' : '+'}</span>
+                    </div>
+                    
+                    {activeSections.includes('leadScoring') && (
+                      <ul className="list-disc pl-5 mt-3 text-white">
+                        {caseStudy.solution.leadScoring.points.map((point, idx) => (
+                          <li key={idx} className="mt-1">{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                   
-                  {activeSection === 'leadScoring' && (
-                    <ul className="list-disc pl-5 mt-3 text-white">
-                      {caseStudy.solution.leadScoring.points.map((point, idx) => (
-                        <li key={idx} className="mt-1">{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                
-                {/* Attribution Mapping */}
-                <div 
-                  className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                  onClick={() => toggleSection('attribution')}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-white text-lg">🎯 {caseStudy.solution.attribution.title}</h3>
-                    <span className="text-white">{activeSection === 'attribution' ? '−' : '+'}</span>
+                  {/* 4. Attribution Mapping */}
+                  <div 
+                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                    onClick={() => toggleSection('attribution')}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium text-white text-lg">
+                        <span className="mr-2">4.</span>
+                        🎯 {caseStudy.solution.attribution.title}
+                      </h3>
+                      <span className="text-white">{activeSections.includes('attribution') ? '−' : '+'}</span>
+                    </div>
+                    
+                    {activeSections.includes('attribution') && (
+                      <ul className="list-disc pl-5 mt-3 text-white">
+                        {caseStudy.solution.attribution.points.map((point, idx) => (
+                          <li key={idx} className="mt-1">{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                   
-                  {activeSection === 'attribution' && (
-                    <ul className="list-disc pl-5 mt-3 text-white">
-                      {caseStudy.solution.attribution.points.map((point, idx) => (
-                        <li key={idx} className="mt-1">{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                
-                {/* Reporting Workflow */}
-                <div 
-                  className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                  onClick={() => toggleSection('reporting')}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-medium text-white text-lg">📥 {caseStudy.solution.reporting.title}</h3>
-                    <span className="text-white">{activeSection === 'reporting' ? '−' : '+'}</span>
+                  {/* 5. Reporting Workflow */}
+                  <div 
+                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                    onClick={() => toggleSection('reporting')}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-medium text-white text-lg">
+                        <span className="mr-2">5.</span>
+                        📥 {caseStudy.solution.reporting.title}
+                      </h3>
+                      <span className="text-white">{activeSections.includes('reporting') ? '−' : '+'}</span>
+                    </div>
+                    
+                    {activeSections.includes('reporting') && (
+                      <ul className="list-disc pl-5 mt-3 text-white">
+                        {caseStudy.solution.reporting.points.map((point, idx) => (
+                          <li key={idx} className="mt-1">{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
-                  
-                  {activeSection === 'reporting' && (
-                    <ul className="list-disc pl-5 mt-3 text-white">
-                      {caseStudy.solution.reporting.points.map((point, idx) => (
-                        <li key={idx} className="mt-1">{point}</li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
               </CardContent>
             </Card>

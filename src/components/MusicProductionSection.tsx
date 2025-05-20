@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Headphones, Speaker, Guitar, Volume2, VolumeX } from "lucide-react";
@@ -15,7 +14,23 @@ const MusicProductionSection = () => {
   const spotifyArtistId = "1f7ZzfhwAFCDOze7onqLhG";
   const [volume, setVolume] = useState(80); // Default volume 80%
   const [isMuted, setIsMuted] = useState(false);
+  const [spotifyIframe, setSpotifyIframe] = useState<HTMLIFrameElement | null>(null);
   
+  // Find and store the Spotify iframe reference after component mounts
+  useEffect(() => {
+    const findSpotifyIframe = () => {
+      const iframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
+      if (iframe) {
+        setSpotifyIframe(iframe);
+      } else {
+        // If iframe isn't loaded yet, try again after a delay
+        setTimeout(findSpotifyIframe, 500);
+      }
+    };
+    
+    findSpotifyIframe();
+  }, []);
+
   // For controlling the Spotify iframe volume
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseInt(e.target.value);
@@ -23,7 +38,6 @@ const MusicProductionSection = () => {
     setIsMuted(newVolume === 0);
     
     // Control Spotify volume through the iframe's postMessage API
-    const spotifyIframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
     if (spotifyIframe && spotifyIframe.contentWindow) {
       spotifyIframe.contentWindow.postMessage({ 
         command: 'volume', 
@@ -41,7 +55,6 @@ const MusicProductionSection = () => {
     setVolume(newVolume);
     
     // Send mute command to Spotify iframe
-    const spotifyIframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
     if (spotifyIframe && spotifyIframe.contentWindow) {
       spotifyIframe.contentWindow.postMessage({ 
         command: 'volume', 
