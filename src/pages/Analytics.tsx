@@ -34,7 +34,7 @@ const Analytics = () => {
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background particles */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="blue-purple" density="medium" />
+        <ColorParticles colorScheme="purple-blue" density="medium" />
       </div>
       
       <Navbar />
