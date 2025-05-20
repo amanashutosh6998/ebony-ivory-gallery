@@ -194,18 +194,18 @@ const CaseStudyDetail = () => {
 
             <div className="grid md:grid-cols-5 gap-8 mb-12">
               <div className="md:col-span-3">
-                <h1 className="text-3xl md:text-4xl font-bold mb-6">{caseStudy.title}</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">{caseStudy.title}</h1>
                 
                 {/* Context */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-3 text-gray-300">📍 Context</h2>
-                  <p className="text-gray-200 text-lg">{caseStudy.context}</p>
+                  <h2 className="text-xl font-semibold mb-3 text-white">📍 Context</h2>
+                  <p className="text-white text-lg">{caseStudy.context}</p>
                 </div>
                 
                 {/* Problem */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-3 text-gray-300">❌ Problem</h2>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-200">
+                  <h2 className="text-xl font-semibold mb-3 text-white">❌ Problem</h2>
+                  <ul className="list-disc pl-5 space-y-2 text-white">
                     {caseStudy.problem.map((item, idx) => (
                       <li key={idx}>{item}</li>
                     ))}
@@ -223,10 +223,10 @@ const CaseStudyDetail = () => {
                 </AspectRatio>
                 
                 <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2">Categories</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Categories</h3>
                   <div className="flex flex-wrap gap-2">
                     {caseStudy.categories?.map((category, idx) => (
-                      <span key={idx} className="bg-gray-800 text-gray-200 px-3 py-1 text-sm rounded-full">
+                      <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full">
                         {category}
                       </span>
                     ))}
@@ -234,10 +234,10 @@ const CaseStudyDetail = () => {
                 </div>
                 
                 <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2">Tools & Technologies</h3>
+                  <h3 className="text-lg font-semibold mb-2 text-white">Tools & Technologies</h3>
                   <div className="flex flex-wrap gap-2">
                     {caseStudy.tools.map((tool, idx) => (
-                      <span key={idx} className="bg-gray-800 text-gray-200 px-3 py-1 text-sm rounded-full">
+                      <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full">
                         {tool}
                       </span>
                     ))}
@@ -249,7 +249,7 @@ const CaseStudyDetail = () => {
             {/* Solution */}
             <Card className="border border-gray-800 bg-gray-900/20 mb-12">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6">✅ Solution</h2>
+                <h2 className="text-2xl font-bold mb-6 text-white">✅ Solution</h2>
                 
                 {/* Unified Source of Truth */}
                 <div 
@@ -258,11 +258,11 @@ const CaseStudyDetail = () => {
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium text-white text-lg">🔗 {caseStudy.solution.unified.title}</h3>
-                    <span>{activeSection === 'unified' ? '−' : '+'}</span>
+                    <span className="text-white">{activeSection === 'unified' ? '−' : '+'}</span>
                   </div>
                   
                   {activeSection === 'unified' && (
-                    <ul className="list-disc pl-5 mt-3 text-gray-300">
+                    <ul className="list-disc pl-5 mt-3 text-white">
                       {caseStudy.solution.unified.points.map((point, idx) => (
                         <li key={idx} className="mt-1">{point}</li>
                       ))}
@@ -277,11 +277,11 @@ const CaseStudyDetail = () => {
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium text-white text-lg">📊 {caseStudy.solution.funnel.title}</h3>
-                    <span>{activeSection === 'funnel' ? '−' : '+'}</span>
+                    <span className="text-white">{activeSection === 'funnel' ? '−' : '+'}</span>
                   </div>
                   
                   {activeSection === 'funnel' && (
-                    <ul className="list-disc pl-5 mt-3 text-gray-300">
+                    <ul className="list-disc pl-5 mt-3 text-white">
                       {caseStudy.solution.funnel.points.map((point, idx) => (
                         <li key={idx} className="mt-1">{point}</li>
                       ))}
@@ -296,11 +296,11 @@ const CaseStudyDetail = () => {
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium text-white text-lg">🧮 {caseStudy.solution.leadScoring.title}</h3>
-                    <span>{activeSection === 'leadScoring' ? '−' : '+'}</span>
+                    <span className="text-white">{activeSection === 'leadScoring' ? '−' : '+'}</span>
                   </div>
                   
                   {activeSection === 'leadScoring' && (
-                    <ul className="list-disc pl-5 mt-3 text-gray-300">
+                    <ul className="list-disc pl-5 mt-3 text-white">
                       {caseStudy.solution.leadScoring.points.map((point, idx) => (
                         <li key={idx} className="mt-1">{point}</li>
                       ))}
@@ -315,11 +315,11 @@ const CaseStudyDetail = () => {
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium text-white text-lg">🎯 {caseStudy.solution.attribution.title}</h3>
-                    <span>{activeSection === 'attribution' ? '−' : '+'}</span>
+                    <span className="text-white">{activeSection === 'attribution' ? '−' : '+'}</span>
                   </div>
                   
                   {activeSection === 'attribution' && (
-                    <ul className="list-disc pl-5 mt-3 text-gray-300">
+                    <ul className="list-disc pl-5 mt-3 text-white">
                       {caseStudy.solution.attribution.points.map((point, idx) => (
                         <li key={idx} className="mt-1">{point}</li>
                       ))}
@@ -334,11 +334,11 @@ const CaseStudyDetail = () => {
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="font-medium text-white text-lg">📥 {caseStudy.solution.reporting.title}</h3>
-                    <span>{activeSection === 'reporting' ? '−' : '+'}</span>
+                    <span className="text-white">{activeSection === 'reporting' ? '−' : '+'}</span>
                   </div>
                   
                   {activeSection === 'reporting' && (
-                    <ul className="list-disc pl-5 mt-3 text-gray-300">
+                    <ul className="list-disc pl-5 mt-3 text-white">
                       {caseStudy.solution.reporting.points.map((point, idx) => (
                         <li key={idx} className="mt-1">{point}</li>
                       ))}
@@ -351,10 +351,10 @@ const CaseStudyDetail = () => {
             {/* Results */}
             <Card className="border border-gray-800 bg-gray-900/20">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6">📈 Results</h2>
+                <h2 className="text-2xl font-bold mb-6 text-white">📈 Results</h2>
                 <ul className="space-y-3">
                   {caseStudy.results.map((result, idx) => (
-                    <li key={idx} className="flex items-start text-lg">
+                    <li key={idx} className="flex items-start text-lg text-white">
                       <span>{result}</span>
                     </li>
                   ))}

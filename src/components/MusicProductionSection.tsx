@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Headphones, Speaker, Guitar, Music } from "lucide-react";
+import { Headphones, Speaker, Guitar, Volume2, VolumeX } from "lucide-react";
 
 interface Track {
   title: string;
@@ -13,6 +13,42 @@ interface Track {
 
 const MusicProductionSection = () => {
   const spotifyArtistId = "1f7ZzfhwAFCDOze7onqLhG";
+  const [volume, setVolume] = useState(80); // Default volume 80%
+  const [isMuted, setIsMuted] = useState(false);
+  
+  // For controlling the Spotify iframe volume
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseInt(e.target.value);
+    setVolume(newVolume);
+    setIsMuted(newVolume === 0);
+    
+    // Control Spotify volume through the iframe's postMessage API
+    const spotifyIframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
+    if (spotifyIframe && spotifyIframe.contentWindow) {
+      spotifyIframe.contentWindow.postMessage({ 
+        command: 'volume', 
+        volume: newVolume / 100 
+      }, '*');
+    }
+  };
+
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    
+    // Save previous volume before muting
+    const newVolume = newMutedState ? 0 : (volume === 0 ? 80 : volume);
+    setVolume(newVolume);
+    
+    // Send mute command to Spotify iframe
+    const spotifyIframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
+    if (spotifyIframe && spotifyIframe.contentWindow) {
+      spotifyIframe.contentWindow.postMessage({ 
+        command: 'volume', 
+        volume: newVolume / 100 
+      }, '*');
+    }
+  };
 
   const tools = [
     {
@@ -44,7 +80,7 @@ const MusicProductionSection = () => {
           </p>
         </div>
 
-        {/* Spotify Artist Embed */}
+        {/* Spotify Artist Embed with Volume Controls */}
         <div className="mb-24">
           <h3 className="text-2xl font-bold mb-8 text-center">My Spotify</h3>
           <div className="max-w-2xl mx-auto">
@@ -60,6 +96,32 @@ const MusicProductionSection = () => {
                 title="Spotify Artist Profile"
                 className="rounded-lg"
               ></iframe>
+            </div>
+            
+            {/* Volume Controls */}
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <button 
+                onClick={toggleMute}
+                className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors"
+                aria-label={isMuted ? "Unmute" : "Mute"}
+              >
+                {isMuted ? 
+                  <VolumeX className="h-5 w-5 text-gray-300" /> : 
+                  <Volume2 className="h-5 w-5 text-gray-300" />
+                }
+              </button>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="w-full max-w-[200px] h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                style={{
+                  background: `linear-gradient(to right, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.8) ${volume}%, rgb(55, 65, 81) ${volume}%, rgb(55, 65, 81) 100%)`
+                }}
+              />
+              <span className="text-gray-300 text-sm min-w-[40px]">{volume}%</span>
             </div>
           </div>
         </div>
