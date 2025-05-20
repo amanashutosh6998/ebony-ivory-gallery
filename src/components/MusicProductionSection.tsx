@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Headphones, Speaker, Guitar } from "lucide-react";
+import { Headphones, Speaker, Guitar, Music } from "lucide-react";
 import { 
   Carousel,
   CarouselContent,
@@ -20,6 +20,8 @@ interface Track {
 
 const MusicProductionSection = () => {
   const [activeAudio, setActiveAudio] = useState<string | null>(null);
+
+  const spotifyArtistId = "1f7ZzfhwAFCDOze7onqLhG";
 
   const tracks: Track[] = [
     {
@@ -70,6 +72,26 @@ const MusicProductionSection = () => {
           <p className="text-lg text-gray-400">
             Crafting sonic experiences through digital production, sound design, and audio engineering.
           </p>
+        </div>
+
+        {/* Spotify Artist Embed */}
+        <div className="mb-24">
+          <h3 className="text-2xl font-bold mb-8 text-center">My Spotify</h3>
+          <div className="max-w-2xl mx-auto">
+            <div className="aspect-auto w-full bg-black rounded-xl overflow-hidden mb-6">
+              <iframe 
+                src={`https://open.spotify.com/embed/artist/${spotifyArtistId}?utm_source=generator&theme=0`}
+                width="100%" 
+                height="352"
+                frameBorder="0" 
+                allowFullScreen 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+                title="Spotify Artist Profile"
+                className="rounded-lg"
+              ></iframe>
+            </div>
+          </div>
         </div>
         
         <div className="mb-24">
