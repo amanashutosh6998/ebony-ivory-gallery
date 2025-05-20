@@ -1,15 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Headphones, Speaker, Guitar, Music } from "lucide-react";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from "@/components/ui/carousel";
 
 interface Track {
   title: string;
@@ -19,30 +12,7 @@ interface Track {
 }
 
 const MusicProductionSection = () => {
-  const [activeAudio, setActiveAudio] = useState<string | null>(null);
-
   const spotifyArtistId = "1f7ZzfhwAFCDOze7onqLhG";
-
-  const tracks: Track[] = [
-    {
-      title: "Midnight Dreams",
-      description: "A smooth ambient track with deep bass and atmospheric pads",
-      embedUrl: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1612656565&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      genre: "Ambient"
-    },
-    {
-      title: "Urban Rhythm",
-      description: "Upbeat electronic track with syncopated beats and vocal chops",
-      embedUrl: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1612656565&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      genre: "Electronic"
-    },
-    {
-      title: "Sunset Boulevard",
-      description: "Lo-fi hip hop track perfect for studying and relaxing",
-      embedUrl: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1612656565&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-      genre: "Lo-Fi Hip Hop"
-    }
-  ];
 
   const tools = [
     {
@@ -94,43 +64,6 @@ const MusicProductionSection = () => {
           </div>
         </div>
         
-        <div className="mb-24">
-          <h3 className="text-2xl font-bold mb-8 text-center">Featured Tracks</h3>
-          <Carousel className="max-w-4xl mx-auto">
-            <CarouselContent>
-              {tracks.map((track, index) => (
-                <CarouselItem key={index}>
-                  <Card className="overflow-hidden border border-gray-800 bg-gray-900/50">
-                    <CardContent className="p-0">
-                      <div className="aspect-video w-full bg-black">
-                        <iframe 
-                          width="100%" 
-                          height="100%" 
-                          scrolling="no" 
-                          frameBorder="no" 
-                          src={track.embedUrl}
-                          title={track.title}
-                        ></iframe>
-                      </div>
-                      <div className="p-6">
-                        <div className="flex justify-between items-center mb-2">
-                          <h4 className="text-xl font-bold">{track.title}</h4>
-                          <span className="text-sm bg-gray-800 px-2 py-1 rounded-full text-purple-400">{track.genre}</span>
-                        </div>
-                        <p className="text-gray-400">{track.description}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-4 gap-2">
-              <CarouselPrevious className="relative inset-auto -left-0 top-0 translate-y-0" />
-              <CarouselNext className="relative inset-auto -right-0 top-0 translate-y-0" />
-            </div>
-          </Carousel>
-        </div>
-
         <div className="mb-20">
           <h3 className="text-2xl font-bold mb-8 text-center">Production Skills</h3>
           <div className="grid md:grid-cols-3 gap-8">
