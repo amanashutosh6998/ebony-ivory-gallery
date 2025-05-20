@@ -2,7 +2,7 @@
 const MiroEmbed = () => (
   <div className="w-full h-[600px] rounded-lg overflow-hidden border border-gray-700 shadow">
     <iframe
-      src="https://miro.com/app/live-embed/uXjVIzIu7OA=/?moveToViewport=-493,-244,1884,1120&embedId=180873830308"
+      src="https://miro.com/app/live-embed/uXjVIzIu7OA=/?moveToViewport=-493,-244,1884,1120&embedId=180873830308&embedAutoplay=true&embedMode=view_only&frameMode=embed&showHeader=false"
       width="100%"
       height="100%"
       allowFullScreen
