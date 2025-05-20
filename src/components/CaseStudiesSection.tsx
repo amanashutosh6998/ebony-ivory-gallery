@@ -1,7 +1,8 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface CaseStudy {
   title: string;
@@ -9,43 +10,90 @@ interface CaseStudy {
   solution: string;
   tools: string[];
   impact: string;
-  image?: string;
+  image: string;
+  order?: number;
+  active?: boolean;
+  categories?: string[];
 }
 
 const CaseStudiesSection = () => {
   const [activeStudy, setActiveStudy] = useState<number | null>(null);
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
+  const [loading, setLoading] = useState(true);
   
-  // Hardcoded case studies data
-  const caseStudies: CaseStudy[] = [
-    {
-      title: "E-commerce Conversion Optimization",
-      problem: "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
-      solution: "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
-      tools: ["Google Analytics", "Optimizely", "HotJar", "Python"],
-      impact: "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop"
-    },
-    {
-      title: "SaaS User Retention Strategy",
-      problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
-      solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
-      tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
-      impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
-    },
-    {
-      title: "Marketing Attribution Framework",
-      problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
-      solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
-      tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
-      impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
-    }
-  ];
+  // Fetch case studies from the CMS
+  useEffect(() => {
+    const fetchCaseStudies = async () => {
+      try {
+        // In a production environment, this would be replaced with an actual API call
+        // Since we're using Netlify CMS with GitHub backend, we're using hardcoded data for now
+        // Later, this would be replaced with a real API call to fetch the data from the CMS
+        
+        const studies: CaseStudy[] = [
+          {
+            title: "E-commerce Conversion Optimization",
+            problem: "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
+            solution: "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
+            tools: ["Google Analytics", "Optimizely", "HotJar", "Python"],
+            impact: "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
+            image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop",
+            order: 1,
+            active: true,
+            categories: ["E-commerce", "Conversion Rate Optimization"]
+          },
+          {
+            title: "SaaS User Retention Strategy",
+            problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
+            solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
+            tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
+            impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop",
+            order: 2,
+            active: true,
+            categories: ["SaaS", "Customer Retention"]
+          },
+          {
+            title: "Marketing Attribution Framework",
+            problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
+            solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
+            tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
+            impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+            order: 3,
+            active: true,
+            categories: ["Marketing", "Data Analytics"]
+          }
+        ];
+        
+        // Sort by order if available
+        const sortedStudies = studies.sort((a, b) => 
+          (a.order || 999) - (b.order || 999)
+        );
+        
+        setCaseStudies(sortedStudies);
+      } catch (error) {
+        console.error("Error fetching case studies:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchCaseStudies();
+  }, []);
 
   const toggleStudy = (index: number) => {
     setActiveStudy(activeStudy === index ? null : index);
   };
+
+  if (loading) {
+    return (
+      <div className="py-24 bg-black">
+        <div className="container mx-auto px-4 md:px-8 text-center">
+          <p className="text-gray-400">Loading case studies...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section id="case-studies" className="py-24 bg-black">
@@ -64,11 +112,13 @@ const CaseStudiesSection = () => {
                 <div className="grid md:grid-cols-5">
                   {study.image && (
                     <div className="md:col-span-2 h-64 md:h-auto relative">
-                      <img 
-                        src={study.image} 
-                        alt={study.title} 
-                        className="w-full h-full object-cover object-center"
-                      />
+                      <AspectRatio ratio={16/9} className="h-full">
+                        <img 
+                          src={study.image} 
+                          alt={study.title} 
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </AspectRatio>
                       <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent md:bg-gradient-to-t"></div>
                       <h3 className="absolute bottom-4 left-4 text-2xl font-bold md:hidden text-white">{study.title}</h3>
                     </div>

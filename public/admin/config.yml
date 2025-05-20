@@ -30,4 +30,7 @@ collections:
       - { label: "Solution", name: "solution", widget: "text" }
       - { label: "Tools Used", name: "tools", widget: "list" }
       - { label: "Business Impact", name: "impact", widget: "text" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: true }
+      - { label: "Order", name: "order", widget: "number", default: 1, value_type: "int" }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
+      - { label: "Categories", name: "categories", widget: "list", default: ["Data Analytics"] }
