@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Link } from 'react-router-dom';
 
 interface CaseStudy {
   title: string;
@@ -11,13 +12,13 @@ interface CaseStudy {
   tools: string[];
   impact: string;
   image: string;
+  slug: string;
   order?: number;
   active?: boolean;
   categories?: string[];
 }
 
 const CaseStudiesSection = () => {
-  const [activeStudy, setActiveStudy] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   
   const caseStudies: CaseStudy[] = [
@@ -28,15 +29,12 @@ const CaseStudiesSection = () => {
       tools: ["HubSpot CRM", "HubSpot API", "Facebook Ads API", "Google Ads API", "Google Sheets", "Apps Script", "Python"],
       impact: "📊 Built a self-refreshing dashboard for founders showing campaign ROI. ⏱️ Saved ~6–8 hours/week of manual marketing-to-sales handoff reporting. 📉 Identified 3 high-spend ad campaigns with <5% SQL conversion—budget reallocated. 📈 Improved SQL-to-Won conversion by 25% after scoring and attribution fixes. 📌 Gave founders visibility from first click to revenue, enabling better budgeting.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+      slug: "reporting-mql-sql-won-conversion-by-campaign",
       order: 1,
       active: true,
       categories: ["Marketing", "Data Analytics", "HubSpot"]
     }
   ];
-
-  const toggleStudy = (index: number) => {
-    setActiveStudy(activeStudy === index ? null : index);
-  };
 
   if (loading) {
     return (
@@ -78,54 +76,14 @@ const CaseStudiesSection = () => {
                   )}
                   <div className={`p-6 md:col-span-${study.image ? '3' : '5'}`}>
                     <h3 className="text-2xl font-bold mb-4 hidden md:block text-white">{study.title}</h3>
-                    
-                    {activeStudy === index ? (
-                      <div className="animate-fade-in">
-                        <div className="mb-4">
-                          <h4 className="text-lg font-medium mb-2">Problem</h4>
-                          <p className="text-gray-400">{study.problem}</p>
-                        </div>
-                        
-                        <div className="mb-4">
-                          <h4 className="text-lg font-medium mb-2">Solution</h4>
-                          <p className="text-gray-400">{study.solution}</p>
-                        </div>
-                        
-                        <div className="mb-4">
-                          <h4 className="text-lg font-medium mb-2">Tools Used</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {study.tools.map((tool, i) => (
-                              <span key={i} className="bg-gray-800 text-gray-300 px-3 py-1 text-sm rounded-full">
-                                {tool}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        <div className="mb-6">
-                          <h4 className="text-lg font-medium mb-2">Business Impact</h4>
-                          <p className="text-gray-400">{study.impact}</p>
-                        </div>
-                        
-                        <Button 
-                          onClick={() => toggleStudy(index)}
-                          variant="default"
-                          className="bg-black text-white hover:bg-gray-800"
-                        >
-                          Close
-                        </Button>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-gray-400 mb-6 line-clamp-2">{study.problem}</p>
-                        <Button 
-                          onClick={() => toggleStudy(index)}
-                          className="bg-black text-white hover:bg-gray-800"
-                        >
-                          Read Case Study
-                        </Button>
-                      </div>
-                    )}
+                    <p className="text-gray-400 mb-6 line-clamp-3">{study.problem}</p>
+                    <Link to={`/case-study/${study.slug}`}>
+                      <Button 
+                        className="bg-black text-white hover:bg-gray-800"
+                      >
+                        Read Case Study
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>

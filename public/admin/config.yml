@@ -27,6 +27,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Context", name: "context", widget: "text" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., reporting-mql-sql-won)" }
       - label: "Problem"
         name: "problem"
         widget: "list"

@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import AILab from "./pages/AILab";
 import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
 import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
 import HubSpotExpert from "./pages/HubSpotExpert";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/ai-lab" element={<AILab />} />
           <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/hubspot-expert" element={<HubSpotExpert />} />
           <Route path="/aws-cdp-pipeline" element={<AwsCdpPipeline />} />
