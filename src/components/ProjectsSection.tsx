@@ -1,7 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Project {
@@ -29,7 +28,7 @@ const ProjectsSection = () => {
       path: "/hubspot-expert"
     },
     {
-      title: "Intercom ETL Automation",
+      title: "Analytics",
       category: "Data Pipeline",
       description: "Async pipeline to extract, clean, and enrich support conversations.",
       github: "https://github.com/amanashutosh6998/intercom-etl"
@@ -53,9 +52,7 @@ const ProjectsSection = () => {
                 <div className="px-2">
                   <div className="flex justify-between items-start mb-4">
                     <p className="text-sm text-gray-500 mb-2">{project.category}</p>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
-                      <Github size={20} />
-                    </a>
+                    {/* GitHub icon removed as requested */}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
                   <p className="text-gray-400 mb-4">{project.description}</p>
