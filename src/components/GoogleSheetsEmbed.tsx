@@ -4,7 +4,7 @@ import React from 'react';
 const GoogleSheetsEmbed = () => (
   <div className="w-full h-[600px] rounded-lg overflow-hidden border border-gray-700 shadow">
     <iframe
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQPR25rcbciHiCu5PlEIwGaRRsS99bbUQPqnUmJpkOokoF1Eg8AxDDd6cr9HGdmJAHmhMKY7hnLJK54/pubhtml?widget=true&amp;headers=false"
+      src="https://docs.google.com/spreadsheets/d/17kG8_3kw2dwAPLnz5j0o0GDz3ypvvfGMxZuAnBNm_W8/edit?usp=sharing&rm=minimal&widget=true&headers=false"
       width="100%"
       height="100%"
       allowFullScreen
