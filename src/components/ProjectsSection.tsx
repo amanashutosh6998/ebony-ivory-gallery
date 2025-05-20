@@ -31,7 +31,8 @@ const ProjectsSection = () => {
       title: "Analytics",
       category: "Data Pipeline",
       description: "Async pipeline to extract, clean, and enrich support conversations.",
-      github: "https://github.com/amanashutosh6998/intercom-etl"
+      github: "https://github.com/amanashutosh6998/intercom-etl",
+      path: "/analytics"
     },
   ];
 
