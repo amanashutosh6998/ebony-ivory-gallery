@@ -6,6 +6,7 @@ import ScrollIndicator from "@/components/ScrollIndicator";
 import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface HubSpotService {
   category: string;
@@ -16,6 +17,7 @@ interface HubSpotService {
 const HubSpotExpert = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const hasVisitedHubspot = sessionStorage.getItem('hasVisitedHubspot');
@@ -122,13 +124,86 @@ const HubSpotExpert = () => {
     }
   ];
 
+  const caseStudy = {
+    title: "Reporting MQL → SQL → Won Conversion by Campaign",
+    context: "At Kenko AI, a fast-growing B2B SaaS company, leadership lacked visibility into how marketing spend translated into revenue. The founders wanted a clear view of how leads from Facebook Ads, Google Ads, and inbound channels moved through the funnel—from MQL to SQL to Closed Won.",
+    problem: [
+      "Data was scattered across HubSpot, Google Sheets, Facebook Ads, and Google Ads.",
+      "UTM parameters were inconsistently captured, breaking attribution.",
+      "No unified view to answer: \"Which campaigns are driving actual customers?\"",
+      "Marketing reported on MQLs, but sales needed visibility into downstream conversion.",
+      "Lead qualification lacked structure—wasting SDR bandwidth on unqualified leads."
+    ],
+    solution: {
+      unified: {
+        title: "Unified Source of Truth",
+        points: [
+          "Synced data from HubSpot CRM using the HubSpot API into structured Google Sheets reports.",
+          "Used Contact–Company–Deal associations to maintain lifecycle integrity."
+        ]
+      },
+      funnel: {
+        title: "Funnel Stage Tracking",
+        points: [
+          "Standardized lifecycle stages within HubSpot:",
+          "MQL: Based on form fills and key website actions",
+          "SQL: Accepted by Sales team (manual + automated based on score)",
+          "Closed Won: Deal booked with actual revenue"
+        ]
+      },
+      leadScoring: {
+        title: "Lead Scoring Engine",
+        points: [
+          "Built a custom lead scoring model using HubSpot's native lead score field.",
+          "Behavior-based: Website visits, demo requests, email interactions",
+          "Demographic: Job title, company size, region",
+          "Triggered workflows to alert SDRs only when leads crossed a predefined score threshold."
+        ]
+      },
+      attribution: {
+        title: "Attribution Mapping",
+        points: [
+          "Captured UTM parameters using hidden fields in HubSpot forms.",
+          "Used the Facebook Ads API and Google Ads API to fetch campaign, ad set, and spend data.",
+          "Mapped ad-level data to contact records in Sheets using UTM source + email join keys."
+        ]
+      },
+      reporting: {
+        title: "Reporting Workflow",
+        points: [
+          "Automated daily exports using HubSpot API to Google Sheets (via Python and Apps Script).",
+          "Built a custom Google Sheets dashboard showing:",
+          "Campaign-wise performance: MQL → SQL → Closed Won",
+          "Conversion rates between lifecycle stages",
+          "ROI estimates per ad channel using spend vs. revenue"
+        ]
+      }
+    },
+    tools: ["HubSpot CRM", "HubSpot API", "Facebook Ads API", "Google Ads API", "Google Sheets", "Apps Script", "Python"],
+    results: [
+      "📊 Built a self-refreshing dashboard for founders showing campaign ROI",
+      "⏱️ Saved ~6–8 hours/week of manual marketing-to-sales handoff reporting",
+      "📉 Identified 3 high-spend ad campaigns with <5% SQL conversion—budget reallocated",
+      "📈 Improved SQL-to-Won conversion by 25% after scoring and attribution fixes",
+      "📌 Gave founders visibility from first click to revenue, enabling better budgeting"
+    ]
+  };
+
+  const toggleSection = (section: string) => {
+    if (activeSection === section) {
+      setActiveSection(null);
+    } else {
+      setActiveSection(section);
+    }
+  };
+
   if (initialLoading) {
     return <LoadingScreen onComplete={handleLoadingComplete} />;
   }
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Background particles - fixed to use a valid colorScheme */}
+      {/* Background particles */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <ColorParticles colorScheme="green-cyan" density="medium" />
       </div>
@@ -159,7 +234,163 @@ const HubSpotExpert = () => {
               </div>
             </div>
             
-            {/* Services List - Replaced the mind map with simple cards */}
+            {/* Case Study Section */}
+            <motion.div
+              className="mb-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl font-bold mb-8 text-center">Featured Case Study</h2>
+              
+              <Card className="border border-gray-800 bg-gray-900/20 overflow-hidden">
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">{caseStudy.title}</h3>
+                  
+                  {/* Context */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold mb-2 text-gray-300">📍 Context</h4>
+                    <p className="text-gray-300">{caseStudy.context}</p>
+                  </div>
+                  
+                  {/* Problem */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold mb-2 text-gray-300">❌ Problem</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-300">
+                      {caseStudy.problem.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  {/* Solution */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold mb-2 text-gray-300">✅ Solution</h4>
+                    
+                    {/* Unified Source of Truth */}
+                    <div 
+                      className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                      onClick={() => toggleSection('unified')}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h5 className="font-medium text-white">🔗 {caseStudy.solution.unified.title}</h5>
+                        <span>{activeSection === 'unified' ? '−' : '+'}</span>
+                      </div>
+                      
+                      {activeSection === 'unified' && (
+                        <ul className="list-disc pl-5 mt-3 text-gray-300">
+                          {caseStudy.solution.unified.points.map((point, idx) => (
+                            <li key={idx} className="mt-1">{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    
+                    {/* Funnel Stage Tracking */}
+                    <div 
+                      className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                      onClick={() => toggleSection('funnel')}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h5 className="font-medium text-white">📊 {caseStudy.solution.funnel.title}</h5>
+                        <span>{activeSection === 'funnel' ? '−' : '+'}</span>
+                      </div>
+                      
+                      {activeSection === 'funnel' && (
+                        <ul className="list-disc pl-5 mt-3 text-gray-300">
+                          {caseStudy.solution.funnel.points.map((point, idx) => (
+                            <li key={idx} className="mt-1">{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    
+                    {/* Lead Scoring Engine */}
+                    <div 
+                      className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                      onClick={() => toggleSection('leadScoring')}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h5 className="font-medium text-white">🧮 {caseStudy.solution.leadScoring.title}</h5>
+                        <span>{activeSection === 'leadScoring' ? '−' : '+'}</span>
+                      </div>
+                      
+                      {activeSection === 'leadScoring' && (
+                        <ul className="list-disc pl-5 mt-3 text-gray-300">
+                          {caseStudy.solution.leadScoring.points.map((point, idx) => (
+                            <li key={idx} className="mt-1">{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    
+                    {/* Attribution Mapping */}
+                    <div 
+                      className="border border-gray-700 rounded-lg p-4 mb-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                      onClick={() => toggleSection('attribution')}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h5 className="font-medium text-white">🎯 {caseStudy.solution.attribution.title}</h5>
+                        <span>{activeSection === 'attribution' ? '−' : '+'}</span>
+                      </div>
+                      
+                      {activeSection === 'attribution' && (
+                        <ul className="list-disc pl-5 mt-3 text-gray-300">
+                          {caseStudy.solution.attribution.points.map((point, idx) => (
+                            <li key={idx} className="mt-1">{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    
+                    {/* Reporting Workflow */}
+                    <div 
+                      className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
+                      onClick={() => toggleSection('reporting')}
+                    >
+                      <div className="flex justify-between items-center">
+                        <h5 className="font-medium text-white">📥 {caseStudy.solution.reporting.title}</h5>
+                        <span>{activeSection === 'reporting' ? '−' : '+'}</span>
+                      </div>
+                      
+                      {activeSection === 'reporting' && (
+                        <ul className="list-disc pl-5 mt-3 text-gray-300">
+                          {caseStudy.solution.reporting.points.map((point, idx) => (
+                            <li key={idx} className="mt-1">{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Tools */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold mb-3 text-gray-300">⚙️ Tools & Features Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {caseStudy.tools.map((tool, idx) => (
+                        <span key={idx} className="bg-gray-800 text-gray-200 px-3 py-1 text-sm rounded-full">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Results */}
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2 text-gray-300">📈 Results</h4>
+                    <ul className="list-none space-y-2 text-gray-300">
+                      {caseStudy.results.map((result, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span>{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            
+            {/* Services List */}
             <motion.div 
               className="w-full py-12"
               initial={{ opacity: 0 }}

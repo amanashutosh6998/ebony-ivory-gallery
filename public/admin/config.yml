@@ -26,10 +26,65 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Problem", name: "problem", widget: "text" }
-      - { label: "Solution", name: "solution", widget: "text" }
+      - { label: "Context", name: "context", widget: "text" }
+      - label: "Problem"
+        name: "problem"
+        widget: "list"
+        field: { label: "Problem Point", name: "point", widget: "string" }
+      - label: "Solution" 
+        name: "solution"
+        widget: "object"
+        fields:
+          - label: "Unified Source of Truth"
+            name: "unified"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "Unified Source of Truth" }
+              - label: "Points"
+                name: "points"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
+          - label: "Funnel Stage Tracking"
+            name: "funnel"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "Funnel Stage Tracking" }
+              - label: "Points"
+                name: "points"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
+          - label: "Lead Scoring Engine"
+            name: "leadScoring"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "Lead Scoring Engine" }
+              - label: "Points"
+                name: "points"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
+          - label: "Attribution Mapping"
+            name: "attribution"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "Attribution Mapping" }
+              - label: "Points"
+                name: "points"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
+          - label: "Reporting Workflow"
+            name: "reporting"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "Reporting Workflow" }
+              - label: "Points"
+                name: "points"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
       - { label: "Tools Used", name: "tools", widget: "list" }
-      - { label: "Business Impact", name: "impact", widget: "text" }
+      - label: "Results"
+        name: "results"
+        widget: "list"
+        field: { label: "Result Point", name: "point", widget: "string" }
       - { label: "Featured Image", name: "image", widget: "image", required: true }
       - { label: "Order", name: "order", widget: "number", default: 1, value_type: "int" }
       - { label: "Active", name: "active", widget: "boolean", default: true }

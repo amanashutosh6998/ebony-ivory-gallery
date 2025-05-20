@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -18,68 +18,21 @@ interface CaseStudy {
 
 const CaseStudiesSection = () => {
   const [activeStudy, setActiveStudy] = useState<number | null>(null);
-  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
-  // Fetch case studies from the CMS
-  useEffect(() => {
-    const fetchCaseStudies = async () => {
-      try {
-        // In a production environment, this would be replaced with an actual API call
-        // Since we're using Netlify CMS with GitHub backend, we're using hardcoded data for now
-        // Later, this would be replaced with a real API call to fetch the data from the CMS
-        
-        const studies: CaseStudy[] = [
-          {
-            title: "E-commerce Conversion Optimization",
-            problem: "An e-commerce client was experiencing high cart abandonment rates and poor conversion on product pages.",
-            solution: "Implemented A/B testing framework and optimized checkout flow. Reduced form fields and added social proof elements.",
-            tools: ["Google Analytics", "Optimizely", "HotJar", "Python"],
-            impact: "34% increase in conversion rate and 22% reduction in cart abandonment within 3 months.",
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2000&auto=format&fit=crop",
-            order: 1,
-            active: true,
-            categories: ["E-commerce", "Conversion Rate Optimization"]
-          },
-          {
-            title: "SaaS User Retention Strategy",
-            problem: "B2B SaaS client struggling with high churn rates (>8% monthly) and poor feature adoption.",
-            solution: "Built an engagement scoring model to identify at-risk accounts. Implemented automated onboarding and education workflows.",
-            tools: ["SQL", "Mixpanel", "Customer.io", "Intercom"],
-            impact: "Reduced churn to 3.5% and increased feature adoption by 47% across all customer segments.",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop",
-            order: 2,
-            active: true,
-            categories: ["SaaS", "Customer Retention"]
-          },
-          {
-            title: "Marketing Attribution Framework",
-            problem: "Marketing team unable to accurately attribute conversions across complex multi-channel campaigns.",
-            solution: "Built a custom multi-touch attribution model using data from advertising platforms, web analytics, and CRM.",
-            tools: ["BigQuery", "Redshift", "dbt", "Tableau"],
-            impact: "Reallocated 35% of marketing budget based on findings, yielding 28% improvement in CAC and higher ROI.",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-            order: 3,
-            active: true,
-            categories: ["Marketing", "Data Analytics"]
-          }
-        ];
-        
-        // Sort by order if available
-        const sortedStudies = studies.sort((a, b) => 
-          (a.order || 999) - (b.order || 999)
-        );
-        
-        setCaseStudies(sortedStudies);
-      } catch (error) {
-        console.error("Error fetching case studies:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchCaseStudies();
-  }, []);
+  const caseStudies: CaseStudy[] = [
+    {
+      title: "Reporting MQL → SQL → Won Conversion by Campaign",
+      problem: "At Kenko AI, a fast-growing B2B SaaS company, leadership lacked visibility into how marketing spend translated into revenue. The founders wanted a clear view of how leads from Facebook Ads, Google Ads, and inbound channels moved through the funnel—from MQL to SQL to Closed Won. Data was scattered across HubSpot, Google Sheets, Facebook Ads, and Google Ads. UTM parameters were inconsistently captured, breaking attribution. No unified view to answer: 'Which campaigns are driving actual customers?' Marketing reported on MQLs, but sales needed visibility into downstream conversion. Lead qualification lacked structure—wasting SDR bandwidth on unqualified leads.",
+      solution: "🔗 Unified Source of Truth: Synced data from HubSpot CRM using the HubSpot API into structured Google Sheets reports. Used Contact–Company–Deal associations to maintain lifecycle integrity. 📊 Funnel Stage Tracking: Standardized lifecycle stages within HubSpot: MQL (Based on form fills and key website actions), SQL (Accepted by Sales team - manual + automated based on score), Closed Won (Deal booked with actual revenue). 🧮 Lead Scoring Engine: Built a custom lead scoring model using HubSpot's native lead score field. Behavior-based: Website visits, demo requests, email interactions. Demographic: Job title, company size, region. Triggered workflows to alert SDRs only when leads crossed a predefined score threshold. 🎯 Attribution Mapping: Captured UTM parameters using hidden fields in HubSpot forms. Used the Facebook Ads API and Google Ads API to fetch campaign, ad set, and spend data. Mapped ad-level data to contact records in Sheets using UTM source + email join keys. 📥 Reporting Workflow: Automated daily exports using HubSpot API to Google Sheets (via Python and Apps Script).",
+      tools: ["HubSpot CRM", "HubSpot API", "Facebook Ads API", "Google Ads API", "Google Sheets", "Apps Script", "Python"],
+      impact: "📊 Built a self-refreshing dashboard for founders showing campaign ROI. ⏱️ Saved ~6–8 hours/week of manual marketing-to-sales handoff reporting. 📉 Identified 3 high-spend ad campaigns with <5% SQL conversion—budget reallocated. 📈 Improved SQL-to-Won conversion by 25% after scoring and attribution fixes. 📌 Gave founders visibility from first click to revenue, enabling better budgeting.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+      order: 1,
+      active: true,
+      categories: ["Marketing", "Data Analytics", "HubSpot"]
+    }
+  ];
 
   const toggleStudy = (index: number) => {
     setActiveStudy(activeStudy === index ? null : index);
