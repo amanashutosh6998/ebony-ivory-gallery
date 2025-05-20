@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import HubSpotExpert from "./pages/HubSpotExpert";
 import AwsCdpPipeline from "./pages/AwsCdpPipeline";
 import Analytics from "./pages/Analytics";
+import MusicProduction from "./pages/MusicProduction";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/hubspot-expert" element={<HubSpotExpert />} />
           <Route path="/aws-cdp-pipeline" element={<AwsCdpPipeline />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/music-production" element={<MusicProduction />} />
           {/* Redirects */}
           <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="/contact" element={<Navigate to="/resume" replace />} />

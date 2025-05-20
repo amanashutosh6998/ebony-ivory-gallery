@@ -14,6 +14,13 @@ interface Project {
 const ProjectsSection = () => {
   const projects: Project[] = [
     {
+      title: "Music Production",
+      category: "Audio Engineering",
+      description: "Production portfolio showcasing my work with various artists and genres.",
+      github: "https://github.com/amanashutosh6998/music-portfolio",
+      path: "/music-production"
+    },
+    {
       title: "AWS CDP Pipeline",
       category: "Data Engineering",
       description: "End-to-end Customer Data Platform using S3, Lambda, Redshift & Step Functions.",
@@ -42,11 +49,11 @@ const ProjectsSection = () => {
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Featured Projects</h2>
           <p className="text-lg text-gray-400">
-            A collection of my GitHub projects focused on growth engineering, data pipelines, and automation.
+            A collection of my work focused on growth engineering, data pipelines, automation, and music production.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
               <CardContent className="p-6">
