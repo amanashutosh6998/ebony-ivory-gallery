@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
@@ -10,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useToast } from "@/components/ui/use-toast";
+import LeadScoringTable from "@/components/LeadScoringTable";
 
 interface SolutionStep {
   title: string;
@@ -53,7 +53,7 @@ const CaseStudyDetail = () => {
   const [activeSections, setActiveSections] = useState<string[]>([]);
   
   useEffect(() => {
-    // For now, we're hardcoding the case study
+    // For now, we're hardcoding the case studies
     // In the future, this would fetch from a CMS based on the slug
     const fetchCaseStudy = () => {
       // Simulate API call delay
@@ -161,6 +161,102 @@ const CaseStudyDetail = () => {
             reflection: "\"This project shifted our company's reporting from vanity metrics to true revenue metrics. We stopped optimizing for cost per lead and started optimizing for cost per deal and pipeline created. That changed how we spent our budget — and how Sales trusted Marketing.\"",
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
             categories: ["Marketing", "Data Analytics", "HubSpot", "Revenue Attribution"]
+          };
+          setCaseStudy(study);
+          setInitialLoading(false);
+          setIsLoaded(true);
+        } else if (slug === "lead-scoring-engine") {
+          const study: CaseStudy = {
+            title: "Lead Scoring Engine to Prioritize SDR Outreach",
+            subtitle: "Automating lead qualification for faster, more focused SDR follow-up",
+            companyOverview: "Kenko AI's inbound pipeline was growing rapidly through performance ads and lead magnets. While this signaled strong top-of-funnel traction, our SDR team was stretched thin — overwhelmed by volume, but not by quality.",
+            challenges: [
+              "SDRs were manually reviewing leads with no clear prioritization",
+              "Many leads lacked buying intent or decision-making power",
+              "High-intent leads were slipping through the cracks",
+              "Follow-up was inconsistent, and the response time lagged"
+            ],
+            goal: "To create a dynamic lead scoring system that automatically ranks leads based on intent, fit, and engagement — while penalizing inactive or low-quality contacts. The end goal was to route qualified leads instantly to SDRs, improve SQL-to-demo conversion, save time by eliminating manual filtering, and incorporate real SDR feedback into the scoring.",
+            solution: {
+              steps: {
+                formClassification: {
+                  title: "QL Score 2.0 – A Multi-Factor Scoring Model",
+                  points: [
+                    "Designed a scoring system that reflects the real buying intent and sales-readiness of leads.",
+                    "Scores update automatically in HubSpot based on forms, behavior, contact data, and SDR interaction.",
+                    "Scores combine intent, fit, engagement, and apply risk/decay factors."
+                  ]
+                },
+                adPlatform: {
+                  title: "Intent & Fit Scoring",
+                  points: [
+                    "Intent scoring based on:",
+                    "Form submissions (Demo request, Pricing quiz, Lead magnets)",
+                    "High-intent page visits (/pricing, /demo, /features)",
+                    "Fit scoring based on:",
+                    "Contact data quality (email, phone)",
+                    "Business information completeness",
+                    "Industry and size matching"
+                  ]
+                },
+                attribution: {
+                  title: "Engagement & Decay Logic",
+                  points: [
+                    "Email engagement scoring:",
+                    "Marketing email opens, clicks, replies",
+                    "Sales email engagement tracking",
+                    "SDR call outcomes scoring",
+                    "Time-based decay to penalize inactivity",
+                    "Auto-archive system for very old leads"
+                  ]
+                },
+                conversion: {
+                  title: "HubSpot Implementation",
+                  points: [
+                    "Created custom QL Score property in HubSpot",
+                    "Designed workflows for real-time score updates",
+                    "Set up SDR alerts via Slack and Email",
+                    "Configured territory-based routing to AEs",
+                    "Established thresholds for qualification stages"
+                  ]
+                },
+                dealPipeline: {
+                  title: "Performance Tracking",
+                  points: [
+                    "Used Google Sheets + Python to track:",
+                    "Score vs. demo booking rate correlation",
+                    "No-show rates analysis by score bands",
+                    "Lead source performance by score distribution",
+                    "Score accuracy validation through AE feedback",
+                    "Score threshold adjustments based on performance data"
+                  ]
+                },
+                dashboard: {
+                  title: "CRM & Pipeline Optimization",
+                  points: [
+                    "Auto-routed highest scored leads to priority queue",
+                    "Implemented time-sensitive follow-up SLAs",
+                    "Created SDR performance dashboards by lead score",
+                    "Established automatic archival workflows",
+                    "Connected scoring to lifecycle stage transitions",
+                    "Built feedback loop for continuous scoring improvement"
+                  ]
+                }
+              }
+            },
+            results: {
+              items: [
+                { title: "Demo Conversion Rate", description: "Improved by 25% after scoring launch" },
+                { title: "SDR Response Time", description: "Hot leads contacted in <15 mins" },
+                { title: "Prioritized Outreach", description: "70% of meetings came from QL Score ≥ 60" },
+                { title: "Sales Trust Improved", description: "SDRs focused on high-quality, validated leads" },
+                { title: "CRM Hygiene", description: "180+ day inactive leads auto-archived weekly" }
+              ]
+            },
+            tools: ["HubSpot CRM – Lead Score Property, Lists, Workflows", "Google Sheets + Python – Scoring performance & refinement", "Slack + Email Integrations – Real-time SDR notifications", "Lifecycle Stage Automation – Routing based on score thresholds", "Archival Workflow – Auto-remove cold/inactive leads from pipeline"],
+            reflection: "This scoring system turned lead prioritization into a data-driven process, not a guess. It helped Sales focus on the highest-value opportunities while keeping the CRM clean, responsive, and efficient. Most importantly, it closed the loop between Marketing and Sales — with real SDR feedback shaping how we define a \"good lead.\"",
+            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2000&auto=format&fit=crop",
+            categories: ["Sales Operations", "Lead Qualification", "HubSpot", "Automation"]
           };
           setCaseStudy(study);
           setInitialLoading(false);
@@ -288,6 +384,15 @@ const CaseStudyDetail = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Scoring Table for Lead Scoring case study */}
+            {slug === "lead-scoring-engine" && (
+              <Card className="border border-gray-800 bg-gray-900/20 mb-12">
+                <CardContent className="p-6">
+                  <LeadScoringTable showDetailed={true} />
+                </CardContent>
+              </Card>
+            )}
             
             {/* Solution */}
             <Card className="border border-gray-800 bg-gray-900/20 mb-12">
