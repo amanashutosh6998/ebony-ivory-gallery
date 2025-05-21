@@ -221,8 +221,8 @@ const CaseStudyDetail = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-8">
             <Button 
-              variant="outline" 
-              className="mb-8 text-white border-white hover:bg-white/10" 
+              variant="secondary" 
+              className="mb-8 text-black" 
               onClick={() => navigate("/case-studies")}
             >
               ← Back to Case Studies
