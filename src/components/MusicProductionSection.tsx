@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Headphones, Speaker, Guitar, Volume2, VolumeX } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Track {
   title: string;
@@ -14,22 +16,56 @@ const MusicProductionSection = () => {
   const spotifyArtistId = "1f7ZzfhwAFCDOze7onqLhG";
   const [volume, setVolume] = useState(80); // Default volume 80%
   const [isMuted, setIsMuted] = useState(false);
-  const [spotifyIframe, setSpotifyIframe] = useState<HTMLIFrameElement | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const spotifyIframeRef = useRef<HTMLIFrameElement | null>(null);
+  const { toast } = useToast();
   
   // Find and store the Spotify iframe reference after component mounts
   useEffect(() => {
     const findSpotifyIframe = () => {
       const iframe = document.querySelector('iframe[src*="spotify.com"]') as HTMLIFrameElement;
       if (iframe) {
-        setSpotifyIframe(iframe);
+        spotifyIframeRef.current = iframe;
+        setIsLoaded(true);
+        
+        // Set initial volume
+        if (iframe.contentWindow) {
+          setTimeout(() => {
+            iframe.contentWindow?.postMessage({ 
+              command: 'volume', 
+              volume: volume / 100 
+            }, '*');
+          }, 1000); // Delay to make sure iframe is loaded
+        }
       } else {
-        // If iframe isn't loaded yet, try again after a delay
-        setTimeout(findSpotifyIframe, 500);
+        // If iframe isn't loaded yet, try again after a short delay
+        setTimeout(findSpotifyIframe, 300);
       }
     };
     
     findSpotifyIframe();
-  }, []);
+    
+    // Add event listener for message from iframe
+    const handleMessage = (event: MessageEvent) => {
+      // Check for any response from Spotify iframe
+      if (event.data && event.data.type === 'player_ready') {
+        setIsLoaded(true);
+        // Apply volume after player is ready
+        if (spotifyIframeRef.current && spotifyIframeRef.current.contentWindow) {
+          spotifyIframeRef.current.contentWindow.postMessage({ 
+            command: 'volume', 
+            volume: volume / 100 
+          }, '*');
+        }
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [volume]);
 
   // For controlling the Spotify iframe volume
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,8 +74,8 @@ const MusicProductionSection = () => {
     setIsMuted(newVolume === 0);
     
     // Control Spotify volume through the iframe's postMessage API
-    if (spotifyIframe && spotifyIframe.contentWindow) {
-      spotifyIframe.contentWindow.postMessage({ 
+    if (spotifyIframeRef.current && spotifyIframeRef.current.contentWindow) {
+      spotifyIframeRef.current.contentWindow.postMessage({ 
         command: 'volume', 
         volume: newVolume / 100 
       }, '*');
@@ -55,11 +91,16 @@ const MusicProductionSection = () => {
     setVolume(newVolume);
     
     // Send mute command to Spotify iframe
-    if (spotifyIframe && spotifyIframe.contentWindow) {
-      spotifyIframe.contentWindow.postMessage({ 
+    if (spotifyIframeRef.current && spotifyIframeRef.current.contentWindow) {
+      spotifyIframeRef.current.contentWindow.postMessage({ 
         command: 'volume', 
         volume: newVolume / 100 
       }, '*');
+      
+      toast({
+        title: newMutedState ? "Audio Muted" : "Audio Unmuted",
+        duration: 1500
+      });
     }
   };
 
@@ -108,6 +149,7 @@ const MusicProductionSection = () => {
                 loading="lazy"
                 title="Spotify Artist Profile"
                 className="rounded-lg"
+                ref={el => spotifyIframeRef.current = el}
               ></iframe>
             </div>
             
@@ -115,7 +157,7 @@ const MusicProductionSection = () => {
             <div className="flex items-center justify-center gap-3 mb-8">
               <button 
                 onClick={toggleMute}
-                className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors"
+                className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
                 aria-label={isMuted ? "Unmute" : "Mute"}
               >
                 {isMuted ? 
@@ -139,6 +181,7 @@ const MusicProductionSection = () => {
           </div>
         </div>
         
+        {/* Production Skills section */}
         <div className="mb-20">
           <h3 className="text-2xl font-bold mb-8 text-center">Production Skills</h3>
           <div className="grid md:grid-cols-3 gap-8">

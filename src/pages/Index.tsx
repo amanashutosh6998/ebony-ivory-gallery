@@ -19,10 +19,10 @@ const Index = () => {
       setInitialLoading(false);
       setIsLoaded(true);
     } else {
-      // Force animation to play by delaying the loading complete
+      // Reduced loading time
       setTimeout(() => {
         handleLoadingComplete();
-      }, 800);
+      }, 400); // Reduced from 800ms
     }
   }, []);
 
@@ -33,7 +33,7 @@ const Index = () => {
   };
 
   if (initialLoading) {
-    return <LoadingScreen onComplete={handleLoadingComplete} />;
+    return <LoadingScreen onComplete={handleLoadingComplete} initialProgress={20} />;
   }
 
   return (
@@ -48,8 +48,8 @@ const Index = () => {
       <div 
         className={`relative z-10 ${
           isLoaded ? "opacity-100 animate-fade-in" : "opacity-0"
-        } transition-all duration-500`}
-        style={{animationDelay: "200ms"}}
+        } transition-all duration-300`}
+        style={{animationDelay: "100ms"}}
       >
         <div className="flow-content">
           <HeroSection />

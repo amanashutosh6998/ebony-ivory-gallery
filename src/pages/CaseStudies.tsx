@@ -18,10 +18,10 @@ const CaseStudies = () => {
       setInitialLoading(false);
       setIsLoaded(true);
     } else {
-      // Force animation to play by delaying the loading complete
+      // Reduced animation time
       setTimeout(() => {
         handleLoadingComplete();
-      }, 800);
+      }, 400); // Reduced from 800ms
     }
   }, []);
 
@@ -32,7 +32,7 @@ const CaseStudies = () => {
   };
 
   if (initialLoading) {
-    return <LoadingScreen onComplete={handleLoadingComplete} />;
+    return <LoadingScreen onComplete={handleLoadingComplete} initialProgress={30} />;
   }
 
   return (
@@ -44,7 +44,7 @@ const CaseStudies = () => {
       
       <Navbar />
       
-      <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+      <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
         <CaseStudiesSection />
       </div>
       
