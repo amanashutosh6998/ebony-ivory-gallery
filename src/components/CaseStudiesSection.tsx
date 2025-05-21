@@ -23,16 +23,16 @@ const CaseStudiesSection = () => {
   
   const caseStudies: CaseStudy[] = [
     {
-      title: "Reporting MQL → SQL → Won Conversion by Campaign",
-      problem: "At Kenko AI, a fast-growing B2B SaaS company, leadership lacked visibility into how marketing spend translated into revenue. The founders wanted a clear view of how leads from Facebook Ads, Google Ads, and inbound channels moved through the funnel—from MQL to SQL to Closed Won. Data was scattered across HubSpot, Google Sheets, Facebook Ads, and Google Ads. UTM parameters were inconsistently captured, breaking attribution. No unified view to answer: 'Which campaigns are driving actual customers?' Marketing reported on MQLs, but sales needed visibility into downstream conversion. Lead qualification lacked structure—wasting SDR bandwidth on unqualified leads.",
-      solution: "🔗 Unified Source of Truth: Synced data from HubSpot CRM using the HubSpot API into structured Google Sheets reports. Used Contact–Company–Deal associations to maintain lifecycle integrity. 📊 Funnel Stage Tracking: Standardized lifecycle stages within HubSpot: MQL (Based on form fills and key website actions), SQL (Accepted by Sales team - manual + automated based on score), Closed Won (Deal booked with actual revenue). 🧮 Lead Scoring Engine: Built a custom lead scoring model using HubSpot's native lead score field. Behavior-based: Website visits, demo requests, email interactions. Demographic: Job title, company size, region. Triggered workflows to alert SDRs only when leads crossed a predefined score threshold. 🎯 Attribution Mapping: Captured UTM parameters using hidden fields in HubSpot forms. Used the Facebook Ads API and Google Ads API to fetch campaign, ad set, and spend data. Mapped ad-level data to contact records in Sheets using UTM source + email join keys. 📥 Reporting Workflow: Automated daily exports using HubSpot API to Google Sheets (via Python and Apps Script).",
-      tools: ["HubSpot CRM", "HubSpot API", "Facebook Ads API", "Google Ads API", "Google Sheets", "Apps Script", "Python"],
-      impact: "📊 Built a self-refreshing dashboard for founders showing campaign ROI. ⏱️ Saved ~6–8 hours/week of manual marketing-to-sales handoff reporting. 📉 Identified 3 high-spend ad campaigns with <5% SQL conversion—budget reallocated. 📈 Improved SQL-to-Won conversion by 25% after scoring and attribution fixes. 📌 Gave founders visibility from first click to revenue, enabling better budgeting.",
+      title: "Campaign-Level Revenue Attribution Dashboard",
+      problem: "Kenko AI, a fast-growing B2B SaaS company helping fitness studios automate operations, needed deeper insight into how performance marketing and inbound efforts converted into a real sales pipeline, not just leads. Despite running highly targeted campaigns and collecting leads, the reporting infrastructure couldn't answer a fundamental question: \"Which campaigns are creating meetings, deals, and revenue?\" Data was fragmented across Facebook Ads, Google Ads, HubSpot, and Google Sheets with inconsistent UTM capturing leading to broken attribution chains.",
+      solution: "We built a live, self-refreshing dashboard that connects ads → form fills → demo bookings → SQLs → deals → pipeline, across both paid and organic channels. This included end-to-end funnel mapping, form classification in HubSpot, data extraction from ad platforms, enhanced attribution logic, conversion audits, deal and pipeline integration, and automated Google Sheets dashboards showing weekly metrics, month-over-month trends, paid vs organic splits, and funnel drop-offs by stage.",
+      tools: ["HubSpot CRM", "Facebook Ads API", "Google Ads API", "Google Sheets", "Apps Script", "Python", "UTM Tracking"],
+      impact: "📉 Flagged 3 high-spend campaigns with <5% SQL rate → reallocated budget. ⏱️ Saved ~6–8 hours/week through automation. 🔍 Discovered 30% overreporting in Google Ads conversions. 💬 Gave Sales visibility into which campaigns created most pipeline. 📌 Enabled prioritizing campaigns based on SQL and Deal creation, not just CPL. 📊 Identified campaigns with high no-show rates → improved SDR follow-up. 📈 Created full visibility from Click → Deal Opened → Pipeline Created.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
-      slug: "reporting-mql-sql-won-conversion-by-campaign",
+      slug: "campaign-level-revenue-attribution-dashboard",
       order: 1,
       active: true,
-      categories: ["Marketing", "Data Analytics", "HubSpot"]
+      categories: ["Marketing", "Data Analytics", "HubSpot", "Revenue Attribution"]
     }
   ];
 

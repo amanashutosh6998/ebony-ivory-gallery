@@ -126,15 +126,15 @@ const HubSpotExpert = () => {
   ];
 
   const caseStudy = {
-    title: "Reporting MQL → SQL → Won Conversion by Campaign",
-    slug: "reporting-mql-sql-won-conversion-by-campaign",
-    summary: "At Kenko AI, a fast-growing B2B SaaS company, leadership lacked visibility into how marketing spend translated into revenue. The founders wanted a clear view of how leads moved through the funnel from marketing campaigns to closed deals.",
-    problem: "Data was scattered across multiple platforms with inconsistent attribution, wasting SDR bandwidth on unqualified leads.",
-    solution: "Created unified data source with proper lifecycle tracking, scoring, attribution, and automated reporting.",
+    title: "Campaign-Level Revenue Attribution Dashboard",
+    slug: "campaign-level-revenue-attribution-dashboard",
+    summary: "At Kenko AI, a fast-growing B2B SaaS company helping fitness studios automate operations, the leadership team needed deeper insight into how performance marketing and inbound efforts converted into a real sales pipeline, not just leads.",
+    problem: "Data was fragmented across multiple platforms with inconsistent attribution, making it impossible to trace which campaigns created actual revenue.",
+    solution: "Built a live, self-refreshing dashboard connecting ads to pipeline, with full funnel visibility from impressions to deals created.",
     results: [
-      "Built self-refreshing ROI dashboard",
+      "Identified underperforming high-spend campaigns",
       "Saved ~6–8 hours/week on reporting",
-      "Improved SQL-to-Won conversion by 25%"
+      "Discovered 30% overreporting in Google Ads"
     ]
   };
 
