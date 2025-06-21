@@ -15,8 +15,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center text-center">
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 animate-fade-in">
-            <span className="block">Meet</span>
-            <span className="block mt-2 text-5xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-blue-200">Aman Ashutosh</span>
+            <span className="block text-5xl md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-blue-200">Aman Ashutosh</span>
           </h1>
           
           <p className="text-lg md:text-xl lg:text-2xl mb-4 max-w-3xl mx-auto font-light text-gray-300 animate-fade-in" style={{animationDelay: "300ms"}}>
