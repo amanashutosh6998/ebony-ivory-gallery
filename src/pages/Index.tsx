@@ -7,6 +7,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import ParticleBackground from "@/components/ParticleBackground";
 import AboutSection from "@/components/AboutSection";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -59,6 +60,9 @@ const Index = () => {
       
       <Footer />
       <ScrollIndicator />
+      
+      {/* Chatbot Widget */}
+      <ChatbotWidget />
     </div>
   );
 };
