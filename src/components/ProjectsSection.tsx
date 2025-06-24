@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -13,13 +12,6 @@ interface Project {
 
 const ProjectsSection = () => {
   const projects: Project[] = [
-    {
-      title: "Music Production",
-      category: "Audio Engineering",
-      description: "Production portfolio showcasing my work with various artists and genres.",
-      github: "https://github.com/amanashutosh6998/music-portfolio",
-      path: "/music-production"
-    },
     {
       title: "AWS CDP Pipeline",
       category: "Data Engineering",
@@ -49,7 +41,7 @@ const ProjectsSection = () => {
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Featured Projects</h2>
           <p className="text-lg text-gray-400">
-            A collection of my work focused on growth engineering, data pipelines, automation, and music production.
+            A collection of my work focused on growth engineering, data pipelines, and automation.
           </p>
         </div>
 
