@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,6 +8,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 import AboutSection from "@/components/AboutSection";
 import TrackRecordSection from "@/components/TrackRecordSection";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import PersonalInterestsSection from "@/components/PersonalInterestsSection";
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -57,6 +57,7 @@ const Index = () => {
           <HeroSection />
           <TrackRecordSection />
           <AboutSection />
+          <PersonalInterestsSection />
         </div>
       </div>
       
