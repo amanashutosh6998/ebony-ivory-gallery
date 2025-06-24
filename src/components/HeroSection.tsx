@@ -23,7 +23,7 @@ const HeroSection = () => {
           </p>
           
           <p className="text-md md:text-lg mb-8 max-w-3xl mx-auto text-gray-400 animate-fade-in" style={{animationDelay: "500ms"}}>
-            Building and growing businesses by improving Marketing, Sales, Customer Success, Product, Analytics, Engineering, and AI.
+            Driving revenue by turning data into decisions across Marketing, Sales, Customer Success, Product, and Engineering using AI.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in" style={{animationDelay: "600ms"}}>
