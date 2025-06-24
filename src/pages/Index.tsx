@@ -7,6 +7,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import ParticleBackground from "@/components/ParticleBackground";
 import AboutSection from "@/components/AboutSection";
+import TrackRecordSection from "@/components/TrackRecordSection";
 import ChatbotWidget from "@/components/ChatbotWidget";
 
 const Index = () => {
@@ -54,6 +55,7 @@ const Index = () => {
       >
         <div className="flow-content">
           <HeroSection />
+          <TrackRecordSection />
           <AboutSection />
         </div>
       </div>
