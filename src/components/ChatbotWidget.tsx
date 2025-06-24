@@ -28,7 +28,7 @@ const ChatbotWidget = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://tb3vlf5n0f.execute-api.us-east-1.amazonaws.com/chat", {
+      fetch("https://tb3vlf5n0f.execute-api.us-east-1.amazonaws.com/default/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage.content }),
