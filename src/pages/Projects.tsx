@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 const Projects = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [startAnimations, setStartAnimations] = useState(false);
 
   useEffect(() => {
     // Only show loading screen on first visit to this specific page
@@ -17,6 +18,8 @@ const Projects = () => {
     if (hasVisitedProjects) {
       setInitialLoading(false);
       setIsLoaded(true);
+      // Start animations immediately if no loading screen
+      setTimeout(() => setStartAnimations(true), 100);
     }
   }, []);
 
@@ -24,6 +27,8 @@ const Projects = () => {
     sessionStorage.setItem('hasVisitedProjects', 'true');
     setInitialLoading(false);
     setIsLoaded(true);
+    // Start animations after loading completes
+    setTimeout(() => setStartAnimations(true), 100);
   };
 
   if (initialLoading) {
@@ -40,7 +45,9 @@ const Projects = () => {
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-        <ProjectsSection />
+        <div className={startAnimations ? "animate-content" : ""}>
+          <ProjectsSection />
+        </div>
       </div>
       
       <Footer />

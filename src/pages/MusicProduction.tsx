@@ -10,6 +10,7 @@ import MusicProductionSection from "@/components/MusicProductionSection";
 const MusicProduction = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [startAnimations, setStartAnimations] = useState(false);
 
   useEffect(() => {
     // Only show loading screen on first visit to this specific page
@@ -17,6 +18,8 @@ const MusicProduction = () => {
     if (hasVisitedMusicProduction) {
       setInitialLoading(false);
       setIsLoaded(true);
+      // Start animations immediately if no loading screen
+      setTimeout(() => setStartAnimations(true), 100);
     }
   }, []);
 
@@ -24,6 +27,8 @@ const MusicProduction = () => {
     sessionStorage.setItem('hasVisitedMusicProduction', 'true');
     setInitialLoading(false);
     setIsLoaded(true);
+    // Start animations after loading completes
+    setTimeout(() => setStartAnimations(true), 100);
   };
 
   if (initialLoading) {
@@ -40,7 +45,9 @@ const MusicProduction = () => {
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-        <MusicProductionSection />
+        <div className={startAnimations ? "animate-content" : ""}>
+          <MusicProductionSection />
+        </div>
       </div>
       
       <Footer />

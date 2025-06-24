@@ -10,6 +10,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 const CaseStudies = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [startAnimations, setStartAnimations] = useState(false);
 
   useEffect(() => {
     // Only show loading screen on first visit to this specific page
@@ -17,6 +18,8 @@ const CaseStudies = () => {
     if (hasVisitedCaseStudies) {
       setInitialLoading(false);
       setIsLoaded(true);
+      // Start animations immediately if no loading screen
+      setTimeout(() => setStartAnimations(true), 100);
     } else {
       // Reduced animation time
       setTimeout(() => {
@@ -29,6 +32,8 @@ const CaseStudies = () => {
     sessionStorage.setItem('hasVisitedCaseStudies', 'true');
     setInitialLoading(false);
     setIsLoaded(true);
+    // Start animations after loading completes
+    setTimeout(() => setStartAnimations(true), 100);
   };
 
   if (initialLoading) {
@@ -45,7 +50,9 @@ const CaseStudies = () => {
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
-        <CaseStudiesSection />
+        <div className={startAnimations ? "animate-content" : ""}>
+          <CaseStudiesSection />
+        </div>
       </div>
       
       <Footer />
