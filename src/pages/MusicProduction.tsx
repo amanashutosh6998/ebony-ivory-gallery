@@ -19,7 +19,7 @@ const MusicProduction = () => {
       setInitialLoading(false);
       setIsLoaded(true);
       // Start animations immediately if no loading screen
-      setTimeout(() => setStartAnimations(true), 100);
+      setTimeout(() => setStartAnimations(true), 300);
     }
   }, []);
 
@@ -28,7 +28,7 @@ const MusicProduction = () => {
     setInitialLoading(false);
     setIsLoaded(true);
     // Start animations after loading completes
-    setTimeout(() => setStartAnimations(true), 100);
+    setTimeout(() => setStartAnimations(true), 300);
   };
 
   if (initialLoading) {

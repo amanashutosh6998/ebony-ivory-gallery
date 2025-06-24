@@ -19,12 +19,12 @@ const CaseStudies = () => {
       setInitialLoading(false);
       setIsLoaded(true);
       // Start animations immediately if no loading screen
-      setTimeout(() => setStartAnimations(true), 100);
+      setTimeout(() => setStartAnimations(true), 300);
     } else {
       // Reduced animation time
       setTimeout(() => {
         handleLoadingComplete();
-      }, 400); // Reduced from 800ms
+      }, 400);
     }
   }, []);
 
@@ -33,7 +33,7 @@ const CaseStudies = () => {
     setInitialLoading(false);
     setIsLoaded(true);
     // Start animations after loading completes
-    setTimeout(() => setStartAnimations(true), 100);
+    setTimeout(() => setStartAnimations(true), 300);
   };
 
   if (initialLoading) {

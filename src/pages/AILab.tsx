@@ -11,7 +11,7 @@ const AILab = () => {
 
   useEffect(() => {
     // Start animations after component mounts
-    setTimeout(() => setStartAnimations(true), 100);
+    setTimeout(() => setStartAnimations(true), 300);
   }, []);
 
   return (
