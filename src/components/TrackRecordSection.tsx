@@ -51,7 +51,7 @@ const TrackRecordSection = () => {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in" style={{ animationDelay: "200ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
             My Track Record
           </h2>
@@ -66,7 +66,7 @@ const TrackRecordSection = () => {
             <Card
               key={achievement.title}
               className="p-6 border border-gray-800 bg-gray-800/30 backdrop-blur-sm animate-fade-in hover:bg-gray-800/50 transition-all duration-300"
-              style={{ animationDelay: `${300 + index * 100}ms` }}
+              style={{ animationDelay: `${400 + index * 150}ms` }}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg">
@@ -82,7 +82,7 @@ const TrackRecordSection = () => {
         </div>
 
         {/* What I Bring Section */}
-        <div className="animate-fade-in" style={{ animationDelay: "700ms" }}>
+        <div className="animate-fade-in" style={{ animationDelay: "1000ms" }}>
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 text-white">
             What I Bring
           </h3>
@@ -92,7 +92,7 @@ const TrackRecordSection = () => {
               <Card
                 key={skill.category}
                 className="p-6 border border-gray-800 bg-gray-800/30 backdrop-blur-sm animate-fade-in hover:bg-gray-800/50 transition-all duration-300"
-                style={{ animationDelay: `${800 + index * 100}ms` }}
+                style={{ animationDelay: `${1200 + index * 150}ms` }}
               >
                 <h4 className="text-xl font-semibold mb-4 text-white border-b border-gray-700 pb-2">
                   {skill.category}

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -49,15 +50,29 @@ const Index = () => {
       
       <div 
         className={`relative z-10 ${
-          isLoaded ? "opacity-100 animate-fade-in" : "opacity-0"
-        } transition-all duration-300`}
-        style={{animationDelay: "100ms"}}
+          isLoaded ? "opacity-100" : "opacity-0"
+        } transition-all duration-500`}
       >
         <div className="flow-content">
-          <HeroSection />
-          <TrackRecordSection />
-          <AboutSection />
-          <PersonalInterestsSection />
+          {/* Hero Section - Initial animation */}
+          <div className="animate-fade-in" style={{animationDelay: "200ms"}}>
+            <HeroSection />
+          </div>
+          
+          {/* Track Record Section - Flows after hero */}
+          <div className="animate-fade-in" style={{animationDelay: "800ms"}}>
+            <TrackRecordSection />
+          </div>
+          
+          {/* About Section - Flows after track record */}
+          <div className="animate-fade-in" style={{animationDelay: "1200ms"}}>
+            <AboutSection />
+          </div>
+          
+          {/* Personal Interests Section - Final section animation */}
+          <div className="animate-fade-in" style={{animationDelay: "1600ms"}}>
+            <PersonalInterestsSection />
+          </div>
         </div>
       </div>
       

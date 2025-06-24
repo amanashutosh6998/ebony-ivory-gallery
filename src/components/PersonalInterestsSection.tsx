@@ -15,7 +15,7 @@ const PersonalInterestsSection = () => {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in" style={{ animationDelay: "200ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
             Personal Interests
           </h2>
@@ -26,7 +26,7 @@ const PersonalInterestsSection = () => {
 
         {/* Music Production Card */}
         <div className="max-w-2xl mx-auto">
-          <Card className="overflow-hidden border border-gray-800 bg-gray-800/30 backdrop-blur-sm hover:bg-gray-800/50 transition-all duration-300 animate-fade-in" style={{ animationDelay: "300ms" }}>
+          <Card className="overflow-hidden border border-gray-800 bg-gray-800/30 backdrop-blur-sm hover:bg-gray-800/50 transition-all duration-300 animate-fade-in" style={{ animationDelay: "500ms" }}>
             <CardContent className="p-8">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">

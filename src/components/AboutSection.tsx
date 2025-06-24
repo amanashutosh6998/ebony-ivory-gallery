@@ -23,7 +23,7 @@ const AboutSection = () => {
 
       {/* Main content */}
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{ animationDelay: "300ms" }}>
+        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-in" style={{ animationDelay: "200ms" }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">About Me</h2>
           <p className="text-lg text-gray-400">
             I'm a Growth Analyst specializing in data-driven strategies with expertise in ETL pipelines,
@@ -59,7 +59,7 @@ const AboutSection = () => {
               <Card
                 key={skill.name}
                 className="p-6 border border-gray-800 bg-gray-800/50 backdrop-blur-sm animate-fade-in"
-                style={{ animationDelay: `${500 + index * 100}ms` }}
+                style={{ animationDelay: `${600 + index * 150}ms` }}
               >
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-gradient-to-r from-gray-900 to-black rounded-md">
