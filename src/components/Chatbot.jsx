@@ -13,7 +13,7 @@ const Chatbot = () => {
     setInput("");
 
     try {
-      const response = await fetch("YOUR_API_GATEWAY_ENDPOINT", {
+      const response = await fetch("https://xyz123.execute-api.us-east-1.amazonaws.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
