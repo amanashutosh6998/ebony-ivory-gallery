@@ -1,6 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { TrendingUp, Database, Users, BarChart3 } from "lucide-react";
+import ColorParticles from "./ColorParticles";
 
 const TrackRecordSection = () => {
   const achievements = [
@@ -43,6 +44,9 @@ const TrackRecordSection = () => {
 
   return (
     <section className="py-20 relative overflow-hidden bg-gradient-to-b from-gray-900 to-black">
+      {/* Add animated particles as a background layer */}
+      <ColorParticles colorScheme="blue-purple" density="medium" />
+
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-0 w-1/3 h-1/3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[100px] transform -translate-x-1/2"></div>

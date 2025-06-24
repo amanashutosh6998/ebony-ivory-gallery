@@ -7,26 +7,23 @@ import AILabSection from "@/components/AILabSection";
 import ColorParticles from "@/components/ColorParticles";
 
 const AILab = () => {
-  const [startAnimations, setStartAnimations] = useState(false);
-
-  useEffect(() => {
-    // Start animations after component mounts
-    setTimeout(() => setStartAnimations(true), 300);
-  }, []);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
       {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="purple-pink" density="low" />
+      <ColorParticles colorScheme="purple-pink" density="medium" />
+      
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
       </div>
       
       <Navbar />
       
       <div className="pt-16 relative z-10">
-        <div className={startAnimations ? "animate-content" : ""}>
-          <AILabSection />
-        </div>
+        <AILabSection />
       </div>
       
       <Footer />

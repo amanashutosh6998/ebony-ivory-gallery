@@ -10,7 +10,6 @@ import MusicProductionSection from "@/components/MusicProductionSection";
 const MusicProduction = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
-  const [startAnimations, setStartAnimations] = useState(false);
 
   useEffect(() => {
     // Only show loading screen on first visit to this specific page
@@ -18,8 +17,6 @@ const MusicProduction = () => {
     if (hasVisitedMusicProduction) {
       setInitialLoading(false);
       setIsLoaded(true);
-      // Start animations immediately if no loading screen
-      setTimeout(() => setStartAnimations(true), 300);
     }
   }, []);
 
@@ -27,8 +24,6 @@ const MusicProduction = () => {
     sessionStorage.setItem('hasVisitedMusicProduction', 'true');
     setInitialLoading(false);
     setIsLoaded(true);
-    // Start animations after loading completes
-    setTimeout(() => setStartAnimations(true), 300);
   };
 
   if (initialLoading) {
@@ -36,18 +31,20 @@ const MusicProduction = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white relative overflow-hidden">
       {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="purple-blue" density="medium" />
+      <ColorParticles colorScheme="purple-blue" density="medium" />
+      
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[150px] transform -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-[150px] transform translate-y-1/2 -translate-x-1/2"></div>
       </div>
       
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-        <div className={startAnimations ? "animate-content" : ""}>
-          <MusicProductionSection />
-        </div>
+        <MusicProductionSection />
       </div>
       
       <Footer />
