@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,21 +28,25 @@ const ChatbotWidget = () => {
     setIsLoading(true);
 
     try {
-      // Simulate AI response - replace with actual API call
-      setTimeout(() => {
-        const aiResponse = { 
-          role: 'ai', 
-          content: `Thanks for your message: "${userMessage.content}". This is a demo response. Please configure your AI endpoint to get real responses.` 
-        };
-        setMessages(prev => [...prev, aiResponse]);
-        setIsLoading(false);
-      }, 1000);
+      const response = await fetch("https://tb3vlf5n0f.execute-api.us-east-1.amazonaws.com/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage.content }),
+      });
+
+      const data = await response.json();
+      const aiResponse = {
+        role: 'ai',
+        content: data.reply
+      };
+      setMessages(prev => [...prev, aiResponse]);
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessages(prev => [...prev, { 
-        role: 'ai', 
-        content: 'Sorry, I encountered an error. Please try again.' 
+      setMessages(prev => [...prev, {
+        role: 'ai',
+        content: 'Sorry, I encountered an error. Please try again.'
       }]);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -57,10 +60,8 @@ const ChatbotWidget = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {/* Chat Window */}
       {isOpen && (
         <div className="mb-4 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col">
-          {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
             <h3 className="font-semibold">Chat Assistant</h3>
             <Button
@@ -73,7 +74,6 @@ const ChatbotWidget = () => {
             </Button>
           </div>
 
-          {/* Messages */}
           <div className="flex-1 p-4 overflow-y-auto space-y-3">
             {messages.map((message, index) => (
               <div
@@ -105,7 +105,6 @@ const ChatbotWidget = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
           <div className="p-4 border-t border-gray-200">
             <div className="flex space-x-2">
               <input
@@ -130,7 +129,6 @@ const ChatbotWidget = () => {
         </div>
       )}
 
-      {/* Toggle Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
