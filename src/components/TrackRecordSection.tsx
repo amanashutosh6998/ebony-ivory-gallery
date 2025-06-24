@@ -45,7 +45,7 @@ const TrackRecordSection = () => {
   return (
     <section className="py-20 relative overflow-hidden bg-gradient-to-b from-gray-900 to-black">
       {/* Add animated particles as a background layer */}
-      <ColorParticles colorScheme="blue-purple" density="medium" />
+      <ColorParticles colorScheme="purple-blue" density="medium" />
 
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
