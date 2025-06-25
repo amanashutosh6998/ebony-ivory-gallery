@@ -9,7 +9,7 @@ const ChatbotWidget = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -28,7 +28,7 @@ const ChatbotWidget = () => {
     setIsLoading(true);
 
     try {
-      fetch("https://tb3vlf5n0f.execute-api.us-east-1.amazonaws.com/default/chat", {
+      const response = await fetch("https://tb3vlf5n0f.execute-api.us-east-1.amazonaws.com/default/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage.content }),
@@ -37,7 +37,7 @@ const ChatbotWidget = () => {
       const data = await response.json();
       const aiResponse = {
         role: 'ai',
-        content: data.reply
+        content: data.reply || data.error || 'No response from AI.'
       };
       setMessages(prev => [...prev, aiResponse]);
     } catch (error) {
@@ -51,7 +51,7 @@ const ChatbotWidget = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
