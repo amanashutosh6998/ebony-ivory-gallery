@@ -1,9 +1,10 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ChatbotWidget = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // Changed from false to true for auto popup
   const [messages, setMessages] = useState([
     { role: 'ai', content: 'Hi! How can I help you today?' }
   ]);
