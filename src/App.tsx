@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +14,7 @@ import HubSpotExpert from "./pages/HubSpotExpert";
 import AwsCdpPipeline from "./pages/AwsCdpPipeline";
 import Analytics from "./pages/Analytics";
 import MusicProduction from "./pages/MusicProduction";
+import ChatbotWidget from "./components/ChatbotWidget"; // 👈 Import the widget
 
 const queryClient = new QueryClient();
 
@@ -35,13 +35,12 @@ const App = () => (
           <Route path="/aws-cdp-pipeline" element={<AwsCdpPipeline />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/music-production" element={<MusicProduction />} />
-          {/* Redirects */}
           <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="/contact" element={<Navigate to="/resume" replace />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ChatbotWidget /> {/* 👈 Add the widget here */}
     </TooltipProvider>
   </QueryClientProvider>
 );
