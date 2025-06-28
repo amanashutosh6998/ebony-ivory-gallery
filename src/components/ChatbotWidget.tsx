@@ -1,16 +1,20 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocation } from 'react-router-dom';
 
 const ChatbotWidget = () => {
-  const [isOpen, setIsOpen] = useState(true); // Changed from false to true for auto popup
+  const [isOpen, setIsOpen] = useState(false); // Changed back to false - no auto popup
   const [messages, setMessages] = useState([
     { role: 'ai', content: 'Hi! How can I help you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -116,7 +120,9 @@ const ChatbotWidget = () => {
       )}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+        className={`w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ${
+          isHomePage && !isOpen ? 'animate-bounce' : ''
+        }`}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </Button>
