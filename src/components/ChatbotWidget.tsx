@@ -10,6 +10,7 @@ const ChatbotWidget = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
   // Safely get location with error handling
@@ -21,6 +22,19 @@ const ChatbotWidget = () => {
     // If useLocation fails (component used outside Router), default to false
     console.log('ChatbotWidget: useLocation not available, defaulting to non-home page');
   }
+
+  // Show message animation on home page
+  useEffect(() => {
+    if (isHomePage && !isOpen) {
+      const timer = setTimeout(() => {
+        setShowMessage(true);
+        // Hide message after 4 seconds
+        setTimeout(() => setShowMessage(false), 4000);
+      }, 3000); // Show message after 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [isHomePage, isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -68,6 +82,17 @@ const ChatbotWidget = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
+      {/* Message popup animation */}
+      {showMessage && isHomePage && !isOpen && (
+        <div className="mb-2 mr-16 animate-fade-in">
+          <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg shadow-lg relative">
+            <div className="text-sm">👋 Need help? Click to chat!</div>
+            {/* Speech bubble arrow */}
+            <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-l-purple-600 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+          </div>
+        </div>
+      )}
+
       {isOpen && (
         <div className="mb-4 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col">
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
@@ -124,6 +149,7 @@ const ChatbotWidget = () => {
           </div>
         </div>
       )}
+      
       <Button
         onClick={() => setIsOpen(!isOpen)}
         className={`w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ${

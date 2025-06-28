@@ -43,10 +43,10 @@ const ScrollIndicator = () => {
         />
       </div>
 
-      {/* Scroll to top button */}
+      {/* Scroll to top button - moved to left side */}
       <button
         onClick={scrollToTop}
-        className={`fixed right-4 bottom-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-2 rounded-full shadow-lg transition-all duration-300 z-50 ${
+        className={`fixed left-4 bottom-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-2 rounded-full shadow-lg transition-all duration-300 z-50 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
         aria-label="Scroll to top"
