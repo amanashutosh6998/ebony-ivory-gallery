@@ -4,17 +4,23 @@ import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 
 const ChatbotWidget = () => {
-  const [isOpen, setIsOpen] = useState(false); // Changed back to false - no auto popup
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { role: 'ai', content: 'Hi! How can I help you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
-
-  // Check if we're on the home page
-  const isHomePage = location.pathname === '/';
+  
+  // Safely get location with error handling
+  let isHomePage = false;
+  try {
+    const location = useLocation();
+    isHomePage = location.pathname === '/';
+  } catch (error) {
+    // If useLocation fails (component used outside Router), default to false
+    console.log('ChatbotWidget: useLocation not available, defaulting to non-home page');
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
