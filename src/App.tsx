@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import HubSpotExpert from "./pages/HubSpotExpert";
 import AwsCdpPipeline from "./pages/AwsCdpPipeline";
 import OperationsAutomations from "./pages/OperationsAutomations";
+import GrowthStrategy from "./pages/GrowthStrategy";
 import Analytics from "./pages/Analytics";
 import MusicProduction from "./pages/MusicProduction";
 import ChatbotWidget from "./components/ChatbotWidget";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/hubspot-expert" element={<HubSpotExpert />} />
           <Route path="/aws-cdp-pipeline" element={<AwsCdpPipeline />} />
           <Route path="/operations-automations" element={<OperationsAutomations />} />
+          <Route path="/growth-strategy" element={<GrowthStrategy />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/music-production" element={<MusicProduction />} />
           <Route path="/about" element={<Navigate to="/#about" replace />} />

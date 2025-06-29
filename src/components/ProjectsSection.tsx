@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -33,6 +32,13 @@ const ProjectsSection = () => {
       description: "Comprehensive suite of marketing and sales automation tools including lead scoring, attribution, pipeline management, and territory optimization.",
       github: "https://github.com/amanashutosh6998/operations-automations",
       path: "/operations-automations"
+    },
+    {
+      title: "Growth and Strategy (CEO's office)",
+      category: "Executive Management",
+      description: "Strategic growth initiatives including MIS reporting, project management, product improvements, SLA monitoring, ticket management, and revenue optimization.",
+      github: "https://github.com/amanashutosh6998/growth-strategy",
+      path: "/growth-strategy"
     },
   ];
 
