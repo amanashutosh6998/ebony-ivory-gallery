@@ -6,14 +6,12 @@ import ScrollIndicator from "@/components/ScrollIndicator";
 import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 interface Initiative {
   title: string;
   description: string;
   details: string[];
-  github: string;
 }
 
 const GrowthStrategy = () => {
@@ -44,8 +42,7 @@ const GrowthStrategy = () => {
         "Strategic milestone progress reporting",
         "Interactive dashboards for stakeholders",
         "Customizable report templates"
-      ],
-      github: "https://github.com/amanashutosh6998/monthly-investor-summary"
+      ]
     },
     {
       title: "Project Management",
@@ -56,8 +53,7 @@ const GrowthStrategy = () => {
         "Milestone tracking and deadline management",
         "Team collaboration tools",
         "Risk assessment and mitigation tracking"
-      ],
-      github: "https://github.com/amanashutosh6998/project-management-dashboard"
+      ]
     },
     {
       title: "Product Improvement Initiatives",
@@ -68,8 +64,7 @@ const GrowthStrategy = () => {
         "Feature prioritization matrix",
         "Performance impact measurement",
         "Product roadmap optimization"
-      ],
-      github: "https://github.com/amanashutosh6998/product-improvements"
+      ]
     },
     {
       title: "Revenue Control",
@@ -80,8 +75,7 @@ const GrowthStrategy = () => {
         "Performance tracking dashboards",
         "Revenue stream optimization",
         "Financial trend analysis"
-      ],
-      github: "https://github.com/amanashutosh6998/revenue-analytics"
+      ]
     },
     {
       title: "SLA Monitoring & Compliance",
@@ -92,8 +86,7 @@ const GrowthStrategy = () => {
         "Ticket management and routing system",
         "Escalation workflow automation",
         "Performance analytics and insights"
-      ],
-      github: "https://github.com/amanashutosh6998/sla-monitoring"
+      ]
     }
   ];
 
@@ -161,12 +154,6 @@ const GrowthStrategy = () => {
                           ))}
                         </ul>
                       </div>
-                      
-                      <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                        <a href={initiative.github} target="_blank" rel="noopener noreferrer">
-                          View Project
-                        </a>
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
