@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,9 +13,10 @@ import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
 import HubSpotExpert from "./pages/HubSpotExpert";
 import AwsCdpPipeline from "./pages/AwsCdpPipeline";
+import OperationsAutomations from "./pages/OperationsAutomations";
 import Analytics from "./pages/Analytics";
 import MusicProduction from "./pages/MusicProduction";
-import ChatbotWidget from "./components/ChatbotWidget"; // 👈 Import the widget
+import ChatbotWidget from "./components/ChatbotWidget";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,7 @@ const App = () => (
           <Route path="/resume" element={<Resume />} />
           <Route path="/hubspot-expert" element={<HubSpotExpert />} />
           <Route path="/aws-cdp-pipeline" element={<AwsCdpPipeline />} />
+          <Route path="/operations-automations" element={<OperationsAutomations />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/music-production" element={<MusicProduction />} />
           <Route path="/about" element={<Navigate to="/#about" replace />} />
@@ -40,7 +43,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      <ChatbotWidget /> {/* 👈 Add the widget here */}
+      <ChatbotWidget />
     </TooltipProvider>
   </QueryClientProvider>
 );

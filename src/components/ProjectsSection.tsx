@@ -27,33 +27,13 @@ const ProjectsSection = () => {
       github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
       path: "/hubspot-expert"
     },
-  ];
-
-  const operationsProjects: Project[] = [
     {
-      title: "Lead Scoring Engine",
-      category: "Marketing Ops",
-      description: "Automated lead scoring and qualification system with behavioral tracking and predictive analytics.",
-      github: "https://github.com/amanashutosh6998/lead-scoring-engine"
+      title: "Operations and Automations",
+      category: "Business Operations",
+      description: "Comprehensive suite of marketing and sales automation tools including lead scoring, attribution, pipeline management, and territory optimization.",
+      github: "https://github.com/amanashutosh6998/operations-automations",
+      path: "/operations-automations"
     },
-    {
-      title: "Campaign Attribution",
-      category: "Marketing Ops", 
-      description: "Multi-touch attribution modeling for campaign performance analysis and ROI optimization.",
-      github: "https://github.com/amanashutosh6998/campaign-attribution"
-    },
-    {
-      title: "Sales Pipeline Automation",
-      category: "Sales Ops",
-      description: "Automated deal progression, task assignments, and notification workflows for sales teams.",
-      github: "https://github.com/amanashutosh6998/sales-pipeline-automation"
-    },
-    {
-      title: "Territory Management",
-      category: "Sales Ops",
-      description: "Dynamic territory assignment and lead routing based on geographic and demographic criteria.",
-      github: "https://github.com/amanashutosh6998/territory-management"
-    }
   ];
 
   return (
@@ -66,8 +46,7 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Featured Projects */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {projects.map((project, index) => (
             <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
               <CardContent className="p-6">
@@ -92,43 +71,6 @@ const ProjectsSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Operations and Automations Section */}
-        <div className="mb-16">
-          <div className="max-w-3xl mx-auto mb-12 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">Operations and Automations</h3>
-            <p className="text-lg text-gray-400">
-              Streamlining business processes through intelligent automation and operational excellence.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {operationsProjects.map((project, index) => (
-              <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
-                <CardContent className="p-6">
-                  <div className="px-2">
-                    <div className="flex justify-between items-start mb-4">
-                      <span className={`text-sm px-3 py-1 rounded-full ${
-                        project.category === 'Marketing Ops' 
-                          ? 'bg-blue-500/20 text-blue-400' 
-                          : 'bg-green-500/20 text-green-400'
-                      }`}>
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
-                    <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        View Project
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
 
         <div className="text-center mt-12">
