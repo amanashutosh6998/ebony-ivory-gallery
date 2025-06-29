@@ -20,7 +20,7 @@ const ProjectsSection = () => {
       path: "/aws-cdp-pipeline"
     },
     {
-      title: "HubSpot Expert",
+      title: "CRM Administrator",
       category: "Marketing Automation",
       description: "Deduplication, batch associations, and lifecycle stage mapping automation.",
       github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
