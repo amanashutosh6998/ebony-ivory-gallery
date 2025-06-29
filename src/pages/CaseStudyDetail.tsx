@@ -7,9 +7,7 @@ import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useToast } from "@/components/ui/use-toast";
-import LeadScoringTable from "@/components/LeadScoringTable";
 
 interface SolutionStep {
   title: string;
@@ -50,7 +48,6 @@ const CaseStudyDetail = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [caseStudy, setCaseStudy] = useState<CaseStudy | null>(null);
-  const [activeSections, setActiveSections] = useState<string[]>([]);
   
   useEffect(() => {
     // For now, we're hardcoding the case studies
@@ -276,17 +273,6 @@ const CaseStudyDetail = () => {
     fetchCaseStudy();
   }, [slug, navigate, toast]);
 
-  const toggleSection = (section: string) => {
-    // If section is already active, remove it from active sections
-    // If section is not active, add it to active sections
-    // This ensures each section can be expanded/collapsed independently
-    if (activeSections.includes(section)) {
-      setActiveSections(activeSections.filter(s => s !== section));
-    } else {
-      setActiveSections([...activeSections, section]);
-    }
-  };
-
   if (initialLoading) {
     return <LoadingScreen onComplete={() => setInitialLoading(false)} />;
   }
@@ -304,6 +290,30 @@ const CaseStudyDetail = () => {
     );
   }
 
+  // Helper function to convert solution steps to paragraphs
+  const convertSolutionToParagraphs = (solution: Solution) => {
+    const steps = Object.values(solution.steps);
+    return steps.map(step => ({
+      title: step.title,
+      content: step.points.join(' ')
+    }));
+  };
+
+  // Helper function to convert challenges array to paragraph
+  const convertChallengestoParagraph = (challenges: string[]) => {
+    return challenges.join(' ');
+  };
+
+  // Helper function to convert results to paragraph
+  const convertResultsToParagraph = (results: { items: { title: string; description: string }[] }) => {
+    return results.items.map(item => `${item.title}: ${item.description}`).join('. ');
+  };
+
+  // Helper function to convert tools to paragraph
+  const convertToolsToParagraph = (tools: string[]) => {
+    return tools.join(', ');
+  };
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background particles */}
@@ -315,7 +325,7 @@ const CaseStudyDetail = () => {
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
         <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-8">
+          <div className="container mx-auto px-4 md:px-8 max-w-4xl">
             <Button 
               variant="secondary" 
               className="mb-8 text-black" 
@@ -324,250 +334,83 @@ const CaseStudyDetail = () => {
               ← Back to Case Studies
             </Button>
 
-            <div className="grid md:grid-cols-5 gap-8 mb-12">
-              <div className="md:col-span-3">
-                <h1 className="text-3xl md:text-4xl font-bold mb-2 text-white">{caseStudy.title}</h1>
-                <h2 className="text-xl md:text-2xl mb-6 text-purple-400">{caseStudy.subtitle}</h2>
-                
-                {/* Company Overview */}
-                <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-3 text-white">🏢 Company Overview</h2>
-                  <p className="text-white text-lg">{caseStudy.companyOverview}</p>
-                </div>
-                
-                {/* Challenges */}
-                <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-3 text-white">❌ Challenges</h2>
-                  <ul className="list-disc pl-5 space-y-2 text-white">
-                    {caseStudy.challenges.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Goal */}
-                <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-3 text-white">🎯 Goal</h2>
-                  <p className="text-white text-lg">{caseStudy.goal}</p>
-                </div>
-              </div>
+            {/* Header */}
+            <div className="mb-12">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">{caseStudy.title}</h1>
+              <h2 className="text-xl md:text-2xl mb-8 text-purple-400">{caseStudy.subtitle}</h2>
               
-              <div className="md:col-span-2">
-                <AspectRatio ratio={4/3} className="overflow-hidden rounded-lg border border-gray-800">
-                  <img 
-                    src={caseStudy.image} 
-                    alt={caseStudy.title} 
-                    className="w-full h-full object-cover"
-                  />
-                </AspectRatio>
-                
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2 text-white">Categories</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {caseStudy.categories?.map((category, idx) => (
-                      <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full">
-                        {category}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2 text-white">Tools & Technologies</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {caseStudy.tools.slice(0, 5).map((tool, idx) => (
-                      <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full">
-                        {tool.split(' ')[0]}
-                      </span>
-                    ))}
-                  </div>
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-2 text-white">Categories</h3>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {caseStudy.categories?.map((category, idx) => (
+                    <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full">
+                      {category}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
             
-            {/* Scoring Table for Lead Scoring case study */}
-            {slug === "lead-scoring-engine" && (
-              <Card className="border border-gray-800 bg-gray-900/20 mb-12">
-                <CardContent className="p-6">
-                  <LeadScoringTable showDetailed={true} />
-                </CardContent>
-              </Card>
-            )}
+            {/* Company Overview */}
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-bold mb-4 text-white">🏢 Company Overview</h2>
+                <p className="text-white text-lg leading-relaxed">{caseStudy.companyOverview}</p>
+              </CardContent>
+            </Card>
+            
+            {/* Challenges */}
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-bold mb-4 text-white">❌ Challenges</h2>
+                <p className="text-white text-lg leading-relaxed">{convertChallengestoParagraph(caseStudy.challenges)}</p>
+              </CardContent>
+            </Card>
+            
+            {/* Goal */}
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-bold mb-4 text-white">🎯 Goal</h2>
+                <p className="text-white text-lg leading-relaxed">{caseStudy.goal}</p>
+              </CardContent>
+            </Card>
             
             {/* Solution */}
-            <Card className="border border-gray-800 bg-gray-900/20 mb-12">
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-6 text-white">✅ Solution Overview</h2>
-                
-                {/* Solution sections - each can be expanded/collapsed independently */}
-                <div className="space-y-4">
-                  {/* 1. Form Classification */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('formClassification')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">1.</span>
-                        1️⃣ {caseStudy.solution.steps.formClassification.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('formClassification') ? '−' : '+'}</span>
+                <div className="space-y-6">
+                  {convertSolutionToParagraphs(caseStudy.solution).map((step, idx) => (
+                    <div key={idx}>
+                      <h3 className="text-xl font-semibold mb-3 text-purple-400">{step.title}</h3>
+                      <p className="text-white text-lg leading-relaxed">{step.content}</p>
                     </div>
-                    
-                    {activeSections.includes('formClassification') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.formClassification.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  
-                  {/* 2. Ad Platform Data Extraction */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('adPlatform')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">2.</span>
-                        2️⃣ {caseStudy.solution.steps.adPlatform.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('adPlatform') ? '−' : '+'}</span>
-                    </div>
-                    
-                    {activeSections.includes('adPlatform') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.adPlatform.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  
-                  {/* 3. Enhanced Attribution Logic */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('attribution')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">3.</span>
-                        3️⃣ {caseStudy.solution.steps.attribution.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('attribution') ? '−' : '+'}</span>
-                    </div>
-                    
-                    {activeSections.includes('attribution') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.attribution.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  
-                  {/* 4. HubSpot + Ads Conversion Audit */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('conversion')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">4.</span>
-                        4️⃣ {caseStudy.solution.steps.conversion.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('conversion') ? '−' : '+'}</span>
-                    </div>
-                    
-                    {activeSections.includes('conversion') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.conversion.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  
-                  {/* 5. Deal & Pipeline Integration */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('dealPipeline')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">5.</span>
-                        5️⃣ {caseStudy.solution.steps.dealPipeline.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('dealPipeline') ? '−' : '+'}</span>
-                    </div>
-                    
-                    {activeSections.includes('dealPipeline') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.dealPipeline.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  
-                  {/* 6. Automated Google Sheets Dashboard */}
-                  <div 
-                    className="border border-gray-700 rounded-lg p-4 cursor-pointer hover:bg-gray-800/30 transition-colors"
-                    onClick={() => toggleSection('dashboard')}
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium text-white text-lg">
-                        <span className="mr-2">6.</span>
-                        6️⃣ {caseStudy.solution.steps.dashboard.title}
-                      </h3>
-                      <span className="text-white">{activeSections.includes('dashboard') ? '−' : '+'}</span>
-                    </div>
-                    
-                    {activeSections.includes('dashboard') && (
-                      <ul className="list-disc pl-5 mt-3 text-white">
-                        {caseStudy.solution.steps.dashboard.points.map((point, idx) => (
-                          <li key={idx} className="mt-1">{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
             
             {/* Results */}
-            <Card className="border border-gray-800 bg-gray-900/20 mb-12">
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6 text-white">📈 Results & Impact</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {caseStudy.results.items.map((result, idx) => (
-                    <div key={idx} className="border border-gray-700 rounded-lg p-4 bg-gray-800/20">
-                      <h3 className="font-semibold text-white mb-2">{result.title}</h3>
-                      <p className="text-white">{result.description}</p>
-                    </div>
-                  ))}
-                </div>
+                <h2 className="text-2xl font-bold mb-4 text-white">📈 Results & Impact</h2>
+                <p className="text-white text-lg leading-relaxed">{convertResultsToParagraph(caseStudy.results)}</p>
               </CardContent>
             </Card>
             
             {/* Tools & Stack */}
-            <Card className="border border-gray-800 bg-gray-900/20 mb-12">
+            <Card className="border border-gray-800 bg-gray-900/20 mb-8">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6 text-white">🛠️ Tools & Stack</h2>
-                <ul className="list-disc pl-5 text-white space-y-2">
-                  {caseStudy.tools.map((tool, idx) => (
-                    <li key={idx}>{tool}</li>
-                  ))}
-                </ul>
+                <h2 className="text-2xl font-bold mb-4 text-white">🛠️ Tools & Stack</h2>
+                <p className="text-white text-lg leading-relaxed">{convertToolsToParagraph(caseStudy.tools)}</p>
               </CardContent>
             </Card>
             
             {/* Final Reflection */}
             <Card className="border border-gray-800 bg-gray-900/20">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6 text-white">🧠 Final Reflection</h2>
-                <blockquote className="italic text-white text-lg border-l-4 border-purple-500 pl-4">
+                <h2 className="text-2xl font-bold mb-4 text-white">🧠 Final Reflection</h2>
+                <blockquote className="italic text-white text-lg border-l-4 border-purple-500 pl-4 leading-relaxed">
                   {caseStudy.reflection}
                 </blockquote>
               </CardContent>
