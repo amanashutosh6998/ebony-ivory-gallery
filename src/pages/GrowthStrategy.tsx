@@ -11,8 +11,8 @@ import { motion } from "framer-motion";
 
 interface Initiative {
   title: string;
-  category: string;
   description: string;
+  details: string[];
   github: string;
 }
 
@@ -37,39 +37,63 @@ const GrowthStrategy = () => {
   const growthInitiatives: Initiative[] = [
     {
       title: "Monthly Investor Summary (MIS)",
-      category: "Reporting",
       description: "Comprehensive monthly reporting system for investor communications including KPIs, financial metrics, and strategic updates.",
+      details: [
+        "Automated KPI collection and analysis",
+        "Financial performance metrics tracking",
+        "Strategic milestone progress reporting",
+        "Interactive dashboards for stakeholders",
+        "Customizable report templates"
+      ],
       github: "https://github.com/amanashutosh6998/monthly-investor-summary"
     },
     {
-      title: "Project Management Dashboard",
-      category: "Management",
+      title: "Project Management",
       description: "Centralized project tracking and management system with timeline visualization, resource allocation, and milestone tracking.",
+      details: [
+        "Real-time project timeline visualization",
+        "Resource allocation and capacity planning",
+        "Milestone tracking and deadline management",
+        "Team collaboration tools",
+        "Risk assessment and mitigation tracking"
+      ],
       github: "https://github.com/amanashutosh6998/project-management-dashboard"
     },
     {
       title: "Product Improvement Initiatives",
-      category: "Growth",
       description: "Data-driven product enhancement strategies including A/B testing frameworks, user feedback analysis, and feature prioritization.",
+      details: [
+        "A/B testing framework implementation",
+        "User feedback collection and analysis",
+        "Feature prioritization matrix",
+        "Performance impact measurement",
+        "Product roadmap optimization"
+      ],
       github: "https://github.com/amanashutosh6998/product-improvements"
     },
     {
-      title: "SLA Monitoring & Compliance",
-      category: "Operations",
-      description: "Service Level Agreement tracking system with automated alerts, performance metrics, and compliance reporting.",
-      github: "https://github.com/amanashutosh6998/sla-monitoring"
-    },
-    {
-      title: "Ticket Management System",
-      category: "Operations",
-      description: "Comprehensive ticketing solution with priority routing, escalation workflows, and performance analytics.",
-      github: "https://github.com/amanashutosh6998/ticket-management"
-    },
-    {
-      title: "Revenue Control & Growth Analytics",
-      category: "Growth",
+      title: "Revenue Control",
       description: "Revenue optimization platform with predictive analytics, growth forecasting, and performance tracking dashboards.",
+      details: [
+        "Predictive revenue analytics",
+        "Growth forecasting models",
+        "Performance tracking dashboards",
+        "Revenue stream optimization",
+        "Financial trend analysis"
+      ],
       github: "https://github.com/amanashutosh6998/revenue-analytics"
+    },
+    {
+      title: "SLA Monitoring & Compliance",
+      description: "Service Level Agreement tracking system with automated alerts, performance metrics, compliance reporting, and integrated ticket management.",
+      details: [
+        "Automated SLA performance monitoring",
+        "Compliance reporting and alerts",
+        "Ticket management and routing system",
+        "Escalation workflow automation",
+        "Performance analytics and insights"
+      ],
+      github: "https://github.com/amanashutosh6998/sla-monitoring"
     }
   ];
 
@@ -112,100 +136,41 @@ const GrowthStrategy = () => {
               </motion.p>
             </div>
 
-            {/* Reporting & Management Section */}
+            {/* All Initiatives */}
             <motion.div 
-              className="mb-16"
+              className="grid md:grid-cols-2 gap-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-400">Reporting & Management</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                {growthInitiatives.filter(initiative => ['Reporting', 'Management'].includes(initiative.category)).map((initiative, index) => (
-                  <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
-                    <CardContent className="p-6">
-                      <div className="px-2">
-                        <div className="flex justify-between items-start mb-4">
-                          <span className="text-sm px-3 py-1 rounded-full bg-purple-500/20 text-purple-400">
-                            {initiative.category}
-                          </span>
-                        </div>
-                        <h3 className="text-xl font-bold mb-2 text-white">{initiative.title}</h3>
-                        <p className="text-gray-400 mb-4">{initiative.description}</p>
-                        <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                          <a href={initiative.github} target="_blank" rel="noopener noreferrer">
-                            View Project
-                          </a>
-                        </Button>
+              {growthInitiatives.map((initiative, index) => (
+                <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
+                  <CardContent className="p-6">
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold mb-3 text-white">{initiative.title}</h3>
+                      <p className="text-gray-400 mb-4">{initiative.description}</p>
+                      
+                      <div className="mb-4">
+                        <h4 className="text-sm font-semibold text-purple-400 mb-2">Key Features:</h4>
+                        <ul className="text-sm text-gray-300 space-y-1">
+                          {initiative.details.map((detail, detailIndex) => (
+                            <li key={detailIndex} className="flex items-start">
+                              <span className="text-purple-400 mr-2">•</span>
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Growth Initiatives Section */}
-            <motion.div 
-              className="mb-16"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-pink-400">Growth Initiatives</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                {growthInitiatives.filter(initiative => initiative.category === 'Growth').map((initiative, index) => (
-                  <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
-                    <CardContent className="p-6">
-                      <div className="px-2">
-                        <div className="flex justify-between items-start mb-4">
-                          <span className="text-sm px-3 py-1 rounded-full bg-pink-500/20 text-pink-400">
-                            {initiative.category}
-                          </span>
-                        </div>
-                        <h3 className="text-xl font-bold mb-2 text-white">{initiative.title}</h3>
-                        <p className="text-gray-400 mb-4">{initiative.description}</p>
-                        <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                          <a href={initiative.github} target="_blank" rel="noopener noreferrer">
-                            View Project
-                          </a>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Operations Section */}
-            <motion.div 
-              className="mb-16"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-cyan-400">Operations</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                {growthInitiatives.filter(initiative => initiative.category === 'Operations').map((initiative, index) => (
-                  <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
-                    <CardContent className="p-6">
-                      <div className="px-2">
-                        <div className="flex justify-between items-start mb-4">
-                          <span className="text-sm px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">
-                            {initiative.category}
-                          </span>
-                        </div>
-                        <h3 className="text-xl font-bold mb-2 text-white">{initiative.title}</h3>
-                        <p className="text-gray-400 mb-4">{initiative.description}</p>
-                        <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
-                          <a href={initiative.github} target="_blank" rel="noopener noreferrer">
-                            View Project
-                          </a>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      
+                      <Button variant="secondary" className="bg-transparent border-white text-white hover:bg-white hover:text-black w-full" asChild>
+                        <a href={initiative.github} target="_blank" rel="noopener noreferrer">
+                          View Project
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </motion.div>
           </div>
         </section>
