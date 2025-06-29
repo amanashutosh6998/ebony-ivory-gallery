@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 interface Initiative {
@@ -110,7 +109,7 @@ const GrowthStrategy = () => {
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-3xl mx-auto mb-16 text-center">
+            <div className="max-w-4xl mx-auto mb-16 text-center">
               <motion.h1 
                 className="text-4xl md:text-5xl font-bold mb-6 text-white"
                 initial={{ opacity: 0, y: 20 }}
@@ -129,34 +128,34 @@ const GrowthStrategy = () => {
               </motion.p>
             </div>
 
-            {/* All Initiatives */}
+            {/* All Initiatives as Paragraphs */}
             <motion.div 
-              className="grid md:grid-cols-2 gap-8"
+              className="max-w-4xl mx-auto space-y-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {growthInitiatives.map((initiative, index) => (
-                <Card key={index} className="overflow-hidden border border-gray-800 bg-gray-900/50 hover:-translate-y-1 transition-transform duration-300">
-                  <CardContent className="p-6">
-                    <div className="mb-6">
-                      <h3 className="text-xl font-bold mb-3 text-white">{initiative.title}</h3>
-                      <p className="text-gray-400 mb-4">{initiative.description}</p>
-                      
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-purple-400 mb-2">Key Features:</h4>
-                        <ul className="text-sm text-gray-300 space-y-1">
-                          {initiative.details.map((detail, detailIndex) => (
-                            <li key={detailIndex} className="flex items-start">
-                              <span className="text-purple-400 mr-2">•</span>
-                              {detail}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                <div key={index} className="mb-12">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">{initiative.title}</h2>
+                  <p className="text-lg text-gray-300 mb-6 leading-relaxed">{initiative.description}</p>
+                  
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-purple-400 mb-3">Key Features:</h3>
+                    <div className="text-gray-300 leading-relaxed">
+                      {initiative.details.map((detail, detailIndex) => (
+                        <p key={detailIndex} className="mb-2">
+                          <span className="text-purple-400 mr-2">•</span>
+                          {detail}
+                        </p>
+                      ))}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                  
+                  {index < growthInitiatives.length - 1 && (
+                    <hr className="border-gray-700 mt-8" />
+                  )}
+                </div>
               ))}
             </motion.div>
           </div>
