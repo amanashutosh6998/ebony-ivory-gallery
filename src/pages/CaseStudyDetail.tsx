@@ -276,7 +276,7 @@ const CaseStudyDetail = () => {
 
   if (!caseStudy) {
     return (
-      <div className="min-h-screen bg-white text-black flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Case Study Not Found</h1>
           <Button onClick={() => navigate("/case-studies")}>
@@ -312,12 +312,7 @@ const CaseStudyDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black relative overflow-hidden">
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="purple-blue" density="medium" />
-      </div>
-      
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
@@ -325,7 +320,7 @@ const CaseStudyDetail = () => {
           <div className="container mx-auto px-4 md:px-8 max-w-4xl">
             <Button 
               variant="secondary" 
-              className="mb-8 text-black border border-gray-300" 
+              className="mb-8 text-white border border-gray-600 bg-gray-800 hover:bg-gray-700" 
               onClick={() => navigate("/case-studies")}
             >
               ← Back to Case Studies
@@ -333,14 +328,14 @@ const CaseStudyDetail = () => {
 
             {/* Header */}
             <div className="mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-black">{caseStudy.title}</h1>
-              <h2 className="text-xl md:text-2xl mb-8 text-gray-700">{caseStudy.subtitle}</h2>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">{caseStudy.title}</h1>
+              <h2 className="text-xl md:text-2xl mb-8 text-gray-300">{caseStudy.subtitle}</h2>
               
               <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2 text-black">Categories</h3>
+                <h3 className="text-lg font-semibold mb-2 text-white">Categories</h3>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {caseStudy.categories?.map((category, idx) => (
-                    <span key={idx} className="bg-gray-200 text-black px-3 py-1 text-sm rounded-full border border-gray-300">
+                    <span key={idx} className="bg-gray-800 text-white px-3 py-1 text-sm rounded-full border border-gray-600">
                       {category}
                     </span>
                   ))}
@@ -349,38 +344,38 @@ const CaseStudyDetail = () => {
             </div>
             
             {/* Company Overview */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">🏢 Company Overview</h2>
-                <p className="text-black text-lg leading-relaxed">{caseStudy.companyOverview}</p>
+                <h2 className="text-2xl font-bold mb-4 text-white">Company Overview</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{caseStudy.companyOverview}</p>
               </CardContent>
             </Card>
             
             {/* Challenges */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">❌ Challenges</h2>
-                <p className="text-black text-lg leading-relaxed">{convertChallengestoParagraph(caseStudy.challenges)}</p>
+                <h2 className="text-2xl font-bold mb-4 text-white">Challenges</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{convertChallengestoParagraph(caseStudy.challenges)}</p>
               </CardContent>
             </Card>
             
             {/* Goal */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">🎯 Goal</h2>
-                <p className="text-black text-lg leading-relaxed">{caseStudy.goal}</p>
+                <h2 className="text-2xl font-bold mb-4 text-white">Goal</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{caseStudy.goal}</p>
               </CardContent>
             </Card>
             
             {/* Solution */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-6 text-black">✅ Solution Overview</h2>
+                <h2 className="text-2xl font-bold mb-6 text-white">Solution Overview</h2>
                 <div className="space-y-6">
                   {convertSolutionToParagraphs(caseStudy.solution).map((step, idx) => (
                     <div key={idx}>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-800">{step.title}</h3>
-                      <p className="text-black text-lg leading-relaxed">{step.content}</p>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-200">{step.title}</h3>
+                      <p className="text-gray-300 text-lg leading-relaxed">{step.content}</p>
                     </div>
                   ))}
                 </div>
@@ -388,26 +383,26 @@ const CaseStudyDetail = () => {
             </Card>
             
             {/* Results */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">📈 Results & Impact</h2>
-                <p className="text-black text-lg leading-relaxed">{convertResultsToParagraph(caseStudy.results)}</p>
+                <h2 className="text-2xl font-bold mb-4 text-white">Results & Impact</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{convertResultsToParagraph(caseStudy.results)}</p>
               </CardContent>
             </Card>
             
             {/* Tools & Stack */}
-            <Card className="border border-gray-300 bg-white mb-8 shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 mb-8 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">🛠️ Tools & Stack</h2>
-                <p className="text-black text-lg leading-relaxed">{convertToolsToParagraph(caseStudy.tools)}</p>
+                <h2 className="text-2xl font-bold mb-4 text-white">Tools & Stack</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">{convertToolsToParagraph(caseStudy.tools)}</p>
               </CardContent>
             </Card>
             
             {/* Final Reflection */}
-            <Card className="border border-gray-300 bg-white shadow-sm">
+            <Card className="border border-gray-600 bg-gray-900 shadow-sm">
               <CardContent className="p-6">
-                <h2 className="text-2xl font-bold mb-4 text-black">🧠 Final Reflection</h2>
-                <blockquote className="italic text-black text-lg border-l-4 border-gray-400 pl-4 leading-relaxed">
+                <h2 className="text-2xl font-bold mb-4 text-white">Final Reflection</h2>
+                <blockquote className="italic text-gray-300 text-lg border-l-4 border-gray-600 pl-4 leading-relaxed">
                   {caseStudy.reflection}
                 </blockquote>
               </CardContent>
