@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import AwsCdpFlowDiagram from "@/components/AwsCdpFlowDiagram";
 import MiroEmbed from "@/components/MiroEmbed";
+import GoogleSheetsEmbed from "@/components/GoogleSheetsEmbed";
 
 const AwsCdpPipeline = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -52,7 +53,7 @@ const AwsCdpPipeline = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  AWS CDP Pipeline
+                  ETL + Analytics
                 </motion.h1>
                 <motion.p 
                   className="text-xl text-gray-300 mb-8"
@@ -60,7 +61,7 @@ const AwsCdpPipeline = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  End-to-end Customer Data Platform using S3, Lambda, Redshift & Step Functions
+                  End-to-end Customer Data Platform with analytics pipeline using S3, Lambda, Redshift & Step Functions
                 </motion.p>
               </div>
             </div>
@@ -94,20 +95,39 @@ const AwsCdpPipeline = () => {
                 <AwsCdpFlowDiagram />
               </div>
             </motion.div>
+
+            {/* Analytics Dashboard Section */}
+            <motion.div 
+              className="w-full py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.9 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Analytics Dashboard</h2>
+              <p className="text-gray-400 mb-8 text-center max-w-3xl mx-auto">
+                Live dashboard showing key metrics and trends from the processed data pipeline, 
+                including customer insights, conversion rates, and system performance.
+              </p>
+              
+              {/* Google Sheets Embed */}
+              <div className="mb-12">
+                <GoogleSheetsEmbed />
+              </div>
+            </motion.div>
             
             {/* Project Description Section */}
             <motion.div 
               className="my-12 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
             >
               <Card className="bg-gray-900/50 border border-gray-800 p-8">
                 <h2 className="text-3xl font-bold mb-6 text-white">About This Project</h2>
                 <div className="space-y-6 text-gray-300">
                   <p>
                     This project implements a complete Customer Data Platform on AWS, 
-                    featuring automated data ingestion, transformation, and analysis workflows.
+                    featuring automated data ingestion, transformation, and analysis workflows with comprehensive analytics reporting.
                   </p>
                   
                   <h3 className="text-xl font-bold text-white">Key Components</h3>
@@ -116,20 +136,21 @@ const AwsCdpPipeline = () => {
                     <li>Lambda functions for data cleaning and transformation</li>
                     <li>Redshift for data warehousing and analytics</li>
                     <li>Step Functions for workflow orchestration</li>
+                    <li>Real-time analytics dashboard with automated reporting</li>
                     <li>IAM roles and policies for secure access management</li>
                   </ul>
                   
                   <h3 className="text-xl font-bold text-white">Technical Challenges</h3>
                   <p>
-                    The primary challenge was optimizing the data pipeline for both speed and cost. 
-                    By implementing smart batching and incremental processing, we reduced 
-                    processing times by 40% while keeping compute costs minimal.
+                    The primary challenge was optimizing the data pipeline for both speed and cost while ensuring 
+                    real-time analytics capabilities. By implementing smart batching, incremental processing, and 
+                    automated dashboard generation, we reduced processing times by 40% while keeping compute costs minimal.
                   </p>
                   
                   <h3 className="text-xl font-bold text-white">Results</h3>
                   <p>
-                    This CDP solution enabled real-time customer insights across multiple channels,
-                    leading to more personalized marketing campaigns and a 25% increase in customer 
+                    This comprehensive ETL + Analytics solution enabled real-time customer insights across multiple channels,
+                    leading to more personalized marketing campaigns, automated reporting dashboards, and a 25% increase in customer 
                     engagement for our client.
                   </p>
                 </div>
