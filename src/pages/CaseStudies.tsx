@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import ColorParticles from "@/components/ColorParticles";
 import LoadingScreen from "@/components/LoadingScreen";
 
 const CaseStudies = () => {
@@ -41,12 +40,7 @@ const CaseStudies = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <ColorParticles colorScheme="purple-blue" density="medium" />
-      </div>
-      
+    <div className="min-h-screen bg-white text-black relative overflow-hidden">
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
