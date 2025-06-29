@@ -40,7 +40,7 @@ const CaseStudies = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <Navbar />
       
       <div className={`pt-16 relative z-10 ${isLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>

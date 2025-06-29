@@ -46,33 +46,33 @@ const CaseStudiesSection = () => {
 
   if (loading) {
     return (
-      <div className="py-24 bg-white">
+      <div className="py-24 bg-black">
         <div className="container mx-auto px-4 md:px-8 text-center">
-          <p className="text-gray-600">Loading case studies...</p>
+          <p className="text-gray-400">Loading case studies...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <section id="case-studies" className="py-24 bg-white">
+    <section id="case-studies" className="py-24 bg-black">
       <div className="container mx-auto px-4 md:px-8">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-black">Case Studies</h2>
-          <p className="text-lg text-gray-600">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white">Case Studies</h2>
+          <p className="text-lg text-gray-400">
             Real-world problems solved with a data-driven approach to growth and optimization.
           </p>
         </div>
 
         <div className="space-y-12">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="overflow-hidden border border-gray-300 bg-white shadow-sm">
+            <Card key={index} className="overflow-hidden border border-gray-700 bg-gray-900 shadow-sm">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-black">{study.title}</h3>
-                <p className="text-gray-700 mb-6 text-lg leading-relaxed">{study.problem}</p>
+                <h3 className="text-2xl font-bold mb-4 text-white">{study.title}</h3>
+                <p className="text-gray-300 mb-6 text-lg leading-relaxed">{study.problem}</p>
                 <Link to={`/case-study/${study.slug}`}>
                   <Button 
-                    className="bg-black text-white hover:bg-gray-800 border border-black"
+                    className="bg-white text-black hover:bg-gray-200 border border-white"
                   >
                     Read Case Study
                   </Button>
