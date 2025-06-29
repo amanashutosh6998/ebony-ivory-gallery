@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { Download, Copy, Globe } from "lucide-react";
+import { Download, Copy, Globe, AlertCircle } from "lucide-react";
 
 const ContentExtractor = () => {
   const [url, setUrl] = useState('');
@@ -39,12 +38,31 @@ const ContentExtractor = () => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data.contents, 'text/html');
         
-        // Remove script and style elements
-        const scripts = doc.querySelectorAll('script, style, nav, header, footer');
-        scripts.forEach(el => el.remove());
+        // Remove script and style elements but keep more content
+        const elementsToRemove = doc.querySelectorAll('script, style, noscript');
+        elementsToRemove.forEach(el => el.remove());
         
-        // Extract text content
-        const textContent = doc.body?.textContent || doc.textContent || '';
+        // Try to extract text content from the body
+        let textContent = doc.body?.textContent || doc.textContent || '';
+        
+        // If we get very little content, it might be a SPA - try to extract from meta tags and title
+        if (textContent.trim().length < 100) {
+          const title = doc.querySelector('title')?.textContent || '';
+          const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+          const ogTitle = doc.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
+          const ogDescription = doc.querySelector('meta[property="og:description"]')?.getAttribute('content') || '';
+          
+          // Combine available metadata
+          const metaContent = [title, description, ogTitle, ogDescription]
+            .filter(Boolean)
+            .join(' | ');
+          
+          if (metaContent) {
+            textContent = `${metaContent}\n\n[Note: This appears to be a single-page application. The content shown above is extracted from meta tags. For full content extraction from SPAs, a more advanced solution would be needed.]`;
+          } else {
+            textContent = `[Note: This website appears to be a single-page application with minimal extractable content. The original content was: "${textContent.trim()}"]`;
+          }
+        }
         
         // Clean up the text
         const cleanedContent = textContent
@@ -64,7 +82,7 @@ const ContentExtractor = () => {
       console.error('Error extracting content:', error);
       toast({
         title: "Error",
-        description: "Failed to extract content. The website might be blocking requests.",
+        description: "Failed to extract content. The website might be blocking requests or using heavy JavaScript.",
         variant: "destructive",
       });
     } finally {
@@ -127,6 +145,18 @@ const ContentExtractor = () => {
               >
                 Extract clean text content from any website for your chatbot or content management
               </motion.p>
+              
+              <div className="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-left">
+                    <p className="text-yellow-200 text-sm">
+                      <strong>Note:</strong> This tool works best with static websites and blogs. 
+                      Single-page applications (SPAs) and heavily protected sites may have limited content extraction.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <motion.div 
