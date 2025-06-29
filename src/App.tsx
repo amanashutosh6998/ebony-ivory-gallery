@@ -18,6 +18,7 @@ import GrowthStrategy from "./pages/GrowthStrategy";
 import Analytics from "./pages/Analytics";
 import MusicProduction from "./pages/MusicProduction";
 import ContentExtractor from "./pages/ContentExtractor";
+import WebScraper from "./pages/WebScraper";
 import ChatbotWidget from "./components/ChatbotWidget";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/music-production" element={<MusicProduction />} />
           <Route path="/content-extractor" element={<ContentExtractor />} />
+          <Route path="/web-scraper" element={<WebScraper />} />
           <Route path="/about" element={<Navigate to="/#about" replace />} />
           <Route path="/contact" element={<Navigate to="/resume" replace />} />
           <Route path="*" element={<NotFound />} />
