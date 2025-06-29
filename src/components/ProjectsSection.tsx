@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -13,9 +14,9 @@ interface Project {
 const ProjectsSection = () => {
   const projects: Project[] = [
     {
-      title: "AWS CDP Pipeline",
+      title: "ETL + Analytics",
       category: "Data Engineering",
-      description: "End-to-end Customer Data Platform using S3, Lambda, Redshift & Step Functions.",
+      description: "End-to-end Customer Data Platform with analytics pipeline using S3, Lambda, Redshift & Step Functions.",
       github: "https://github.com/amanashutosh6998/aws-cdp-pipeline",
       path: "/aws-cdp-pipeline"
     },
@@ -25,13 +26,6 @@ const ProjectsSection = () => {
       description: "Deduplication, batch associations, and lifecycle stage mapping automation.",
       github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
       path: "/hubspot-expert"
-    },
-    {
-      title: "Analytics",
-      category: "Data Pipeline",
-      description: "Async pipeline to extract, clean, and enrich support conversations.",
-      github: "https://github.com/amanashutosh6998/intercom-etl",
-      path: "/analytics"
     },
   ];
 
