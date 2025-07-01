@@ -41,13 +41,6 @@ const ProjectsSection = () => {
       github: "https://github.com/amanashutosh6998/growth-strategy",
       path: "/growth-strategy"
     },
-    {
-      title: "Content Extractor",
-      category: "Content Management",
-      description: "Free web content extraction tool for chatbots and content management. Extract clean text from any website without API costs.",
-      github: "https://github.com/amanashutosh6998/content-extractor",
-      path: "/content-extractor"
-    },
   ];
 
   return (
