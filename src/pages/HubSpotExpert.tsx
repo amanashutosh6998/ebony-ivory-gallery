@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -77,8 +76,7 @@ const HubSpotExpert = () => {
         "Email Campaigns & A/B Tests",
         "List Segmentation",
         "Landing Pages & Forms",
-        "CTAs, Popups",
-        "Blog/SEO Tools"
+        "CTAs, Popups"
       ]
     },
     {
@@ -109,19 +107,8 @@ const HubSpotExpert = () => {
       description: "Comprehensive data management ensuring compliance, data quality, and proper governance with audit trails and migration support.",
       items: [
         "GDPR/Consent Management",
-        "Field Audit Trails",
         "Property Cleanups & Migrations",
         "Data Quality Monitoring"
-      ]
-    },
-    {
-      category: "Training & Documentation",
-      color: "bg-slate-800 text-white",
-      description: "Knowledge transfer and documentation services including training programs, standard operating procedures, and user onboarding resources.",
-      items: [
-        "Internal SOPs for Marketing",
-        "Onboarding for new users",
-        "Troubleshooting Guides"
       ]
     },
     {
@@ -172,7 +159,7 @@ const HubSpotExpert = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  HubSpot Administration Services
+                  HubSpot Administration
                 </motion.h1>
                 <motion.p 
                   className="text-xl text-gray-300 mb-8"
