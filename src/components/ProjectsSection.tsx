@@ -16,14 +16,14 @@ const ProjectsSection = () => {
     {
       title: "ETL + Analytics",
       category: "Data Engineering",
-      description: "End-to-end Customer Data Platform with analytics pipeline using S3, Lambda, Redshift & Step Functions.",
+      description: "End-to-end Analytics in Google Sheets and Looker Studio with AWS native ETL",
       github: "https://github.com/amanashutosh6998/aws-cdp-pipeline",
       path: "/aws-cdp-pipeline"
     },
     {
       title: "CRM Administrator",
       category: "Marketing Automation",
-      description: "HubSpot administration including deduplication, batch associations, and lifecycle stage mapping automation.",
+      description: "Complete HubSpot ownership for Marketing, Sales and Customer Success teams operations.",
       github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
       path: "/hubspot-expert"
     },
