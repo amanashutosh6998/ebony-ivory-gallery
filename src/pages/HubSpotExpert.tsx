@@ -14,6 +14,7 @@ interface HubSpotService {
   category: string;
   color: string;
   items: string[];
+  description: string;
 }
 
 const HubSpotExpert = () => {
@@ -38,6 +39,7 @@ const HubSpotExpert = () => {
     {
       category: "CRM Management",
       color: "bg-slate-800 text-white",
+      description: "Complete CRM administration including data organization, property management, and database optimization for streamlined operations.",
       items: [
         "Contacts, Companies, Deals, Tickets",
         "Lifecycle Stages",
@@ -47,7 +49,8 @@ const HubSpotExpert = () => {
     },
     {
       category: "Automation",
-      color: "bg-slate-800 text-white",
+      color: "bg-slate-800 text-white",  
+      description: "Advanced workflow automation to streamline sales, marketing, and customer service processes with intelligent routing and notifications.",
       items: [
         "Workflows (Sales, Marketing, CS)",
         "Lead Rotation & Scoring",
@@ -58,6 +61,7 @@ const HubSpotExpert = () => {
     {
       category: "Sales Hub",
       color: "bg-slate-800 text-white",
+      description: "Sales pipeline optimization with deal tracking, forecasting capabilities, and automated quoting systems for improved sales efficiency.",
       items: [
         "Pipeline Setup & Structure",
         "Deal Forecasting",
@@ -68,6 +72,7 @@ const HubSpotExpert = () => {
     {
       category: "Marketing Hub",
       color: "bg-slate-800 text-white",
+      description: "Comprehensive marketing automation including email campaigns, lead nurturing, content management, and conversion optimization tools.",
       items: [
         "Email Campaigns & A/B Tests",
         "List Segmentation",
@@ -79,6 +84,7 @@ const HubSpotExpert = () => {
     {
       category: "Reporting & Dashboards",
       color: "bg-slate-800 text-white",
+      description: "Advanced analytics and reporting systems providing actionable insights into sales performance, marketing attribution, and customer journey analytics.",
       items: [
         "Custom Reports",
         "Sales & Marketing Attribution",
@@ -89,6 +95,7 @@ const HubSpotExpert = () => {
     {
       category: "Integration & API",
       color: "bg-slate-800 text-white",
+      description: "Seamless integration management connecting HubSpot with external systems through APIs, webhooks, and marketplace applications for unified data flow.",
       items: [
         "App Marketplace Tools",
         "Webhooks & Custom Code Actions",
@@ -99,6 +106,7 @@ const HubSpotExpert = () => {
     {
       category: "Data Governance",
       color: "bg-slate-800 text-white",
+      description: "Comprehensive data management ensuring compliance, data quality, and proper governance with audit trails and migration support.",
       items: [
         "GDPR/Consent Management",
         "Field Audit Trails",
@@ -109,6 +117,7 @@ const HubSpotExpert = () => {
     {
       category: "Training & Documentation",
       color: "bg-slate-800 text-white",
+      description: "Knowledge transfer and documentation services including training programs, standard operating procedures, and user onboarding resources.",
       items: [
         "Internal SOPs for Marketing",
         "Onboarding for new users",
@@ -118,6 +127,7 @@ const HubSpotExpert = () => {
     {
       category: "Strategy & Optimization",
       color: "bg-slate-800 text-white",
+      description: "Strategic consulting focused on revenue operations alignment and process optimization to maximize HubSpot ROI and operational efficiency.",
       items: [
         "RevOps Alignment",
         "Funnel & Process Optimization"
@@ -162,7 +172,7 @@ const HubSpotExpert = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  HubSpot Expert Services
+                  HubSpot Administration Services
                 </motion.h1>
                 <motion.p 
                   className="text-xl text-gray-300 mb-8"
@@ -170,7 +180,7 @@ const HubSpotExpert = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  Maximize your HubSpot ROI with expert setup, optimization, and automation services tailored to your business needs.
+                  Maximize your HubSpot ROI with expert administration, optimization, and automation services tailored to your business needs.
                 </motion.p>
               </div>
             </div>
@@ -235,7 +245,7 @@ const HubSpotExpert = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">HubSpot Expert Service Areas</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">HubSpot Administration Service Areas</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map((service, index) => (
@@ -246,7 +256,8 @@ const HubSpotExpert = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
-                    <h3 className="text-xl font-bold mb-4">{service.category}</h3>
+                    <h3 className="text-xl font-bold mb-3">{service.category}</h3>
+                    <p className="text-gray-300 text-sm mb-4 leading-relaxed">{service.description}</p>
                     <ul className="space-y-2">
                       {service.items.map((item, i) => (
                         <motion.li 
@@ -257,7 +268,7 @@ const HubSpotExpert = () => {
                           className="flex items-start"
                         >
                           <span className="mr-2">•</span>
-                          <span>{item}</span>
+                          <span className="text-sm">{item}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -272,10 +283,10 @@ const HubSpotExpert = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
             >
-              <h2 className="text-3xl font-bold mb-6 text-white">Why Work With a HubSpot Expert?</h2>
+              <h2 className="text-3xl font-bold mb-6 text-white">Why Work With a HubSpot Administrator?</h2>
               <p className="text-gray-300 mb-8">
-                HubSpot's powerful platform requires expert knowledge to fully leverage its capabilities. 
-                Working with a certified HubSpot expert ensures your CRM is properly configured to match your
+                HubSpot's powerful platform requires expert administration to fully leverage its capabilities. 
+                Working with a certified HubSpot administrator ensures your CRM is properly configured to match your
                 business processes, saving you time and maximizing your return on investment.
               </p>
               <div className="flex flex-wrap justify-center gap-8">

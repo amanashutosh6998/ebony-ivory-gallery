@@ -23,7 +23,7 @@ const ProjectsSection = () => {
     {
       title: "CRM Administrator",
       category: "Marketing Automation",
-      description: "Deduplication, batch associations, and lifecycle stage mapping automation.",
+      description: "HubSpot administration including deduplication, batch associations, and lifecycle stage mapping automation.",
       github: "https://github.com/amanashutosh6998/hubspot-crm-cleanup",
       path: "/hubspot-expert"
     },
@@ -37,7 +37,7 @@ const ProjectsSection = () => {
     {
       title: "Growth and Strategy (CEO's office)",
       category: "Executive Management",
-      description: "Strategic growth initiatives including MIS reporting, project management, product improvements, SLA monitoring, ticket management, and revenue optimization.",
+      description: "Strategic growth initiatives including MIS reporting, project management, process improvements, SLA monitoring, ticket management, and revenue optimization.",
       github: "https://github.com/amanashutosh6998/growth-strategy",
       path: "/growth-strategy"
     },

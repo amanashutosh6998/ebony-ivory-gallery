@@ -55,14 +55,14 @@ const GrowthStrategy = () => {
       ]
     },
     {
-      title: "Product Improvement Initiatives",
-      description: "Data-driven product enhancement strategies including A/B testing frameworks, user feedback analysis, and feature prioritization.",
+      title: "Process Improvement Initiatives",
+      description: "Systematic process optimization strategies including workflow analysis, efficiency enhancement, and operational excellence frameworks.",
       details: [
-        "A/B testing framework implementation",
-        "User feedback collection and analysis",
-        "Feature prioritization matrix",
-        "Performance impact measurement",
-        "Product roadmap optimization"
+        "Workflow analysis and optimization",
+        "Operational efficiency measurement",
+        "Process standardization frameworks",
+        "Performance improvement tracking",
+        "Operational excellence roadmap"
       ]
     },
     {
