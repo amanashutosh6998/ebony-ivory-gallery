@@ -71,135 +71,149 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
             </div>
             <p class="text-lg text-gray-600 mb-4">Automating lead qualification for faster, more focused follow-ups</p>
             <div class="flex gap-2 mb-6">
-              <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Sales Operations</span>
-              <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Lead Qualification</span>
-              <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">HubSpot</span>
-              <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Sales Operations</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Lead Qualification</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">HubSpot</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Automation</span>
             </div>
           </div>
 
           <!-- Company Context -->
-          <div class="mb-8">
+          <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🏢</span>
               <h3 class="text-xl font-semibold text-gray-900">Company Context</h3>
             </div>
-            <div class="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-              <p class="text-gray-700 leading-relaxed">At Kenko AI, our inbound pipeline was rapidly expanding thanks to performance ads and lead magnets — a strong sign of top-of-funnel momentum. But with growing volume came a challenge:</p>
-              <p class="text-gray-900 font-medium mt-2">Our SDR team was overwhelmed by quantity, not quality.</p>
-            </div>
+            <p class="text-gray-700 leading-relaxed mb-2">At Kenko AI, our inbound pipeline was rapidly expanding thanks to performance ads and lead magnets — a strong sign of top-of-funnel momentum. But with growing volume came a challenge:</p>
+            <p class="text-gray-900 font-medium">Our SDR team was overwhelmed by quantity, not quality.</p>
           </div>
 
           <!-- Challenges -->
-          <div class="mb-8">
+          <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🚧</span>
               <h3 class="text-xl font-semibold text-gray-900">Challenges</h3>
             </div>
-            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-1">•</span>
-                  <span>SDRs manually reviewed every lead — with no prioritization framework</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-1">•</span>
-                  <span>Many leads had low intent or lacked decision-making authority</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-1">•</span>
-                  <span>High-intent leads were missed or delayed in follow-up</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-500 mt-1">•</span>
-                  <span>SDR response times were inconsistent, affecting conversions</span>
-                </li>
-              </ul>
+            <ul class="space-y-2 text-gray-700 pl-4">
+              <li>• SDRs manually reviewed every lead — with no prioritization framework</li>
+              <li>• Many leads had low intent or lacked decision-making authority</li>
+              <li>• High-intent leads were missed or delayed in follow-up</li>
+              <li>• SDR response times were inconsistent, affecting conversions</li>
+            </ul>
+          </div>
+
+          <!-- Objective -->
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">🎯</span>
+              <h3 class="text-xl font-semibold text-gray-900">Objective</h3>
             </div>
+            <p class="text-gray-700 mb-3">Build an automated lead scoring engine that:</p>
+            <ul class="space-y-1 text-gray-700 pl-4">
+              <li>• Prioritizes leads by intent, fit, and engagement</li>
+              <li>• Penalizes low-quality or inactive leads</li>
+              <li>• Routes high-scoring leads instantly to SDRs</li>
+              <li>• Incorporates real SDR feedback to improve accuracy</li>
+              <li>• Improves SQL-to-demo conversion and eliminates manual filtering</li>
+            </ul>
           </div>
 
           <!-- Solution -->
-          <div class="mb-8">
+          <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🧠</span>
               <h3 class="text-xl font-semibold text-gray-900">Solution: QL Score 2.0</h3>
             </div>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <p class="text-gray-700 mb-4">A dynamic, multi-factor scoring model designed to reflect sales readiness. Scores update automatically in HubSpot based on:</p>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white border border-gray-200 rounded-lg p-3 text-center">
-                  <div class="text-2xl mb-2">📝</div>
-                  <p class="text-sm font-medium text-gray-900">Forms submitted</p>
-                </div>
-                <div class="bg-white border border-gray-200 rounded-lg p-3 text-center">
-                  <div class="text-2xl mb-2">🌐</div>
-                  <p class="text-sm font-medium text-gray-900">Website behavior</p>
-                </div>
-                <div class="bg-white border border-gray-200 rounded-lg p-3 text-center">
-                  <div class="text-2xl mb-2">🏢</div>
-                  <p class="text-sm font-medium text-gray-900">Contact/business data</p>
-                </div>
-                <div class="bg-white border border-gray-200 rounded-lg p-3 text-center">
-                  <div class="text-2xl mb-2">🤝</div>
-                  <p class="text-sm font-medium text-gray-900">Sales interactions</p>
-                </div>
+            <p class="text-gray-700 mb-4">A dynamic, multi-factor scoring model designed to reflect sales readiness. Scores update automatically in HubSpot based on:</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <div class="text-center p-3 bg-gray-50 rounded">
+                <div class="text-2xl mb-1">📝</div>
+                <p class="text-sm text-gray-700">Forms submitted</p>
+              </div>
+              <div class="text-center p-3 bg-gray-50 rounded">
+                <div class="text-2xl mb-1">🌐</div>
+                <p class="text-sm text-gray-700">Website behavior</p>
+              </div>
+              <div class="text-center p-3 bg-gray-50 rounded">
+                <div class="text-2xl mb-1">🏢</div>
+                <p class="text-sm text-gray-700">Contact/business data</p>
+              </div>
+              <div class="text-center p-3 bg-gray-50 rounded">
+                <div class="text-2xl mb-1">🤝</div>
+                <p class="text-sm text-gray-700">Sales interactions</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Intent & Fit Scoring -->
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg">✳️</span>
+              <h4 class="text-lg font-semibold text-gray-900">Intent & Fit Scoring</h4>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="font-medium text-gray-900 mb-2">Intent:</p>
+                <ul class="space-y-1 text-gray-700 text-sm pl-4">
+                  <li>• Form submissions (Demo, Pricing Quiz, Lead Magnets)</li>
+                  <li>• Visits to high-intent pages (/pricing, /demo, /features)</li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-medium text-gray-900 mb-2">Fit:</p>
+                <ul class="space-y-1 text-gray-700 text-sm pl-4">
+                  <li>• Valid contact details (email, phone)</li>
+                  <li>• Company industry, size match</li>
+                  <li>• Business information completeness</li>
+                </ul>
               </div>
             </div>
           </div>
 
           <!-- Implementation -->
-          <div class="mb-8">
+          <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">⚙️</span>
               <h3 class="text-xl font-semibold text-gray-900">HubSpot Implementation</h3>
             </div>
-            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 class="font-semibold text-gray-900 mb-2">Setup & Configuration</h4>
-                  <ul class="space-y-1 text-gray-700 text-sm">
-                    <li>• Created custom QL Score property</li>
-                    <li>• Automated real-time scoring workflows</li>
-                    <li>• Set up SDR alerts via Slack & Email</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900 mb-2">Optimization</h4>
-                  <ul class="space-y-1 text-gray-700 text-sm">
-                    <li>• Implemented territory-based AE routing</li>
-                    <li>• Defined score thresholds for lifecycle stages</li>
-                    <li>• Built feedback loop with SDRs</li>
-                  </ul>
-                </div>
-              </div>
+            <ul class="space-y-1 text-gray-700 pl-4">
+              <li>• Created custom QL Score property</li>
+              <li>• Automated real-time scoring workflows</li>
+              <li>• Set up SDR alerts via Slack & Email</li>
+              <li>• Implemented territory-based AE routing</li>
+              <li>• Defined score thresholds for lifecycle stage transitions</li>
+            </ul>
+          </div>
+
+          <!-- Performance Tracking -->
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">📊</span>
+              <h3 class="text-xl font-semibold text-gray-900">Performance Tracking</h3>
             </div>
+            <p class="text-gray-700 mb-3">Using Google Sheets + Python, we tracked:</p>
+            <ul class="space-y-1 text-gray-700 pl-4">
+              <li>• QL Score vs. Demo booking rate</li>
+              <li>• No-show rates by score bands</li>
+              <li>• Lead source performance by score</li>
+              <li>• Score calibration based on AE feedback</li>
+              <li>• Regular updates to score thresholds</li>
+            </ul>
           </div>
 
           <!-- Results -->
-          <div class="mb-8">
+          <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">📈</span>
               <h3 class="text-xl font-semibold text-gray-900">Results & Impact</h3>
             </div>
-            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-green-600 mb-1">+25%</div>
-                  <p class="text-sm text-gray-700 font-medium">Demo Conversion Rate</p>
-                  <p class="text-xs text-gray-600">Post-scoring rollout</p>
-                </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-blue-600 mb-1">&lt;15min</div>
-                  <p class="text-sm text-gray-700 font-medium">Response Time</p>
-                  <p class="text-xs text-gray-600">For hot leads</p>
-                </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-purple-600 mb-1">70%</div>
-                  <p class="text-sm text-gray-700 font-medium">Quality Meetings</p>
-                  <p class="text-xs text-gray-600">From QL Score ≥ 60</p>
-                </div>
-              </div>
-            </div>
+            <ul class="space-y-1 text-gray-700 pl-4">
+              <li>• <strong>+25%</strong> demo conversion post-scoring rollout</li>
+              <li>• <strong>&lt;15 mins</strong> SDR response time for hot leads</li>
+              <li>• <strong>70%</strong> of meetings came from leads with QL Score ≥ 60</li>
+              <li>• <strong>180+</strong> day inactive leads auto-archived weekly</li>
+              <li>• Higher SDR confidence in CRM → focus on real opportunities</li>
+            </ul>
           </div>
 
           <!-- Tools -->
@@ -208,16 +222,24 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
               <span class="text-xl">🛠️</span>
               <h3 class="text-xl font-semibold text-gray-900">Tools & Stack</h3>
             </div>
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">HubSpot CRM</span>
-                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">Workflows</span>
-                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">Custom Lead Score</span>
-                <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">Google Sheets</span>
-                <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">Slack</span>
-              </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">HubSpot CRM</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Workflows</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Custom Lead Score</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Google Sheets</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Python</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Slack</span>
             </div>
+          </div>
+
+          <!-- Final Reflection -->
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">🔍</span>
+              <h3 class="text-xl font-semibold text-gray-900">Final Reflection</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed">This project transformed lead qualification into a data-driven engine, not a guessing game.</p>
+            <p class="text-gray-700 leading-relaxed mt-2">It empowered Sales to focus on the highest-value conversations, improved pipeline health, and created a real feedback loop between Marketing and SDRs — redefining what a "qualified lead" truly means.</p>
           </div>
         </div>
       `);
