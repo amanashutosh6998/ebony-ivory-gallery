@@ -62,19 +62,19 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
   useEffect(() => {
     const timer = setTimeout(() => {
       setNotionContent(`
-        <div class="notion-content bg-white text-gray-900 p-8" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif;">
+        <div class="notion-content bg-gray-900 text-white p-8" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif;">
           <!-- Notion-style header -->
           <div class="mb-8">
             <div class="flex items-center gap-2 mb-4">
               <span class="text-2xl">🎯</span>
-              <h1 class="text-3xl font-bold text-gray-900">Lead Scoring Engine to Prioritize SDR Outreach</h1>
+              <h1 class="text-3xl font-bold text-white">Lead Scoring Engine to Prioritize SDR Outreach</h1>
             </div>
-            <p class="text-lg text-gray-600 mb-4">Automating lead qualification for faster, more focused follow-ups</p>
+            <p class="text-lg text-gray-300 mb-4">Automating lead qualification for faster, more focused follow-ups</p>
             <div class="flex gap-2 mb-6">
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Sales Operations</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Lead Qualification</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">HubSpot</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Automation</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Sales Operations</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Lead Qualification</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">HubSpot</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Automation</span>
             </div>
           </div>
 
@@ -82,19 +82,19 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🏢</span>
-              <h3 class="text-xl font-semibold text-gray-900">Company Context</h3>
+              <h3 class="text-xl font-semibold text-white">Company Context</h3>
             </div>
-            <p class="text-gray-700 leading-relaxed mb-2">At Kenko AI, our inbound pipeline was rapidly expanding thanks to performance ads and lead magnets — a strong sign of top-of-funnel momentum. But with growing volume came a challenge:</p>
-            <p class="text-gray-900 font-medium">Our SDR team was overwhelmed by quantity, not quality.</p>
+            <p class="text-gray-300 leading-relaxed mb-2">At Kenko AI, our inbound pipeline was rapidly expanding thanks to performance ads and lead magnets — a strong sign of top-of-funnel momentum. But with growing volume came a challenge:</p>
+            <p class="text-white font-medium">Our SDR team was overwhelmed by quantity, not quality.</p>
           </div>
 
           <!-- Challenges -->
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🚧</span>
-              <h3 class="text-xl font-semibold text-gray-900">Challenges</h3>
+              <h3 class="text-xl font-semibold text-white">Challenges</h3>
             </div>
-            <ul class="space-y-2 text-gray-700 pl-4">
+            <ul class="space-y-2 text-gray-300 pl-4">
               <li>• SDRs manually reviewed every lead — with no prioritization framework</li>
               <li>• Many leads had low intent or lacked decision-making authority</li>
               <li>• High-intent leads were missed or delayed in follow-up</li>
@@ -106,10 +106,10 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🎯</span>
-              <h3 class="text-xl font-semibold text-gray-900">Objective</h3>
+              <h3 class="text-xl font-semibold text-white">Objective</h3>
             </div>
-            <p class="text-gray-700 mb-3">Build an automated lead scoring engine that:</p>
-            <ul class="space-y-1 text-gray-700 pl-4">
+            <p class="text-gray-300 mb-3">Build an automated lead scoring engine that:</p>
+            <ul class="space-y-1 text-gray-300 pl-4">
               <li>• Prioritizes leads by intent, fit, and engagement</li>
               <li>• Penalizes low-quality or inactive leads</li>
               <li>• Routes high-scoring leads instantly to SDRs</li>
@@ -122,25 +122,25 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🧠</span>
-              <h3 class="text-xl font-semibold text-gray-900">Solution: QL Score 2.0</h3>
+              <h3 class="text-xl font-semibold text-white">Solution: QL Score 2.0</h3>
             </div>
-            <p class="text-gray-700 mb-4">A dynamic, multi-factor scoring model designed to reflect sales readiness. Scores update automatically in HubSpot based on:</p>
+            <p class="text-gray-300 mb-4">A dynamic, multi-factor scoring model designed to reflect sales readiness. Scores update automatically in HubSpot based on:</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-              <div class="text-center p-3 bg-gray-50 rounded">
+              <div class="text-center p-3 bg-gray-800 rounded">
                 <div class="text-2xl mb-1">📝</div>
-                <p class="text-sm text-gray-700">Forms submitted</p>
+                <p class="text-sm text-gray-300">Forms submitted</p>
               </div>
-              <div class="text-center p-3 bg-gray-50 rounded">
+              <div class="text-center p-3 bg-gray-800 rounded">
                 <div class="text-2xl mb-1">🌐</div>
-                <p class="text-sm text-gray-700">Website behavior</p>
+                <p class="text-sm text-gray-300">Website behavior</p>
               </div>
-              <div class="text-center p-3 bg-gray-50 rounded">
+              <div class="text-center p-3 bg-gray-800 rounded">
                 <div class="text-2xl mb-1">🏢</div>
-                <p class="text-sm text-gray-700">Contact/business data</p>
+                <p class="text-sm text-gray-300">Contact/business data</p>
               </div>
-              <div class="text-center p-3 bg-gray-50 rounded">
+              <div class="text-center p-3 bg-gray-800 rounded">
                 <div class="text-2xl mb-1">🤝</div>
-                <p class="text-sm text-gray-700">Sales interactions</p>
+                <p class="text-sm text-gray-300">Sales interactions</p>
               </div>
             </div>
           </div>
@@ -149,19 +149,19 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-lg">✳️</span>
-              <h4 class="text-lg font-semibold text-gray-900">Intent & Fit Scoring</h4>
+              <h4 class="text-lg font-semibold text-white">Intent & Fit Scoring</h4>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <p class="font-medium text-gray-900 mb-2">Intent:</p>
-                <ul class="space-y-1 text-gray-700 text-sm pl-4">
+                <p class="font-medium text-white mb-2">Intent:</p>
+                <ul class="space-y-1 text-gray-300 text-sm pl-4">
                   <li>• Form submissions (Demo, Pricing Quiz, Lead Magnets)</li>
                   <li>• Visits to high-intent pages (/pricing, /demo, /features)</li>
                 </ul>
               </div>
               <div>
-                <p class="font-medium text-gray-900 mb-2">Fit:</p>
-                <ul class="space-y-1 text-gray-700 text-sm pl-4">
+                <p class="font-medium text-white mb-2">Fit:</p>
+                <ul class="space-y-1 text-gray-300 text-sm pl-4">
                   <li>• Valid contact details (email, phone)</li>
                   <li>• Company industry, size match</li>
                   <li>• Business information completeness</li>
@@ -174,9 +174,9 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">⚙️</span>
-              <h3 class="text-xl font-semibold text-gray-900">HubSpot Implementation</h3>
+              <h3 class="text-xl font-semibold text-white">HubSpot Implementation</h3>
             </div>
-            <ul class="space-y-1 text-gray-700 pl-4">
+            <ul class="space-y-1 text-gray-300 pl-4">
               <li>• Created custom QL Score property</li>
               <li>• Automated real-time scoring workflows</li>
               <li>• Set up SDR alerts via Slack & Email</li>
@@ -189,10 +189,10 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">📊</span>
-              <h3 class="text-xl font-semibold text-gray-900">Performance Tracking</h3>
+              <h3 class="text-xl font-semibold text-white">Performance Tracking</h3>
             </div>
-            <p class="text-gray-700 mb-3">Using Google Sheets + Python, we tracked:</p>
-            <ul class="space-y-1 text-gray-700 pl-4">
+            <p class="text-gray-300 mb-3">Using Google Sheets + Python, we tracked:</p>
+            <ul class="space-y-1 text-gray-300 pl-4">
               <li>• QL Score vs. Demo booking rate</li>
               <li>• No-show rates by score bands</li>
               <li>• Lead source performance by score</li>
@@ -205,13 +205,13 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">📈</span>
-              <h3 class="text-xl font-semibold text-gray-900">Results & Impact</h3>
+              <h3 class="text-xl font-semibold text-white">Results & Impact</h3>
             </div>
-            <ul class="space-y-1 text-gray-700 pl-4">
-              <li>• <strong>+25%</strong> demo conversion post-scoring rollout</li>
-              <li>• <strong>&lt;15 mins</strong> SDR response time for hot leads</li>
-              <li>• <strong>70%</strong> of meetings came from leads with QL Score ≥ 60</li>
-              <li>• <strong>180+</strong> day inactive leads auto-archived weekly</li>
+            <ul class="space-y-1 text-gray-300 pl-4">
+              <li>• <strong class="text-white">+25%</strong> demo conversion post-scoring rollout</li>
+              <li>• <strong class="text-white">&lt;15 mins</strong> SDR response time for hot leads</li>
+              <li>• <strong class="text-white">70%</strong> of meetings came from leads with QL Score ≥ 60</li>
+              <li>• <strong class="text-white">180+</strong> day inactive leads auto-archived weekly</li>
               <li>• Higher SDR confidence in CRM → focus on real opportunities</li>
             </ul>
           </div>
@@ -220,15 +220,15 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🛠️</span>
-              <h3 class="text-xl font-semibold text-gray-900">Tools & Stack</h3>
+              <h3 class="text-xl font-semibold text-white">Tools & Stack</h3>
             </div>
             <div class="flex flex-wrap gap-2">
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">HubSpot CRM</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Workflows</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Custom Lead Score</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Google Sheets</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Python</span>
-              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Slack</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">HubSpot CRM</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Workflows</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Custom Lead Score</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Google Sheets</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Python</span>
+              <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded text-sm">Slack</span>
             </div>
           </div>
 
@@ -236,10 +236,10 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xl">🔍</span>
-              <h3 class="text-xl font-semibold text-gray-900">Final Reflection</h3>
+              <h3 class="text-xl font-semibold text-white">Final Reflection</h3>
             </div>
-            <p class="text-gray-700 leading-relaxed">This project transformed lead qualification into a data-driven engine, not a guessing game.</p>
-            <p class="text-gray-700 leading-relaxed mt-2">It empowered Sales to focus on the highest-value conversations, improved pipeline health, and created a real feedback loop between Marketing and SDRs — redefining what a "qualified lead" truly means.</p>
+            <p class="text-gray-300 leading-relaxed">This project transformed lead qualification into a data-driven engine, not a guessing game.</p>
+            <p class="text-gray-300 leading-relaxed mt-2">It empowered Sales to focus on the highest-value conversations, improved pipeline health, and created a real feedback loop between Marketing and SDRs — redefining what a "qualified lead" truly means.</p>
           </div>
         </div>
       `);
@@ -284,12 +284,12 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
             </div>
           </div>
           
-          {/* Content - Notion-styled display */}
-          <div className="bg-white shadow-lg overflow-hidden" style={{ minHeight: '600px' }}>
+          {/* Content - Notion-styled dark display */}
+          <div className="bg-gray-900 shadow-lg overflow-hidden" style={{ minHeight: '600px' }}>
             {renderNotionContent()}
             
             {/* Bottom CTA */}
-            <div className="p-6 bg-gray-50 border-t border-gray-200 text-center">
+            <div className="p-6 bg-gray-800 border-t border-gray-700 text-center">
               <Button 
                 size="lg"
                 asChild
