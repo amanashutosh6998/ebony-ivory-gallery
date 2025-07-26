@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from 'react-router-dom';
+import NotionEmbed from './NotionEmbed';
 
 interface CaseStudy {
   title: string;
@@ -14,6 +15,7 @@ interface CaseStudy {
   order?: number;
   active?: boolean;
   categories?: string[];
+  notionUrl?: string;
 }
 
 const CaseStudiesSection = () => {
@@ -40,7 +42,8 @@ const CaseStudiesSection = () => {
       slug: "lead-scoring-engine",
       order: 2,
       active: true,
-      categories: ["Sales Operations", "Lead Qualification", "HubSpot", "Automation"]
+      categories: ["Sales Operations", "Lead Qualification", "HubSpot", "Automation"],
+      notionUrl: "https://www.notion.so/Case-Study-Lead-Scoring-23c23925821080d09977f7cd932a358c"
     }
   ];
 
@@ -66,19 +69,45 @@ const CaseStudiesSection = () => {
 
         <div className="space-y-12">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="overflow-hidden border border-gray-700 bg-gray-900 shadow-sm">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-white">{study.title}</h3>
-                <p className="text-gray-300 mb-6 text-lg leading-relaxed">{study.problem}</p>
-                <Link to={`/case-study/${study.slug}`}>
-                  <Button 
-                    className="bg-white text-black hover:bg-gray-200 border border-white"
-                  >
-                    Read Case Study
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <div key={index} className="space-y-6">
+              <Card className="overflow-hidden border border-gray-700 bg-gray-900 shadow-sm">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-white">{study.title}</h3>
+                  <p className="text-gray-300 mb-6 text-lg leading-relaxed">{study.problem}</p>
+                  <Link to={`/case-study/${study.slug}`}>
+                    <Button 
+                      className="bg-white text-black hover:bg-gray-200 border border-white"
+                    >
+                      Read Case Study
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Notion Embed for studies that have Notion URLs */}
+              {study.notionUrl && (
+                <NotionEmbed 
+                  notionUrl={study.notionUrl}
+                  title={`${study.title} - Detailed Case Study`}
+                  fallbackContent={
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Solution:</h4>
+                        <p className="text-gray-300">{study.solution}</p>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Tools Used:</h4>
+                        <p className="text-gray-300">{study.tools.join(', ')}</p>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-2">Impact:</h4>
+                        <p className="text-gray-300">{study.impact}</p>
+                      </div>
+                    </div>
+                  }
+                />
+              )}
+            </div>
           ))}
         </div>
       </div>
