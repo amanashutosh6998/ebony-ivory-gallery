@@ -66,7 +66,6 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
           <!-- Notion-style header -->
           <div class="mb-8">
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-2xl">🎯</span>
               <h1 class="text-3xl font-bold text-white">Lead Scoring Engine to Prioritize SDR Outreach</h1>
             </div>
             <p class="text-lg text-gray-300 mb-4">Automating lead qualification for faster, more focused follow-ups</p>
@@ -80,8 +79,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Company Context -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🏢</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Company Context</h3>
             </div>
             <p class="text-gray-300 leading-relaxed mb-2">At Kenko AI, our inbound pipeline was rapidly expanding thanks to performance ads and lead magnets — a strong sign of top-of-funnel momentum. But with growing volume came a challenge:</p>
@@ -90,8 +88,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Challenges -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🚧</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Challenges</h3>
             </div>
             <ul class="space-y-2 text-gray-300 pl-4">
@@ -104,8 +101,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Objective -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🎯</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Objective</h3>
             </div>
             <p class="text-gray-300 mb-3">Build an automated lead scoring engine that:</p>
@@ -120,26 +116,21 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Solution -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🧠</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Solution: QL Score 2.0</h3>
             </div>
             <p class="text-gray-300 mb-4">A dynamic, multi-factor scoring model designed to reflect sales readiness. Scores update automatically in HubSpot based on:</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               <div class="text-center p-3 bg-gray-800 rounded">
-                <div class="text-2xl mb-1">📝</div>
                 <p class="text-sm text-gray-300">Forms submitted</p>
               </div>
               <div class="text-center p-3 bg-gray-800 rounded">
-                <div class="text-2xl mb-1">🌐</div>
                 <p class="text-sm text-gray-300">Website behavior</p>
               </div>
               <div class="text-center p-3 bg-gray-800 rounded">
-                <div class="text-2xl mb-1">🏢</div>
                 <p class="text-sm text-gray-300">Contact/business data</p>
               </div>
               <div class="text-center p-3 bg-gray-800 rounded">
-                <div class="text-2xl mb-1">🤝</div>
                 <p class="text-sm text-gray-300">Sales interactions</p>
               </div>
             </div>
@@ -147,8 +138,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Intent & Fit Scoring -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-lg">✳️</span>
+            <div class="mb-3">
               <h4 class="text-lg font-semibold text-white">Intent & Fit Scoring</h4>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -172,8 +162,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Implementation -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">⚙️</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">HubSpot Implementation</h3>
             </div>
             <ul class="space-y-1 text-gray-300 pl-4">
@@ -187,8 +176,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Performance Tracking -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">📊</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Performance Tracking</h3>
             </div>
             <p class="text-gray-300 mb-3">Using Google Sheets + Python, we tracked:</p>
@@ -203,8 +191,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Results -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">📈</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Results & Impact</h3>
             </div>
             <ul class="space-y-1 text-gray-300 pl-4">
@@ -218,8 +205,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Tools -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🛠️</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Tools & Stack</h3>
             </div>
             <div class="flex flex-wrap gap-2">
@@ -234,8 +220,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
 
           <!-- Final Reflection -->
           <div class="mb-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-xl">🔍</span>
+            <div class="mb-3">
               <h3 class="text-xl font-semibold text-white">Final Reflection</h3>
             </div>
             <p class="text-gray-300 leading-relaxed">This project transformed lead qualification into a data-driven engine, not a guessing game.</p>
