@@ -43,7 +43,7 @@ const CaseStudiesSection = () => {
       order: 2,
       active: true,
       categories: ["Sales Operations", "Lead Qualification", "HubSpot", "Automation"],
-      notionUrl: "https://www.notion.so/Case-Study-Lead-Scoring-23c23925821080d09977f7cd932a358c"
+      notionUrl: "https://positive-cadet-b70.notion.site/Case-Study-Lead-Scoring-23c23925821080d09977f7cd932a358c"
     }
   ];
 

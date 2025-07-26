@@ -10,14 +10,73 @@ interface NotionEmbedProps {
 }
 
 const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) => {
-  // For Notion pages to be embeddable, they need to be published to web
-  // Private Notion pages will show "refused to connect" error
-  const getPublicNotionUrl = (url: string) => {
-    // Extract the page ID from the URL
+  // Check if it's a published Notion page (notion.site domain)
+  const isPublishedNotion = notionUrl.includes('notion.site');
+  
+  const getEmbedUrl = (url: string) => {
+    if (isPublishedNotion) {
+      return url; // Use the published URL directly
+    }
+    // For private pages, extract the page ID
     const pageId = url.split('/').pop()?.split('?')[0];
     return `https://www.notion.so/${pageId}`;
   };
 
+  if (isPublishedNotion) {
+    // Render embedded iframe for published pages
+    return (
+      <div className="space-y-4">
+        <Card className="overflow-hidden border border-gray-700 bg-gray-900">
+          <CardContent className="p-0">
+            <div className="flex items-center justify-between p-4 border-b border-gray-700">
+              <h4 className="text-lg font-semibold text-white">📄 {title}</h4>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                asChild
+                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+              >
+                <a 
+                  href={notionUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  Open in Notion
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+            
+            <div className="relative w-full" style={{ height: '600px' }}>
+              <iframe
+                src={getEmbedUrl(notionUrl)}
+                className="w-full h-full border-0"
+                title={title}
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Enhanced Fallback content */}
+        {fallbackContent && (
+          <Card className="border border-gray-700 bg-gray-900">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 text-blue-400 mb-4">
+                <span>📋</span>
+                <span className="text-lg font-semibold">Case Study Summary</span>
+              </div>
+              {fallbackContent}
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    );
+  }
+
+  // Fallback for private Notion pages
   return (
     <div className="space-y-4">
       {/* Notion Link Card */}
@@ -49,7 +108,7 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
               className="bg-white text-black hover:bg-gray-200 w-full"
             >
               <a 
-                href={getPublicNotionUrl(notionUrl)} 
+                href={getEmbedUrl(notionUrl)} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2"
