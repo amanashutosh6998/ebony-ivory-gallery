@@ -22,123 +22,69 @@ const NotionEmbed = ({ notionUrl, title, fallbackContent }: NotionEmbedProps) =>
     return `https://www.notion.so/${pageId}`;
   };
 
-  if (isPublishedNotion) {
-    // Render embedded iframe for published pages
-    return (
-      <div className="space-y-4">
-        <Card className="overflow-hidden border border-gray-700 bg-gray-900">
-          <CardContent className="p-0">
-            <div className="flex items-center justify-between p-4 border-b border-gray-700">
-              <h4 className="text-lg font-semibold text-white">📄 {title}</h4>
+  // Always show the enhanced card view instead of iframe due to Notion's embedding restrictions
+  return (
+    <div className="space-y-4">
+      {/* Enhanced Notion Content Card */}
+      <Card className="overflow-hidden border border-gray-700 bg-gradient-to-br from-gray-900 to-gray-800">
+        <CardContent className="p-0">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-black font-bold">N</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-white">{title}</h4>
+                <p className="text-blue-100">Detailed case study with insights and implementation</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Content Preview */}
+          <div className="p-6">
+            {fallbackContent && (
+              <div className="mb-6">
+                {fallbackContent}
+              </div>
+            )}
+            
+            {/* Call to Action */}
+            <div className="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
+              <div className="mb-4">
+                <span className="text-2xl mb-2 block">📖</span>
+                <h5 className="text-lg font-semibold text-white mb-2">Read the Complete Case Study</h5>
+                <p className="text-gray-300 text-sm mb-4">
+                  Get the full details, implementation steps, challenges faced, and measurable outcomes.
+                </p>
+              </div>
+              
               <Button 
-                variant="outline" 
-                size="sm" 
+                size="lg"
                 asChild
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 px-8 py-3"
               >
                 <a 
                   href={notionUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+                  className="flex items-center justify-center gap-2 no-underline"
                 >
-                  Open in Notion
-                  <ExternalLink className="w-4 h-4" />
+                  Open Full Case Study
+                  <ExternalLink className="w-5 h-5" />
                 </a>
               </Button>
+              
+              <p className="text-xs text-gray-500 mt-3">
+                Opens in new tab • No signup required
+              </p>
             </div>
-            
-            <div className="relative w-full" style={{ height: '600px' }}>
-              <iframe
-                src={getEmbedUrl(notionUrl)}
-                className="w-full h-full border-0"
-                title={title}
-                loading="lazy"
-                allowFullScreen
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Enhanced Fallback content */}
-        {fallbackContent && (
-          <Card className="border border-gray-700 bg-gray-900">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-2 text-blue-400 mb-4">
-                <span>📋</span>
-                <span className="text-lg font-semibold">Case Study Summary</span>
-              </div>
-              {fallbackContent}
-            </CardContent>
-          </Card>
-        )}
-      </div>
-    );
-  }
-
-  // Fallback for private Notion pages
-  return (
-    <div className="space-y-4">
-      {/* Notion Link Card */}
-      <Card className="overflow-hidden border border-gray-700 bg-gray-900">
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
-                <span className="text-black font-bold text-sm">N</span>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-white">{title}</h4>
-                <p className="text-sm text-gray-400">Full case study details</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 border border-gray-600 rounded-lg p-4 mb-4">
-            <div className="flex items-center gap-2 text-amber-400 mb-2">
-              <span>⚠️</span>
-              <span className="text-sm font-medium">Notion Integration Info</span>
-            </div>
-            <p className="text-sm text-gray-300 mb-3">
-              To embed this Notion page directly, it needs to be published to the web. For now, click the button below to view the full case study in Notion.
-            </p>
-            <Button 
-              variant="default" 
-              asChild
-              className="bg-white text-black hover:bg-gray-200 w-full"
-            >
-              <a 
-                href={getEmbedUrl(notionUrl)} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                📖 Open Full Case Study in Notion
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </Button>
-          </div>
-          
-          <div className="text-xs text-gray-500">
-            💡 To enable direct embedding: In Notion, click Share → Publish to web → Copy link
           </div>
         </CardContent>
       </Card>
-
-      {/* Enhanced Fallback content */}
-      {fallbackContent && (
-        <Card className="border border-gray-700 bg-gray-900">
-          <CardContent className="p-6">
-            <div className="flex items-center gap-2 text-blue-400 mb-4">
-              <span>📋</span>
-              <span className="text-lg font-semibold">Case Study Summary</span>
-            </div>
-            {fallbackContent}
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
+
 };
 
 export default NotionEmbed;
