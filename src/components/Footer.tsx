@@ -1,5 +1,5 @@
-
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Cloud, Bot } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -40,8 +40,43 @@ const Footer = () => {
           </div>
           
           <div>
-            <p className="text-sm text-gray-400 flex items-center flex-wrap gap-1">
-              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="inline-flex items-center hover:text-white cursor-pointer"><Github className="w-4 h-4 mr-1" /><span>GitHub</span></a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">Lovable</a> + <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">AWS</a> + <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">Claude</a>
+            <p className="text-sm text-gray-400 flex items-center gap-2">
+              Powered by
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">
+                    <Github className="w-5 h-5" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>GitHub</TooltipContent>
+              </Tooltip>
+              <span>+</span>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">
+                    <Heart className="w-5 h-5" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>Lovable</TooltipContent>
+              </Tooltip>
+              <span>+</span>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">
+                    <Cloud className="w-5 h-5" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>AWS</TooltipContent>
+              </Tooltip>
+              <span>+</span>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">
+                    <Bot className="w-5 h-5" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>Claude</TooltipContent>
+              </Tooltip>
             </p>
           </div>
         </div>
