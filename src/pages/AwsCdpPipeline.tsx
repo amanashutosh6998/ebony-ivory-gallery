@@ -8,8 +8,22 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import AwsCdpFlowDiagram from "@/components/AwsCdpFlowDiagram";
-import MiroEmbed from "@/components/MiroEmbed";
-import GoogleSheetsEmbed from "@/components/GoogleSheetsEmbed";
+import TabbedMiroEmbed from "@/components/TabbedMiroEmbed";
+import TabbedGoogleSheetsEmbed from "@/components/TabbedGoogleSheetsEmbed";
+
+// Sample data - replace with your actual Miro frame URLs
+const miroFrames = [
+  { id: 'architecture', label: 'Architecture', embedUrl: 'https://miro.com/app/embed/uXjVIzIu7OA=/?pres=1&frameId=3458764629056626025&embedId=377243973745' },
+  { id: 'data-flow', label: 'Data Flow', embedUrl: 'https://miro.com/app/embed/uXjVIzIu7OA=/?pres=1&frameId=3458764629056626025&embedId=377243973745' },
+  { id: 'components', label: 'Components', embedUrl: 'https://miro.com/app/embed/uXjVIzIu7OA=/?pres=1&frameId=3458764629056626025&embedId=377243973745' },
+];
+
+// Sample data - replace with your actual Google Sheets URLs (use ?gid=SHEET_ID for sub-sheets)
+const googleSheets = [
+  { id: 'summary', label: 'Summary', embedUrl: 'https://docs.google.com/spreadsheets/d/17kG8_3kw2dwAPLnz5j0o0GDz3ypvvfGMxZuAnBNm_W8/edit?usp=sharing&rm=minimal&widget=true&headers=false' },
+  { id: 'metrics', label: 'Metrics', embedUrl: 'https://docs.google.com/spreadsheets/d/17kG8_3kw2dwAPLnz5j0o0GDz3ypvvfGMxZuAnBNm_W8/edit?usp=sharing&rm=minimal&widget=true&headers=false' },
+  { id: 'raw-data', label: 'Raw Data', embedUrl: 'https://docs.google.com/spreadsheets/d/17kG8_3kw2dwAPLnz5j0o0GDz3ypvvfGMxZuAnBNm_W8/edit?usp=sharing&rm=minimal&widget=true&headers=false' },
+];
 
 const AwsCdpPipeline = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,9 +89,9 @@ const AwsCdpPipeline = () => {
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white">Architecture Overview</h2>
               
-              {/* Miro Embed */}
+              {/* Tabbed Miro Embed */}
               <div className="mb-12">
-                <MiroEmbed />
+                <TabbedMiroEmbed frames={miroFrames} />
               </div>
             </motion.div>
             
@@ -109,9 +123,9 @@ const AwsCdpPipeline = () => {
                 including customer insights, conversion rates, and system performance.
               </p>
               
-              {/* Google Sheets Embed */}
+              {/* Tabbed Google Sheets Embed */}
               <div className="mb-12">
-                <GoogleSheetsEmbed />
+                <TabbedGoogleSheetsEmbed sheets={googleSheets} />
               </div>
             </motion.div>
             
