@@ -40,8 +40,8 @@ const Footer = () => {
           </div>
           
           <div>
-            <p className="text-sm text-gray-400 flex items-center">
-              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="mx-1 inline-flex items-center hover:text-white cursor-pointer"><Github className="w-4 h-4 mr-1" /><span>GitHub</span></a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white cursor-pointer"><span>Lovable</span></a>
+            <p className="text-sm text-gray-400 flex items-center flex-wrap gap-1">
+              Powered by <a href="https://github.com/amanashutosh6998" target="_blank" rel="noopener noreferrer" className="inline-flex items-center hover:text-white cursor-pointer"><Github className="w-4 h-4 mr-1" /><span>GitHub</span></a> + <a href="https://lovable.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">Lovable</a> + <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">AWS</a> + <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white cursor-pointer">Claude</a>
             </p>
           </div>
         </div>
