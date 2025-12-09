@@ -81,7 +81,7 @@ const ChatbotWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 left-4 z-50">
       {/* Message popup animation */}
       {showMessage && isHomePage && !isOpen && (
         <div className="mb-2 mr-16 animate-fade-in">
